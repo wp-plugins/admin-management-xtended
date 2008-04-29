@@ -43,6 +43,6 @@ If you have suggestions please let me know by dropping me a line via e-mail or t
 
 == Screenshots ==
 
-1. Icons in posts/pages management view
-2. The calendar to change publication date
-3. Inline post/page title editing
+1. Icons in posts/pages management view.
+2. The calendar to change publication date.
+3. Inline post/page title editing.
