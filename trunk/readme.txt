@@ -1,4 +1,4 @@
-﻿=== Admin Management Xtended ===
+=== Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin
@@ -10,7 +10,7 @@ This plugin adds some icons to the Manage posts/pages view with AJAX-driven CMS-
 
 == Description ==
 
-When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it’s important to be able to manage contents easily and quickly. That’s what this plugin helps to do.
+When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
 It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
 
