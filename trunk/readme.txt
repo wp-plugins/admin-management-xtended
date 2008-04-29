@@ -37,9 +37,9 @@ If you have suggestions please let me know by dropping me a line via e-mail or t
 == Installation ==
 
 1. Download the plugin and unzip it.
-1. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
-1. Activate the plugin from your WordPress admin panel.
-1. Installation finished.
+2. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
+3. Activate the plugin from your WordPress admin panel.
+4. Installation finished.
 
 == Screenshots ==
 
