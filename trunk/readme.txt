@@ -44,3 +44,5 @@ If you have suggestions please let me know by dropping me a line via e-mail or t
 == Screenshots ==
 
 [For screenshots see here](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screenshots)
+
+[More than that, there is a little screencast available!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screencast)
