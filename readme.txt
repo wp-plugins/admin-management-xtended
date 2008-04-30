@@ -1,4 +1,4 @@
-﻿=== Admin Management Xtended ===
+=== Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin
@@ -10,7 +10,7 @@ This plugin adds some icons to the Manage posts/pages view with AJAX-driven CMS-
 
 == Description ==
 
-When you want to edit properties of posts/pages, you’ll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it’s important to be able to manage contents easily and quickly. That’s what this plugin helps to do.
+When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
 It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
 
@@ -37,12 +37,12 @@ If you have suggestions please let me know by dropping me a line via e-mail or t
 == Installation ==
 
 1. Download the plugin and unzip it.
-1. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
-1. Activate the plugin from your WordPress admin panel.
-1. Installation finished.
+2. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
+3. Activate the plugin from your WordPress admin panel.
+4. Installation finished.
 
 == Screenshots ==
 
-1. Icons in posts/pages management view
-2. The calendar to change publication date
-3. Inline post/page title editing
+[For screenshots see here](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screenshots)
+
+[More than that, there is a little screencast available!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screencast)
