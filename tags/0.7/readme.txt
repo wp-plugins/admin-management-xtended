@@ -14,7 +14,7 @@ When you want to edit properties of posts/pages, you'll have to open the edit pa
 
 It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
 
-[Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screencast)
+[Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
 Features:
 
@@ -45,4 +45,4 @@ If you have suggestions please let me know by dropping me a line via e-mail or t
 
 [For screenshots see here](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screenshots)
 
-[More than that, there is a little screencast available!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#screencast)
+[More than that, there is a little screencast available!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
