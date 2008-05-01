@@ -33,7 +33,7 @@ Well, show me a neat jQuery calendar plugin that can entirely be localized and t
 
 = Why isn't this or that implemented to improve the admin interface? =
 
-If you have suggestions please let me know by dropping me a line via e-mail or the wp.org forums.
+If you have suggestions please let me know by dropping me a line via e-mail or the [wp.org forums](http://wordpress.org/tags/admin-management-xtended?forum_id=10#postform).
 
 == Installation ==
 
