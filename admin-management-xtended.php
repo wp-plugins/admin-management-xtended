@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Admin Management Xtended
-Version: 0.7
+Version: 0.8
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: Adds ajax-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens...
 Author: Oliver Schl&ouml;be
@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /* General stuff									*/
 /* ************************************************ */
 
-define("AME_VERSION", "0.7");
+define("AME_VERSION", "0.8");
 define("AME_PLUGINPATH", "/admin-management-xtended/");
 load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH);
 

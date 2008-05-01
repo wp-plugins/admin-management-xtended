@@ -22,6 +22,7 @@ Features:
 * Toggling visibility with a single click
 * Changing the publication date with a neat comfortable calendar
 * Change post/page title inline in posts/pages management view
+* **NEW since 0.8**: Change post/page slug inline in posts/pages management view
 * Entirely possible to be localized, including the JS calendar
 
 == Frequently Asked Questions ==

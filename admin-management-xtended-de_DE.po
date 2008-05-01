@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Admin Management Extended\n"
+"Project-Id-Version: Admin Management Xtended\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-04-26 21:32+0100\n"
+"PO-Revision-Date: 2008-05-01 22:57+0100\n"
 "Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
@@ -13,49 +13,61 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-extended\\trunk\n"
+"X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-xtended\\trunk\n"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:93
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:247
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:94
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:273
 msgid "Post"
 msgstr "Artikel"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:93
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:247
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:94
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:273
 msgid "Save"
 msgstr "Speichern"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:93
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/general-functions.php:247
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:94
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:273
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:27
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:27
-msgid "Actions"
-msgstr "Aktionen"
-
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:39
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:50
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:39
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:50
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:147
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:150
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:40
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:51
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:41
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:52
 msgid "Toggle visibility"
 msgstr "Sichtbarkeit umschalten"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:41
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:52
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:41
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:52
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:27
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:29
+msgid "Actions"
+msgstr "Aktionen"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:42
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:53
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:43
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:54
 msgid "Change Publication Date"
 msgstr "Veröffentlichungsdatum ändern"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:45
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/page-functions.php:56
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:46
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:57
 msgid "Change Page Title"
 msgstr "Seitentitel ändern"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:45
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-extended\trunk/post-functions.php:56
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:48
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:59
+msgid "Edit Page Slug"
+msgstr "Seiten-Slug bearbeiten"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:47
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:58
 msgid "Change Post Title"
 msgstr "Artikeltitel ändern"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:49
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:60
+msgid "Edit Post Slug"
+msgstr "Artikel-Slug bearbeiten"
 
