@@ -17,6 +17,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+load_plugin_textdomain('admin-management-xtended', PLUGINDIR . '/admin-management-xtended');
+
 /* ************************************************ */
 /* Adding the columns and data						*/
 /* ************************************************ */
@@ -43,7 +45,7 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     		// Title edit icon
     		$q_post_title = get_post($ame_id);
     		$post_title = attribute_escape( $q_post_title->post_title );
-    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlentities( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div> ';
+    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlspecialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div> ';
     		// Slug edit icon
     		echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/slug_edit.png" border="0" alt="' . __('Edit Page Slug', 'admin-management-xtended') . '" title="' . __('Edit Page Slug', 'admin-management-xtended') . '" /></a></div>';
     	} else {
@@ -54,7 +56,7 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     		// Title edit icon
     		$q_post_title = get_post($ame_id);
     		$post_title = attribute_escape( $q_post_title->post_title );
-    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlentities( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div>';
+    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlspecialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div>';
     		// Slug edit icon
     		echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/slug_edit.png" border="0" alt="' . __('Edit Page Slug', 'admin-management-xtended') . '" title="' . __('Edit Page Slug', 'admin-management-xtended') . '" /></a></div>';
     	}
