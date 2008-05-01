@@ -83,15 +83,28 @@ function return_function( $output ) {
 	return $output;
 }
 
-function ame_author_edit() {
+function ame_slug_edit() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
+	$newslug = $_POST['newslug'];
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
-	//$authordropdown = wp_dropdown_users( array('include' => $authors, 'name' => 'post_author_override', 'selected' => empty($post_ID) ? $user_ID : $post->post_author) );
-	//$authordropdown = str_replace("'", '"', $authordropdown);
-	//add_filter('wp_dropdown_users', return_function);
-	$addHTML = '<tr id="alterpost-' . $catid . '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td>' . __("Post") . ' #' . $catid . '</td><td colspan="8" align="right">' . $authordropdown . ' <input value="' . __("Save") . '" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(' . $catid . ');" /> <input value="' . __("Cancel") . '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(' . $catid . ');" /></td></tr>';
-	die( "jQuery('#post-" . $catid . "').after( '" . $addHTML . "' ); jQuery('#post-" . $catid . "').hide();" );
+	if( $posttype == 'post' ) { $postnumber = '1'; } elseif( $posttype == 'page' ) { $postnumber = '2'; }
+	$curpostslug = $wpdb->get_var("SELECT post_name FROM $wpdb->posts WHERE ID = " . $catid);
+	
+	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>" . __('Post') . " #" . $catid . "</td><td colspan='8' align='right'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
+	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
+}
+
+function ame_save_slug() {
+	global $wpdb;
+	$catid = intval($_POST['category_id']);
+	$new_slug = sanitize_title($_POST['new_slug']);
+	if( is_string($_POST['typenumber']) ) $posttype = $_POST['typenumber'];
+	$current_page = basename($_SERVER['PHP_SELF'], ".php");
+	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
+	
+	$wpdb->query("UPDATE $wpdb->posts SET post_name = '" . $new_slug . "' WHERE ID = '" . $catid . "'");
+	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
 function ame_save_title() {
@@ -141,7 +154,8 @@ function ame_toggle_visibility() {
 add_action('wp_ajax_ame_toggle_visibility', 'ame_toggle_visibility' );
 add_action('wp_ajax_ame_set_date', 'ame_set_date' );
 add_action('wp_ajax_ame_save_title', 'ame_save_title' );
-add_action('wp_ajax_ame_author_edit', 'ame_author_edit' );
+add_action('wp_ajax_ame_save_slug', 'ame_save_slug' );
+add_action('wp_ajax_ame_slug_edit', 'ame_slug_edit' );
 
 
 
@@ -211,21 +225,22 @@ echo '<style type="text/css">
 function ame_js_admin_header() {
 	wp_print_scripts( array( 'sack' ));
 
+	$current_page = basename($_SERVER['PHP_SELF'], ".php");
+	if( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'edit-pages' ) { $posttype = 'page'; }
 ?>
 <script type="text/javascript">
 //<![CDATA[
-function ame_author_edit( cat_id ) {
-	var newtitle = jQuery("input#ame_title" + cat_id).attr('value');
+function ame_slug_edit( cat_id, posttype ) {
+	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
 	var ame_sack = new sack(
 	"<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php");
 	ame_sack.execute = 1;
 	ame_sack.method = 'POST';
-	ame_sack.setVar( "action", "ame_author_edit" );
+	ame_sack.setVar( "action", "ame_slug_edit" );
 	ame_sack.setVar( "category_id", cat_id );
-	ame_sack.onError = function() { alert('Ajax error on saving post title') };
+	ame_sack.setVar( "posttype", posttype );
+	ame_sack.onError = function() { alert('Ajax error on editing post slug') };
 	ame_sack.runAJAX();
-	//jQuery("#alterpost-"+cat_id).hide();
-	//jQuery("#post-"+cat_id).show();
 }
 
 function ame_ajax_set_visibility( cat_id, status, posttype ) {
@@ -255,7 +270,7 @@ function ame_ajax_set_postdate( cat_id, pickedDate, posttype ) {
 }
 
 function ame_title_edit( cat_id, title_text, posttype ) {
-	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td><?php _e("Post"); ?> #' + cat_id + '</td><td colspan="8" align="right"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="<?php _e("Save"); ?>" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="<?php _e("Cancel"); ?>" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\', \'' + posttype + '\');" /></td></tr>';
+	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td><?php _e("Post"); ?> #' + cat_id + '</td><td colspan="8" align="right"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="<?php _e("Save"); ?>" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="<?php _e("Cancel"); ?>" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
 	jQuery("#" + posttype + "-" + cat_id).after( addHTML );
 	jQuery("#" + posttype + "-" + cat_id).hide();
 }
@@ -272,13 +287,25 @@ function ame_ajax_title_save( cat_id, posttype ) {
 	ame_sack.setVar( "posttype", posttype );
 	ame_sack.onError = function() { alert('Ajax error on saving post title') };
 	ame_sack.runAJAX();
-	//jQuery("#alterpost-"+cat_id).hide();
-	//jQuery("#post-"+cat_id).show();
 }
 
-function ame_edit_cancel( cat_id, posttype ) {
-	jQuery("#alter" + posttype + "-" + cat_id).hide();
-	jQuery("#" + posttype + "-" + cat_id).show();
+function ame_ajax_slug_save( cat_id, typenumber ) {
+	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
+	var ame_sack = new sack(
+	"<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php");
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_save_slug" );
+	ame_sack.setVar( "category_id", cat_id );
+	ame_sack.setVar( "new_slug", newslug );
+	ame_sack.setVar( "typenumber", typenumber );
+	ame_sack.onError = function() { alert('Ajax error on saving post slug') };
+	ame_sack.runAJAX();
+}
+
+function ame_edit_cancel( cat_id ) {
+	jQuery("#alter<?php echo $posttype; ?>-" + cat_id).hide();
+	jQuery("#<?php echo $posttype; ?>-" + cat_id).show();
 }
 //]]>
 </script>
