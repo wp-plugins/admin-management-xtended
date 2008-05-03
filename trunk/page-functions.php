@@ -30,6 +30,13 @@ function ame_column_page_actions( $defaults ) {
     return $defaults;
 }
 
+function ame_column_page_order( $defaults ) {
+	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	
+    $defaults['ame_page_order'] = __('Order');
+    return $defaults;
+}
+
 function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_page_actions' ) {
@@ -64,6 +71,15 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     }
 }
 
+function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
+	global $wpdb;
+    if( $ame_column_name == 'ame_page_order' ) {
+    	echo 's';
+    }
+}
+
 add_action('manage_pages_custom_column', 'ame_custom_column_page_actions', 500, 2);
 add_filter('manage_pages_columns', 'ame_column_page_actions', 500, 2);
+add_action('manage_pages_custom_column', 'ame_custom_column_page_order', 500, 2);
+add_filter('manage_pages_columns', 'ame_column_page_order', 500, 2);
 ?>
