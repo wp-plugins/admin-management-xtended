@@ -33,8 +33,7 @@ function ame_column_post_actions( $defaults ) {
 function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_post_actions' && current_user_can( 'edit_post', $ame_id ) ) {
-    	$post_status = get_post_status($ame_id);
-    	$q_post = get_post($ame_id);
+    	$post_status = get_post_status($ame_id); $q_post = get_post($ame_id);
     	echo '<div style="width:75px;">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon

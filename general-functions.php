@@ -119,7 +119,7 @@ function ame_save_title() {
 
 function ame_set_date() {
 	global $wpdb;
-	$catid = intval(substr($_POST['category_id'], 10, 1));
+	$catid = intval(substr($_POST['category_id'], 10, 4));
 	$newpostdate = $_POST['pickedDate'];
 	$newpostdate = date("Y-m-d H:i:s", strtotime( $newpostdate ));
 	$newpostdate_gtm = get_gmt_from_date( $newpostdate );
