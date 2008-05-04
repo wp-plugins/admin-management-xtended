@@ -1,4 +1,4 @@
-﻿=== Admin Management Xtended ===
+=== Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin
