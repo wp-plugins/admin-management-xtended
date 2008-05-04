@@ -1,9 +1,9 @@
-=== Admin Management Xtended ===
+﻿=== Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin
 Requires at least: 2.5
-Tested up to: 2.5
+Tested up to: 2.5+
 Stable tag: trunk
 
 This plugin adds some icons to the Manage posts/pages view with AJAX-driven CMS-known functions.
