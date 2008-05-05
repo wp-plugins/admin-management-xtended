@@ -83,6 +83,22 @@ function return_function( $output ) {
 	return $output;
 }
 
+function ame_toggle_showinvisposts() {
+	global $wpdb;
+	$status = intval($_POST['status']);
+	
+	update_option("ame_toggle_showinvisposts", $status);
+	die( "location.reload();" );
+}
+
+function ame_toggle_orderoptions() {
+	global $wpdb;
+	$status = intval($_POST['status']);
+	
+	update_option("ame_show_orderoptions", $status);
+	die( "location.reload();" );
+}
+
 function ame_slug_edit() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
@@ -93,6 +109,16 @@ function ame_slug_edit() {
 	
 	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>" . __('Post') . " #" . $catid . "</td><td colspan='8' align='right'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
+}
+
+function ame_save_order() {
+	global $wpdb;
+	$catid = intval( $_POST['category_id'] );
+	$neworderid = intval( $_POST['new_orderid'] );
+	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
+	
+	$wpdb->query("UPDATE $wpdb->posts SET menu_order = '" . $neworderid . "' WHERE ID = '" . $catid . "'");
+	die( "jQuery('span#ame_order_loader" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
 function ame_save_slug() {
@@ -119,20 +145,20 @@ function ame_save_title() {
 
 function ame_set_date() {
 	global $wpdb;
-	$catid = intval(substr($_POST['category_id'], 10, 4));
-	$newpostdate = $_POST['pickedDate'];
-	$newpostdate = date("Y-m-d H:i:s", strtotime( $newpostdate ));
+	$catid = intval(substr($_POST['category_id'], 10, 5));
+	$newpostdate = get_date_from_gmt( date("Y-m-d H:i:s", strtotime( $_POST['pickedDate'] )) );
 	$newpostdate_gtm = get_gmt_from_date( $newpostdate );
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
+	//die( "alert('" . $newpostdate . "');alert('" . $newpostdate_gtm . "');" );
 	$wpdb->query("UPDATE $wpdb->posts SET post_date = '" . $newpostdate . "' WHERE ID = '" . $catid . "'");
 	$wpdb->query("UPDATE $wpdb->posts SET post_date_gmt = '" . $newpostdate_gtm . "' WHERE ID = '" . $catid . "'");
-	if( strtotime( current_time(mysql) ) < strtotime( $_POST['pickedDate'] ) ) {
+	if( strtotime( current_time(mysql) ) < strtotime( $newpostdate ) ) {
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'future' WHERE ID = '" . $catid . "'");
-		die( "jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
-	} elseif ( strtotime( current_time(mysql) ) > strtotime( $_POST['pickedDate'] ) ) {
+		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = '" . $catid . "'");
-		die( "jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
 
@@ -156,6 +182,9 @@ add_action('wp_ajax_ame_set_date', 'ame_set_date' );
 add_action('wp_ajax_ame_save_title', 'ame_save_title' );
 add_action('wp_ajax_ame_save_slug', 'ame_save_slug' );
 add_action('wp_ajax_ame_slug_edit', 'ame_slug_edit' );
+add_action('wp_ajax_ame_save_order', 'ame_save_order' );
+add_action('wp_ajax_ame_toggle_orderoptions', 'ame_toggle_orderoptions' );
+add_action('wp_ajax_ame_toggle_showinvisposts', 'ame_toggle_showinvisposts' );
 
 
 
@@ -208,18 +237,59 @@ if ( get_locale() == 'de_DE' ) {
 			'dateSelected',
 			function(e, selectedDate) {
 				var cat_id = this.id;
-				ame_ajax_set_postdate( cat_id, selectedDate, posttype='" . $posttype . "' );
+				var selDate = selectedDate.getFullYear() + '-' + (Number(selectedDate.getMonth())+1) + '-' + selectedDate.getDate() + ' ' + selectedDate.getHours() + ':' + selectedDate.getMinutes() + ':' + selectedDate.getMilliseconds();
+				ame_ajax_set_postdate( cat_id, selDate, posttype='" . $posttype . "' );
 			}
 		);
 });
 //]]>
 </script>\n";
+if( $current_page == 'edit-pages' ) {
+	if ( get_option('ame_show_orderoptions') == '1' ) {
+		echo "<script type=\"text/javascript\" charset=\"utf-8\">
+jQuery(document).ready(function() {
+   jQuery(\"div[class='tablenav'] div[class='alignleft']\").after(\"<div class='alignright'><input type='button' value='" . __('Hide Page Order Column', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_orderoptions(0)' id='ame_order2_loader' /></div>\");
+});
+</script>\n";
+	} elseif ( get_option('ame_show_orderoptions') == '0' ) {
+		echo "<script type=\"text/javascript\" charset=\"utf-8\">
+jQuery(document).ready(function() {
+   jQuery(\"div[class='tablenav'] div[class='alignleft']\").after(\"<div class='alignright'><input type='button' value='" . __('Show Page Order Column', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_orderoptions(1)' id='ame_order2_loader' /></div>\");
+});
+</script>\n";
+	}
+}
 echo '<style type="text/css">
 .status-draft, .status-future {
 	-moz-opacity: 0.4;
 	filter: Alpha(opacity=40, finishopacity=40, style=1);
 }
 </style>';
+if( $current_page == 'edit' ) {
+	if ( get_option('ame_toggle_showinvisposts') == '1' ) {
+		echo "<script type=\"text/javascript\" charset=\"utf-8\">
+jQuery(document).ready(function() {
+   jQuery(\"div#ajax-response + div[class='tablenav'] div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Hide invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(0)' id='ame_toggle_showinvisposts' /></div>\");
+});
+</script>\n";
+	} elseif ( get_option('ame_toggle_showinvisposts') == '0' ) {
+		echo "<script type=\"text/javascript\" charset=\"utf-8\">
+jQuery(document).ready(function() {
+   jQuery(\"div#ajax-response + div[class='tablenav'] div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Show invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(1)' id='ame_toggle_showinvisposts' /></div>\");
+});
+</script>\n";
+	}
+}
+if ( get_option('ame_toggle_showinvisposts') == '0' ) {
+	if( !isset( $_GET['post_status'] ) ) {
+		echo '<script type="text/javascript" charset="utf-8">
+jQuery(document).ready(function() {
+   jQuery("tr[class*=\'status-draft\']").hide();
+   jQuery("tr[class*=\'status-future\']").hide();
+});
+</script>' . "\n";
+	}
+}
 }
 
 function ame_js_admin_header() {
@@ -230,6 +300,45 @@ function ame_js_admin_header() {
 ?>
 <script type="text/javascript">
 //<![CDATA[
+function ame_ajax_toggle_showinvisposts( status ) {
+	jQuery("#ame_toggle_showinvisposts").attr("value", "<?php _e('Please wait...'); ?>");
+	var ame_sack = new sack(
+	"<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php");
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_toggle_showinvisposts" );
+	ame_sack.setVar( "status", status );
+	ame_sack.onError = function() { alert('Ajax error on toggling post visibility') };
+	ame_sack.runAJAX();
+}
+
+function ame_ajax_toggle_orderoptions( status ) {
+	jQuery("#ame_order2_loader").attr("value", "<?php _e('Please wait...'); ?>");
+	var ame_sack = new sack(
+	"<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php");
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_toggle_orderoptions" );
+	ame_sack.setVar( "status", status );
+	ame_sack.onError = function() { alert('Ajax error on toggling page order column') };
+	ame_sack.runAJAX();
+}
+
+function ame_ajax_order_save( cat_id, posttype ) {
+	var neworderid = jQuery("input#ame_pageorder" + cat_id).attr('value');
+	jQuery("span#ame_order_loader" + cat_id).show();
+	var ame_sack = new sack(
+	"<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php");
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_save_order" );
+	ame_sack.setVar( "category_id", cat_id );
+	ame_sack.setVar( "new_orderid", neworderid );
+	ame_sack.setVar( "posttype", posttype );
+	ame_sack.onError = function() { alert('Ajax error on saving page prder') };
+	ame_sack.runAJAX();
+}
+
 function ame_slug_edit( cat_id, posttype ) {
 	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
 	var ame_sack = new sack(
