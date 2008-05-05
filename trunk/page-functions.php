@@ -33,7 +33,7 @@ function ame_column_page_actions( $defaults ) {
 function ame_column_page_order( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-    $defaults['ame_page_order'] = __('Order');
+    $defaults['ame_page_order'] = __('Page Order');
     return $defaults;
 }
 
@@ -52,7 +52,7 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     		// Title edit icon
     		$q_post_title = get_post($ame_id);
     		$post_title = attribute_escape( $q_post_title->post_title );
-    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlspecialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div> ';
+    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . wp_specialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div> ';
     		// Slug edit icon
     		echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/slug_edit.png" border="0" alt="' . __('Edit Page Slug', 'admin-management-xtended') . '" title="' . __('Edit Page Slug', 'admin-management-xtended') . '" /></a></div>';
     	} else {
@@ -63,7 +63,7 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     		// Title edit icon
     		$q_post_title = get_post($ame_id);
     		$post_title = attribute_escape( $q_post_title->post_title );
-    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . htmlspecialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div>';
+    		echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . wp_specialchars( $post_title ) . '\', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/page_white_edit.png" border="0" alt="' . __('Change Page Title', 'admin-management-xtended') . '" title="' . __('Change Page Title', 'admin-management-xtended') . '" /></a></div>';
     		// Slug edit icon
     		echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'page\');"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/slug_edit.png" border="0" alt="' . __('Edit Page Slug', 'admin-management-xtended') . '" title="' . __('Edit Page Slug', 'admin-management-xtended') . '" /></a></div>';
     	}
@@ -74,12 +74,17 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
 	global $wpdb;
     if( $ame_column_name == 'ame_page_order' ) {
-    	echo 's';
+    	$q_post_order = get_post( $ame_id );
+    	echo '<div style="width:75px;">';
+    	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_pageorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'page\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/loader.gif" border="0" alt="" /></span>';
+    	echo '</div>';
     }
 }
 
 add_action('manage_pages_custom_column', 'ame_custom_column_page_actions', 500, 2);
 add_filter('manage_pages_columns', 'ame_column_page_actions', 500, 2);
-add_action('manage_pages_custom_column', 'ame_custom_column_page_order', 500, 2);
-add_filter('manage_pages_columns', 'ame_column_page_order', 500, 2);
+if ( get_option('ame_show_orderoptions') == '1' ) {
+	add_action('manage_pages_custom_column', 'ame_custom_column_page_order', 500, 2);
+	add_filter('manage_pages_columns', 'ame_column_page_order', 500, 2);
+}
 ?>
