@@ -12,7 +12,7 @@ Adds AJAX-driven options to some admin management pages with CMS-known functions
 
 When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
-It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
+It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**
 
 [Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
