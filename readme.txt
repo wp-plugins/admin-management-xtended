@@ -6,7 +6,7 @@ Requires at least: 2.5
 Tested up to: 2.5+
 Stable tag: trunk
 
-This plugin adds some icons to the Manage posts/pages view with AJAX-driven CMS-known functions.
+Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop**.
 
 == Description ==
 
@@ -26,6 +26,7 @@ Features:
 * **NEW since 0.9**: Change page order inline in pages management view
 * **NEW since 0.9**: Show/hide invisible (draft/future) posts
 * **NEW since 0.9**: Toggle visibility of page order column
+* **NEW since 1.0**: Changing order of (top level) pages via Drag'n'Drop
 * Entirely possible to be localized, including the JS calendar
 
 == Frequently Asked Questions ==
