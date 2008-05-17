@@ -92,14 +92,13 @@ function ame_get_pageorder() {
 		$value = intval( substr( $value, 5 ) );
 		$has_parent = get_post( $value );
 		if( $value != '0' && empty( $has_parent->post_parent ) ) {
-			//$orderval .= $value . "=" . $i . " ; ";
 			$wpdb->query("UPDATE $wpdb->posts SET menu_order = " . $i . " WHERE ID = " . $value . " AND post_type = 'page'");
 			$i++;
 		}
 	}
 	
 	die( "jQuery(\"#ame_ordersave_loader\").html('');" );
-	//die( "jQuery(\"table.widefat\").animate( { borderColor: '#328AB2' }, 300).animate( { borderColor: '#cccccc' }, 300).animate( { borderColor: '#328AB2' }, 300).animate( { borderColor: '#cccccc' }, 300);" );
+	die( "jQuery(\".tablenav\").animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300);" );
 }
 
 function ame_toggle_showinvisposts() {
@@ -196,15 +195,17 @@ function ame_toggle_visibility() {
 	}
 }
 
-add_action('wp_ajax_ame_toggle_visibility', 'ame_toggle_visibility' );
-add_action('wp_ajax_ame_set_date', 'ame_set_date' );
-add_action('wp_ajax_ame_save_title', 'ame_save_title' );
-add_action('wp_ajax_ame_save_slug', 'ame_save_slug' );
-add_action('wp_ajax_ame_slug_edit', 'ame_slug_edit' );
-add_action('wp_ajax_ame_save_order', 'ame_save_order' );
-add_action('wp_ajax_ame_toggle_orderoptions', 'ame_toggle_orderoptions' );
-add_action('wp_ajax_ame_toggle_showinvisposts', 'ame_toggle_showinvisposts' );
-add_action('wp_ajax_ame_get_pageorder', 'ame_get_pageorder' );
+if( function_exists('add_action') ) {
+	add_action('wp_ajax_ame_toggle_visibility', 'ame_toggle_visibility' );
+	add_action('wp_ajax_ame_set_date', 'ame_set_date' );
+	add_action('wp_ajax_ame_save_title', 'ame_save_title' );
+	add_action('wp_ajax_ame_save_slug', 'ame_save_slug' );
+	add_action('wp_ajax_ame_slug_edit', 'ame_slug_edit' );
+	add_action('wp_ajax_ame_save_order', 'ame_save_order' );
+	add_action('wp_ajax_ame_toggle_orderoptions', 'ame_toggle_orderoptions' );
+	add_action('wp_ajax_ame_toggle_showinvisposts', 'ame_toggle_showinvisposts' );
+	add_action('wp_ajax_ame_get_pageorder', 'ame_get_pageorder' );
+}
 
 
 
@@ -213,7 +214,6 @@ add_action('wp_ajax_ame_get_pageorder', 'ame_get_pageorder' );
 /* ************************************************ */
 
 function ame_js_jquery_datepicker_header() {
-	$cur_locale = get_locale();
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	$posttype = "lala";
 	if( $current_page == 'edit' ) {
@@ -221,13 +221,7 @@ function ame_js_jquery_datepicker_header() {
 	} elseif ( $current_page == 'edit-pages' ) {
 		$posttype = "page";
 	}
-	echo "<script type='text/javascript' src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/date.js'></script>\n";
-	if( ame_locale_exists() === true ) {
-		echo "<script type='text/javascript' src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/date_" . $cur_locale . ".js'></script>\n";
-	}
-	echo "<script type='text/javascript' src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.datePicker.js'></script>\n";
 	if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
-		echo "<script type='text/javascript' src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.tablednd.js'></script>\n";
 		echo "<script type=\"text/javascript\">
 //<![CDATA[
 jQuery(document).ready(function() {
@@ -495,8 +489,19 @@ function ame_edit_cancel( cat_id ) {
 }
 
 $current_page = basename($_SERVER['PHP_SELF'], ".php");
-if( $current_page == 'edit' || $current_page == 'edit-pages' ) {
-	add_action('admin_print_scripts', 'ame_js_admin_header' );
-	add_action('admin_head', 'ame_js_jquery_datepicker_header' );
+if( function_exists('add_action') ) {
+	if( $current_page == 'edit' || $current_page == 'edit-pages' ) {
+		$cur_locale = get_locale();
+		add_action('admin_print_scripts', 'ame_js_admin_header' );
+		add_action('admin_head', 'ame_js_jquery_datepicker_header' );
+		add_action('admin_head', wp_enqueue_script( 'date', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/date.js", array('jquery') ) );
+		add_action('admin_head', wp_enqueue_script( 'datePicker', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.datePicker.js", array('jquery') ) );
+		if( ame_locale_exists() === true ) {
+			add_action('admin_head', wp_enqueue_script( 'localdate', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/date_" . $cur_locale . ".js", array('jquery') ) );
+		}
+		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
+			add_action('admin_head', wp_enqueue_script( 'tablednd', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.tablednd.js", array('jquery') ) );
+		}
+	}
 }
 ?>

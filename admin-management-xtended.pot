@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Oliver Schl&ouml;be
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/admin-management-xtended\n"
+"POT-Creation-Date: 2008-05-14 18:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: general-functions.php:129 general-functions.php:455
+msgid "Post"
+msgstr ""
+
+#: general-functions.php:129 general-functions.php:455
+msgid "Save"
+msgstr ""
+
+#: general-functions.php:129 general-functions.php:455
+msgid "Cancel"
+msgstr ""
+
+#: general-functions.php:177 general-functions.php:180
+msgid "Y/m/d"
+msgstr ""
+
+#: general-functions.php:192 general-functions.php:195 page-functions.php:49
+#: page-functions.php:60 post-functions.php:40 post-functions.php:51
+msgid "Toggle visibility"
+msgstr ""
+
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
+msgid "Edit Page Order:"
+msgstr ""
+
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
+msgid "Off"
+msgstr ""
+
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
+msgid "Direct input"
+msgstr ""
+
+#: general-functions.php:299 general-functions.php:305
+msgid "Drag & Drop"
+msgstr ""
+
+#: general-functions.php:311
+msgid ""
+"Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-"
+"xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:"
+"underline;'>[?]</a>"
+msgstr ""
+
+#: general-functions.php:334
+msgid "Hide invisible Posts"
+msgstr ""
+
+#: general-functions.php:340
+msgid "Show invisible Posts"
+msgstr ""
+
+#: general-functions.php:377 general-functions.php:389
+msgid "Please wait..."
+msgstr ""
+
+#: page-functions.php:29 post-functions.php:29
+msgid "Actions"
+msgstr ""
+
+#: page-functions.php:36
+msgid "Page Order"
+msgstr ""
+
+#: page-functions.php:51 page-functions.php:62 post-functions.php:42
+#: post-functions.php:53
+msgid "Change Publication Date"
+msgstr ""
+
+#: page-functions.php:55 page-functions.php:66
+msgid "Change Page Title"
+msgstr ""
+
+#: page-functions.php:57 page-functions.php:68
+msgid "Edit Page Slug"
+msgstr ""
+
+#: post-functions.php:46 post-functions.php:57
+msgid "Change Post Title"
+msgstr ""
+
+#: post-functions.php:48 post-functions.php:59
+msgid "Edit Post Slug"
+msgstr ""
+
+#. Plugin Name of an extension
+msgid "Admin Management Xtended"
+msgstr ""
+
+#. Plugin URI of an extension
+msgid "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
+msgstr ""
+
+#. Description of an extension
+msgid ""
+"Adds AJAX-driven options to some admin management pages with CMS-known "
+"functions like toggling post/page visibility without having to open the edit "
+"screens, plus changing page order with drag'n'drop."
+msgstr ""
+
+#. Author of an extension
+msgid "Oliver Schl&ouml;be"
+msgstr ""
+
+#. Author URI of an extension
+msgid "http://www.schloebe.de/"
+msgstr ""

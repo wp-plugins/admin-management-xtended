@@ -43,7 +43,7 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     	$post_status = get_post_status($ame_id);
     	#$q_post_status_datum = get_post($ame_id);
     	#$post_status_datum = strtotime( $q_post_status_datum->post_date );
-    	echo '<div style="width:75px;">';
+    	echo '<div style="width:75px;" class="ame_options">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon
     		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'page\');return false;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div> ';
@@ -75,7 +75,7 @@ function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
 	global $wpdb;
     if( $ame_column_name == 'ame_page_order' ) {
     	$q_post_order = get_post( $ame_id );
-    	echo '<div style="width:75px;">';
+    	echo '<div style="width:75px;" class="ame_options">';
     	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_pageorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'page\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/loader.gif" border="0" alt="" /></span>';
     	echo '</div>';
     }
