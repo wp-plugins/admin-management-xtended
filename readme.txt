@@ -1,18 +1,18 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, plugin
+Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline
 Requires at least: 2.5
 Tested up to: 2.5+
 Stable tag: trunk
 
-Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop**.
+Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop** and inline category management.
 
 == Description ==
 
 When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
-It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**.
+It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
 
 [Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
@@ -26,7 +26,9 @@ Features:
 * **NEW since 0.9**: Change page order inline in pages management view
 * **NEW since 0.9**: Show/hide invisible (draft/future) posts
 * **NEW since 0.9**: Toggle visibility of page order column
-* **NEW since 1.0: Changing order of (top level) pages via Drag'n'Drop**
+* **NEW since 1.0**: Changing order of (top level) pages via Drag'n'Drop
+* **NEW since 1.2**: Changing categories inline on post management page
+* **NEW since 1.2**: Toggling comment status open/closed in posts/pages management view
 * Entirely possible to be localized, including the JS calendar
 
 == Frequently Asked Questions ==
