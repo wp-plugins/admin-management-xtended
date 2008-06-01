@@ -29,11 +29,11 @@ table.jCalendar td.selected {
 	color: #fff;
 }
 table.jCalendar td.selected:hover {
-	background: #f33;
+	/*background: #f33;*/
 	color: #fff;
 }
 table.jCalendar td:hover, table.jCalendar td.dp-hover {
-	background: #fff;
+	/*background: #fff;*/
 	color: #D64D21;
 }
 table.jCalendar td.disabled, table.jCalendar td.disabled:hover {
