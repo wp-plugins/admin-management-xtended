@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/admin-management-xtended\n"
-"POT-Creation-Date: 2008-06-01 19:38+0000\n"
+"POT-Creation-Date: 2008-05-14 18:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,80 +16,66 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: general-functions.php:95 general-functions.php:98 page-functions.php:67
-#: post-functions.php:105
-msgid "Toggle comment status open/closed"
-msgstr ""
-
-#: general-functions.php:139 post-functions.php:48
-msgid "Uncategorized"
-msgstr ""
-
-#: general-functions.php:171 general-functions.php:391
+#: general-functions.php:129 general-functions.php:455
 msgid "Post"
 msgstr ""
 
-#: general-functions.php:171 general-functions.php:391 post-functions.php:56
+#: general-functions.php:129 general-functions.php:455
 msgid "Save"
 msgstr ""
 
-#: general-functions.php:171 general-functions.php:391 post-functions.php:56
+#: general-functions.php:129 general-functions.php:455
 msgid "Cancel"
 msgstr ""
 
-#: general-functions.php:219 general-functions.php:222
+#: general-functions.php:177 general-functions.php:180
 msgid "Y/m/d"
 msgstr ""
 
-#: general-functions.php:234 general-functions.php:237 page-functions.php:49
-#: page-functions.php:52 post-functions.php:87 post-functions.php:90
+#: general-functions.php:192 general-functions.php:195 page-functions.php:49
+#: page-functions.php:60 post-functions.php:40 post-functions.php:51
 msgid "Toggle visibility"
 msgstr ""
 
-#: general-functions.php:338 general-functions.php:344
-#: general-functions.php:350
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
 msgid "Edit Page Order:"
 msgstr ""
 
-#: general-functions.php:338 general-functions.php:344
-#: general-functions.php:350
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
 msgid "Off"
 msgstr ""
 
-#: general-functions.php:338 general-functions.php:344
-#: general-functions.php:350
+#: general-functions.php:299 general-functions.php:305
+#: general-functions.php:311
 msgid "Direct input"
 msgstr ""
 
-#: general-functions.php:338 general-functions.php:344
+#: general-functions.php:299 general-functions.php:305
 msgid "Drag & Drop"
 msgstr ""
 
-#: general-functions.php:350
+#: general-functions.php:311
 msgid ""
 "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-"
 "xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:"
 "underline;'>[?]</a>"
 msgstr ""
 
-#: general-functions.php:359
+#: general-functions.php:334
 msgid "Hide invisible Posts"
 msgstr ""
 
-#: general-functions.php:365
+#: general-functions.php:340
 msgid "Show invisible Posts"
 msgstr ""
 
-#: general-functions.php:391
+#: general-functions.php:377 general-functions.php:389
 msgid "Please wait..."
 msgstr ""
 
-#: page-functions.php:29 page-functions.php:36 post-functions.php:31
-#: post-functions.php:76
-msgid "Enhanced by Admin Management Xtended Plugin"
-msgstr ""
-
-#: page-functions.php:29 post-functions.php:76
+#: page-functions.php:29 post-functions.php:29
 msgid "Actions"
 msgstr ""
 
@@ -97,35 +83,24 @@ msgstr ""
 msgid "Page Order"
 msgstr ""
 
-#: page-functions.php:56 post-functions.php:94
+#: page-functions.php:51 page-functions.php:62 post-functions.php:42
+#: post-functions.php:53
 msgid "Change Publication Date"
 msgstr ""
 
-#: page-functions.php:60
+#: page-functions.php:55 page-functions.php:66
 msgid "Change Page Title"
 msgstr ""
 
-#: page-functions.php:62
+#: page-functions.php:57 page-functions.php:68
 msgid "Edit Page Slug"
 msgstr ""
 
-#: post-functions.php:31
-msgid "Categories"
-msgstr ""
-
-#: post-functions.php:60
-msgid "Edit Categories for Post"
-msgstr ""
-
-#: post-functions.php:60
-msgid "Edit Categories"
-msgstr ""
-
-#: post-functions.php:98
+#: post-functions.php:46 post-functions.php:57
 msgid "Change Post Title"
 msgstr ""
 
-#: post-functions.php:100
+#: post-functions.php:48 post-functions.php:59
 msgid "Edit Post Slug"
 msgstr ""
 

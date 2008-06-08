@@ -1,4 +1,5 @@
 <?php
+
 /*
 Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
 
@@ -17,10 +18,26 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+ * General functions used globally
+ *
+ * @package AdminManagamentXtended
+ */
+
+
 /* ************************************************ */
 /* Capabilities	- propably for future release		*/
 /* ************************************************ */
 
+/**
+ * Get all the WordPress user roles using for capability stuff
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string $capability
+ * @return string
+ */
 function ame_get_role( $capability ) {
 	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
 
@@ -39,6 +56,16 @@ function ame_get_role( $capability ) {
 	return false;
 }
 
+/**
+ * Set the user capabilities using for permission stuff
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @param string $lowest_role
+ * @param string $capability
+ * @return mixed
+ */
 function ame_set_capability( $lowest_role, $capability ) {
 	$check_order = array("subscriber", "contributor", "author", "editor", "administrator");
 
@@ -63,6 +90,14 @@ function ame_set_capability( $lowest_role, $capability ) {
 /* Localization										*/
 /* ************************************************ */
 
+/**
+ * Checks if a current locale file used for popout calendar exists
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @return bool
+ */
 function ame_locale_exists() {
 	$cur_locale = get_locale();
 	$ame_date_locale_path = get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . 'js/jquery-addons/date_' . $cur_locale . '.js';
@@ -79,10 +114,24 @@ function ame_locale_exists() {
 /* Define the Ajax response functions				*/
 /* ************************************************ */
 
+/**
+ * Returns the given parameter instead of echoing it
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ *
+ * @return string|int|mixed
+ */
 function return_function( $output ) {
 	return $output;
 }
 
+/**
+ * SACK response function for saving comment status for a post
+ *
+ * @since 1.2.0
+ * @author scripts@schloebe.de
+ */
 function ame_ajax_set_commentstatus() {
 	global $wpdb;
 	$postid = intval($_POST['postid']);
@@ -92,13 +141,19 @@ function ame_ajax_set_commentstatus() {
 	
 	if ( $status == 'open' ) {
 		$wpdb->query("UPDATE $wpdb->posts SET comment_status = '" . $status . "' WHERE ID = '" . $postid . "'");
-		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 0, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/comments_open.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 0, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "comments_open.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} else {
 		$wpdb->query("UPDATE $wpdb->posts SET comment_status = '" . $status . "' WHERE ID = '" . $postid . "'");
-		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 1, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/comments_closed.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 1, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "comments_closed.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
 
+/**
+ * SACK response function for saving page order
+ *
+ * @since 1.1.0
+ * @author scripts@schloebe.de
+ */
 function ame_get_pageorder() {
 	global $wpdb, $post;
 	$pageorder2 = $_POST['pageordertable2'];
@@ -117,6 +172,47 @@ function ame_get_pageorder() {
 	die( "jQuery(\".tablenav\").animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300);" );
 }
 
+/**
+ * SACK response function for saving post tags
+ *
+ * @since 1.3.0
+ * @author scripts@schloebe.de
+ */
+function ame_ajax_save_tags() {
+	global $wpdb;
+	$postid = intval( $_POST['postid'] );
+	$ame_tags = $_POST['new_tags'];
+	
+	$tagarray = explode(",", trim( $ame_tags ));
+	wp_set_post_tags($postid, $tagarray);
+	unset($GLOBALS['tag_cache']);
+	
+	$tags = get_the_tags( $postid );
+	$ame_post_tags = '';
+	if ( !empty( $tags ) ) {
+		$out = array();
+		foreach ( $tags as $c ) {
+			$out[] = '<a href="edit.php?tag=' . $c->slug . '"> ' . wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display')) . '</a>';
+			$out2[] = wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display'));
+		}
+		$ame_post_tags .= join( ', ', $out );
+		$ame_post_tags_plain .= join( ', ', $out2 );
+	} else {
+		$ame_post_tags .= __('No Tags');
+		$ame_post_tags_plain .= '';
+	}
+	$ame_post_tags .= '&nbsp;<a id="tageditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $postid . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $postid . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $postid . '" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $ame_id . '" /></a>';
+	die( "jQuery('span#ame_tags" . $postid . "').fadeOut('fast', function() {
+		jQuery('span#ame_tags" . $postid . "').html('" . addslashes_gpc( $ame_post_tags ) . "').fadeIn('fast');
+	});" );
+}
+
+/**
+ * SACK response function for saving post categories
+ *
+ * @since 1.2.0
+ * @author scripts@schloebe.de
+ */
 function ame_ajax_save_categories() {
 	global $wpdb;
 	$postid = intval( $_POST['postid'] );
@@ -144,6 +240,12 @@ function ame_ajax_save_categories() {
 	});" );
 }
 
+/**
+ * SACK response function for saving draft post visibility option
+ *
+ * @since 0.9
+ * @author scripts@schloebe.de
+ */
 function ame_toggle_showinvisposts() {
 	global $wpdb;
 	$status = intval($_POST['status']);
@@ -152,6 +254,26 @@ function ame_toggle_showinvisposts() {
 	die( "location.reload();" );
 }
 
+/**
+ * SACK response function for toggling button image sets option
+ *
+ * @since 1.3.0
+ * @author scripts@schloebe.de
+ */
+function ame_ajax_toggle_imageset() {
+	global $wpdb;
+	$setid = intval($_POST['setid']);
+	
+	update_option("ame_imgset", "set" . $setid);
+	die( "location.reload();" );
+}
+
+/**
+ * SACK response function for saving order input option
+ *
+ * @since 1.0
+ * @author scripts@schloebe.de
+ */
 function ame_toggle_orderoptions() {
 	global $wpdb;
 	$status = intval($_POST['status']);
@@ -160,6 +282,12 @@ function ame_toggle_orderoptions() {
 	die( "location.reload();" );
 }
 
+/**
+ * SACK response function for displaying the slug edit form inline
+ *
+ * @since 1.0
+ * @author scripts@schloebe.de
+ */
 function ame_slug_edit() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
@@ -172,6 +300,12 @@ function ame_slug_edit() {
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
 }
 
+/**
+ * SACK response function for saving page order
+ *
+ * @since 1.0
+ * @author scripts@schloebe.de
+ */
 function ame_save_order() {
 	global $wpdb;
 	$catid = intval( $_POST['category_id'] );
@@ -182,6 +316,12 @@ function ame_save_order() {
 	die( "jQuery('span#ame_order_loader" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
+/**
+ * SACK response function for saving page slug
+ *
+ * @since 1.0
+ * @author scripts@schloebe.de
+ */
 function ame_save_slug() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
@@ -194,6 +334,12 @@ function ame_save_slug() {
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
+/**
+ * SACK response function for saving post//page title
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ame_save_title() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
@@ -204,6 +350,12 @@ function ame_save_title() {
 	die( "jQuery('a[@href$=post=" . $catid . "]').html('" . $new_title . "'); jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
+/**
+ * SACK response function for saving post/page publication date
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ame_set_date() {
 	global $wpdb;
 	$catid = intval(substr($_POST['category_id'], 10, 5));
@@ -223,6 +375,12 @@ function ame_set_date() {
 	}
 }
 
+/**
+ * SACK response function for toggling post/page visibility
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ame_toggle_visibility() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
@@ -231,10 +389,10 @@ function ame_toggle_visibility() {
 	
 	if ( $status == 'publish' ) {
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = '" . $status . "' WHERE ID = '" . $catid . "'");
-		die( "jQuery('#visicon" . $catid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'draft\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/visible.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-draft').addClass('status-publish');" );
+		die( "jQuery('#visicon" . $catid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'draft\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "visible.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-draft').addClass('status-publish');" );
 	} else {
 		$wpdb->query("UPDATE $wpdb->posts SET post_status = '" . $status . "' WHERE ID = '" . $catid . "'");
-		die( "jQuery('#visicon$catid').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'publish\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/hidden.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-draft');" );
+		die( "jQuery('#visicon$catid').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'publish\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "hidden.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-draft');" );
 	}
 }
 
@@ -250,6 +408,8 @@ if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_get_pageorder', 'ame_get_pageorder' );
 	add_action('wp_ajax_ame_ajax_save_categories', 'ame_ajax_save_categories' );
 	add_action('wp_ajax_ame_ajax_set_commentstatus', 'ame_ajax_set_commentstatus' );
+	add_action('wp_ajax_ame_ajax_save_tags', 'ame_ajax_save_tags' );
+	add_action('wp_ajax_ame_ajax_toggle_imageset', 'ame_ajax_toggle_imageset' );
 }
 
 
@@ -258,6 +418,12 @@ if( function_exists('add_action') ) {
 /* Write JS into our admin header					*/
 /* ************************************************ */
 
+/**
+ * Writes the javascript stuff into page header needed for the JS popout calendar
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ame_js_jquery_datepicker_header() {
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	$posttype = "lala";
@@ -284,7 +450,7 @@ jQuery(document).ready(function() {
     		//jQuery(\"tr[class*=\'cannotdrop\']\").show();
     		jQuery(\"tr[class*=\'nodrop\'] a\").css( { opacity: 1.0 }, 600);
     		jQuery(\"tr[class*=\'cannotdrop\']\").removeClass('cannotdrop');
-    		jQuery(\"#ame_ordersave_loader\").html(\"<img src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/loader2.gif' border='0' alt='' align='absmiddle' /> | \");
+    		jQuery(\"#ame_ordersave_loader\").html(\"<img src='" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "loader2.gif' border='0' alt='' align='absmiddle' /> | \");
     		ame_ajax_get_pageorder( jQuery.tableDnD.serialize() );
     	}
     });
@@ -379,6 +545,12 @@ jQuery(document).ready(function() {
 }
 }
 
+/**
+ * Writes javascript stuff into page header needed for the plugin and calls for the SACK library
+ *
+ * @since 0.7
+ * @author scripts@schloebe.de
+ */
 function ame_js_admin_header() {
 	wp_print_scripts( array( 'sack' ));
 
@@ -388,19 +560,50 @@ function ame_js_admin_header() {
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo "/" . PLUGINDIR; ?>", pluginUrl: "<?php echo AME_PLUGINPATH; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo "/" . PLUGINDIR; ?>", pluginUrl: "<?php echo AME_PLUGINPATH; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo bloginfo( 'wpurl' ) . '/' . PLUGINDIR . AME_PLUGINPATH; ?>img/<?php echo AME_IMGSET ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>"
 }
 //]]>
 </script>
 <?php
 }
 
+/**
+ * Writes the css stuff into page header needed for the plugin
+ *
+ * @since 1.2.0
+ * @author scripts@schloebe.de
+ */
 function ame_css_admin_header() {
 	echo '<link rel="stylesheet" type="text/css" href="' . get_settings('siteurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'css/styles.css?ver=' . AME_VERSION . '" />' . "\n";
 }
 
+/**
+ * Returns the output for the 'change image set' link
+ *
+ * @since 1.3.0
+ * @author scripts@schloebe.de
+ *
+ * @return string
+ */
+function ame_changeImgSet() {
+	if( get_option("ame_imgset") == 'set1' ) { $imgset = '2'; } elseif( get_option("ame_imgset") == 'set2' ) { $imgset = '1'; }
+	return ' <a tip="' . __('Change image set', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_toggle_imageset(' . $imgset . ');return false;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'changeimgset.gif" border="0" alt="' . __('Change image set', 'admin-management-xtended') . '" title="' . __('Change image set', 'admin-management-xtended') . '" /></a>';
+}
+
+/**
+ * Writes a version metatag to the fe page for support info
+ *
+ * @since 1.3.0
+ * @author scripts@schloebe.de
+ */
+function ame_feheader_insert()
+{
+	echo "<meta name='AMEWP' content='" . AME_VERSION . "' />\n";
+}
+
 $current_page = basename($_SERVER['PHP_SELF'], ".php");
 if( function_exists('add_action') ) {
+	add_action('wp_head', 'ame_feheader_insert', 1);
 	if( $current_page == 'edit' || $current_page == 'edit-pages' ) {
 		$cur_locale = get_locale();
 		add_action('admin_head', 'ame_css_admin_header' );

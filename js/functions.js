@@ -2,9 +2,40 @@ function re_init() {
    tb_init('a.thickbox, area.thickbox, input.thickbox');
 }
 
+function ame_ajax_form_tags( postid, posttags ) {
+	var ame_e = jQuery('#ame_tags' + postid);
+	var revert_ame_e = ame_e.html();
+	ame_e.html('<input type="text" id="ame-new-tags' + postid + '" value="' + posttags + '" style="font-size:0.8em;" /> <a href="javascript:void(0);" id="ame_tag_save' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'save_small.gif" border="0" alt="' + ameAjaxL10n.Save + '" title="' + ameAjaxL10n.Save + '" /></a> <a href="javascript:void(0);" id="ame_tag_cancel' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'cancel_small.gif" border="0" alt="' + ameAjaxL10n.Cancel + '" title="' + ameAjaxL10n.Cancel + '" /></a>');
+	jQuery('#ame_tags' + postid + ' #ame_tag_cancel' + postid).click(function() {
+		ame_e.html( revert_ame_e );
+	});
+	jQuery('#ame_tags' + postid + ' #ame_tag_save' + postid).click(function() {
+		var new_tags = jQuery('input#ame-new-tags' + postid).val();
+		tagSpanFadeOut( postid, new_tags );
+	});
+}
+
+function tagSpanFadeOut( postid, ame_tags ) {
+	jQuery("span#ame_tags" + postid).fadeOut('fast', function() {
+		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
+		jQuery("span#ame_tags" + postid).fadeIn('fast', function() {
+			var ame_sack = new sack(
+			ameAjaxL10n.requestUrl);
+			ame_sack.execute = 1;
+			ame_sack.method = 'POST';
+			ame_sack.setVar( "action", "ame_ajax_save_tags" );
+			ame_sack.setVar( "postid", postid );
+			ame_sack.setVar( "new_tags", ame_tags );
+			ame_sack.onError = function() { alert('Ajax error on saving tags'); };
+			ame_sack.runAJAX();
+		});
+		jQuery("span#ame_tags" + postid).html( loading );
+	});
+}
+
 function catSpanFadeOut( postid, ame_cats ) {
 	jQuery("span#ame_category" + postid + ", a#thickboxlink" + postid).fadeOut('fast', function() {
-		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.blogUrl + ameAjaxL10n.pluginPath + ameAjaxL10n.pluginUrl + 'img/loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
+		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
 		jQuery("span#ame_category" + postid).fadeIn('fast', function() {
 			var ame_sack = new sack(
 			ameAjaxL10n.requestUrl);
@@ -21,6 +52,17 @@ function catSpanFadeOut( postid, ame_cats ) {
 	});
 }
 
+function ame_ajax_save_categories( postid ) {
+	tb_remove();
+	var n = jQuery("#categorychoose" + postid + " #categorychecklist input:checked").length;
+	var ame_cats = '';
+	for(var a=0;a<n;a++){
+		ame_cats += jQuery("#categorychoose" + postid + " #categorychecklist input:checked")[a].value + ',';
+	}
+	window.setTimeout("catSpanFadeOut(" + postid + ", '" + ame_cats + "')", 500);
+	//alert( ame_cats );
+}
+
 function ame_ajax_set_commentstatus( postid, status, posttype ) {
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
@@ -34,17 +76,6 @@ function ame_ajax_set_commentstatus( postid, status, posttype ) {
 	ame_sack.runAJAX();
 }
 
-function ame_ajax_save_categories( postid ) {
-	tb_remove();
-	var n = jQuery("#categorychoose" + postid + " #categorychecklist input:checked").length;
-	var ame_cats = '';
-	for(var a=0;a<n;a++){
-		ame_cats += jQuery("#categorychoose" + postid + " #categorychecklist input:checked")[a].value + ',';
-	}
-	window.setTimeout("catSpanFadeOut(" + postid + ", '" + ame_cats + "')", 500);
-	//alert( ame_cats );
-}
-
 function ame_ajax_get_pageorder( pageordertable ) {
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
@@ -53,6 +84,17 @@ function ame_ajax_get_pageorder( pageordertable ) {
 	ame_sack.setVar( "action", "ame_get_pageorder" );
 	ame_sack.setVar( "pageordertable2", pageordertable );
 	ame_sack.onError = function() { alert('Ajax error on getting page order') };
+	ame_sack.runAJAX();
+}
+
+function ame_ajax_toggle_imageset( setid ) {
+	var ame_sack = new sack(
+	ameAjaxL10n.requestUrl);
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_ajax_toggle_imageset" );
+	ame_sack.setVar( "setid", setid );
+	ame_sack.onError = function() { alert('Ajax error on toggling image set') };
 	ame_sack.runAJAX();
 }
 
