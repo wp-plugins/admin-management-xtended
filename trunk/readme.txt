@@ -12,7 +12,7 @@ Adds AJAX-driven options to some admin management pages with CMS-known functions
 
 When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
-It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**.
+It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management.
 
 [Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
@@ -27,9 +27,19 @@ Features:
 * **NEW since 0.9**: Show/hide invisible (draft/future) posts
 * **NEW since 0.9**: Toggle visibility of page order column
 * **NEW since 1.0**: Changing order of (top level) pages via Drag'n'Drop
-* **NEW since 1.2**: Changing categories inline on post management page
+* **NEW since 1.2**: Changing categories inline on post management page (**inline category management**)
 * **NEW since 1.2**: Toggling comment status open/closed in posts/pages management view
+* **NEW since 1.3**: Changing tags inline on post management page (**inline tag management**)
+* **NEW since 1.3**: New default button set; now two different button sets selectable
 * Entirely possible to be localized, including the JS calendar
+
+Included languages:
+
+* English
+* German (de_DE) (Thanks to me ;-))
+* Spanish (es_ES) (Thanks for contributing spanish language goes to [Karin Sequen](http://www.es-xchange.com))
+* French (fr_FR) (Thanks for contributing french language goes to [Gilles Wittezaële](http://gilles.wittezaele.fr/blog/))
+* Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
 
 == Frequently Asked Questions ==
 
