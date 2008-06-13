@@ -16,7 +16,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 
 [Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
-Features:
+**Features:**
 
 * Changing post/pages properties inline in posts/pages management view
 * Toggling visibility with a single click
@@ -33,13 +33,14 @@ Features:
 * **NEW since 1.3**: New default button set; now two different button sets selectable
 * Entirely possible to be localized, including the JS calendar
 
-Included languages:
+**Included languages:**
 
 * English
 * German (de_DE) (Thanks to me ;-))
 * Spanish (es_ES) (Thanks for contributing spanish language goes to [Karin Sequen](http://www.es-xchange.com))
 * French (fr_FR) (Thanks for contributing french language goes to [Gilles Wittezaële](http://gilles.wittezaele.fr/blog/))
 * Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
+* Japanese (ja) (Thanks for contributing japanese language goes to [kzh](http://homepage1.nifty.com/))
 
 == Frequently Asked Questions ==
 
