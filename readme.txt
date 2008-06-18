@@ -42,7 +42,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
 * Japanese (ja) (Thanks for contributing japanese language goes to [kzh](http://homepage1.nifty.com/))
 
-**Want update feeds, code documentation and more? Visit [extend.schhloebe.de](http://extend.schhloebe.de)**
+**Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
 == Frequently Asked Questions ==
 
