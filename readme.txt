@@ -41,6 +41,8 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * French (fr_FR) (Thanks for contributing french language goes to [Gilles Wittezaële](http://gilles.wittezaele.fr/blog/))
 * Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
 * Japanese (ja) (Thanks for contributing japanese language goes to [kzh](http://homepage1.nifty.com/))
+* Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to [Amir Ashtiani](http://ouo.ir
+))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
