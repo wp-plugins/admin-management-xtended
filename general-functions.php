@@ -21,7 +21,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * General functions used globally
  *
- * @package AdminManagamentXtended
+ * @package WordPress_Plugins
+ * @subpackage AdminManagementXtended
  */
 
 
@@ -619,6 +620,10 @@ if( function_exists('add_action') ) {
 		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
 			add_action('admin_head', wp_enqueue_script( 'tablednd', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.tablednd.js", array('jquery'), AME_VERSION ) );
 		}
+	}
+	if( $current_page == 'upload' ) {
+		add_action('admin_print_scripts', 'ame_js_admin_header' );
+		add_action('admin_head', wp_enqueue_script( 'ame_miscsrcipts', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/functions.js", array('sack'), AME_VERSION ) );
 	}
 }
 ?>

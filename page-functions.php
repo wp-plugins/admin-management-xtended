@@ -2,7 +2,8 @@
 /**
  * Page-related functions
  *
- * @package AdminManagamentXtended
+ * @package WordPress_Plugins
+ * @subpackage AdminManagementXtended
  */
  
 /*
@@ -23,11 +24,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/**
- * Load all the l18n data from languages path
- */
-load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH . 'languages');
-
 /* ************************************************ */
 /* Adding the columns and data						*/
 /* ************************************************ */
@@ -38,13 +34,13 @@ load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH . 
  * @since 0.7
  * @author scripts@schloebe.de
  *
- * @param string
- * @return string
+ * @param array
+ * @return array
  */
 function ame_column_page_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-    $defaults['ame_page_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . '">' . __('Actions', 'admin-management-xtended') . '</abbr>' . ame_changeImgSet();
+    $defaults['ame_page_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Actions', 'admin-management-xtended') . '</abbr>' . ame_changeImgSet();
     return $defaults;
 }
 
@@ -54,13 +50,13 @@ function ame_column_page_actions( $defaults ) {
  * @since 1.0
  * @author scripts@schloebe.de
  *
- * @param string
- * @return string
+ * @param array
+ * @return array
  */
 function ame_column_page_order( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-    $defaults['ame_page_order'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . '">' . __('Page Order') . '</abbr>';
+    $defaults['ame_page_order'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Page Order') . '</abbr>';
     return $defaults;
 }
 
@@ -118,7 +114,7 @@ function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
     if( $ame_column_name == 'ame_page_order' ) {
     	$q_post_order = get_post( $ame_id );
     	echo '<div style="width:75px;" class="ame_options">';
-    	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_pageorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'page\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/loader.gif" border="0" alt="" /></span>';
+    	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_pageorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'page\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'loader.gif" border="0" alt="" /></span>';
     	echo '</div>';
     }
 }

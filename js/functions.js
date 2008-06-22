@@ -123,7 +123,7 @@ function ame_ajax_toggle_orderoptions( status ) {
 }
 
 function ame_ajax_order_save( cat_id, posttype ) {
-	var neworderid = jQuery("input#ame_pageorder" + cat_id).attr('value');
+	var neworderid = jQuery("input#ame_" + posttype + "order" + cat_id).attr('value');
 	jQuery("span#ame_order_loader" + cat_id).show();
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
@@ -133,7 +133,7 @@ function ame_ajax_order_save( cat_id, posttype ) {
 	ame_sack.setVar( "category_id", cat_id );
 	ame_sack.setVar( "new_orderid", neworderid );
 	ame_sack.setVar( "posttype", posttype );
-	ame_sack.onError = function() { alert('Ajax error on saving page prder') };
+	ame_sack.onError = function() { alert('Ajax error on saving page order') };
 	ame_sack.runAJAX();
 }
 

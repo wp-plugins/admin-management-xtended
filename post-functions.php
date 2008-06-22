@@ -2,7 +2,8 @@
 /**
  * Post-related functions
  *
- * @package AdminManagamentXtended
+ * @package WordPress_Plugins
+ * @subpackage AdminManagementXtended
  */
  
 /*
@@ -23,11 +24,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/**
- * Load all the l18n data from languages path
- */
-load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH . 'languages');
-
 /* ************************************************ */
 /* Some stuff for editing tags inline				*/
 /* ************************************************ */
@@ -38,14 +34,15 @@ load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH . 
  * @since 1.3.0
  * @author scripts@schloebe.de
  *
- * @param string
+ * @param array
+ * @return array
  */
 function ame_column_tag_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	unset($defaults['tags']);
 	#if( $defaults['tags'] ) {
-		$defaults['ame_tag_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . '">' . __('Tags') . '</abbr>';
+		$defaults['ame_tag_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Tags') . '</abbr>';
 	#}
     return $defaults;
 }
@@ -92,14 +89,15 @@ add_filter('manage_posts_columns', 'ame_column_tag_actions', 2, 1);
  * @since 1.3.0
  * @author scripts@schloebe.de
  *
- * @param string
+ * @param array
+ * @return array
  */
 function ame_column_category_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	unset($defaults['categories']);
 	if( $defaults['tags'] ) {
-		$defaults['ame_cat_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . '">' . __('Categories') . '</abbr>';
+		$defaults['ame_cat_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Categories') . '</abbr>';
 	}
     return $defaults;
 }
@@ -163,13 +161,13 @@ add_filter('manage_posts_columns', 'ame_column_category_actions', 1, 1);
  * @since 0.7
  * @author scripts@schloebe.de
  *
- * @param string
- * @return string
+ * @param array
+ * @return array
  */
 function ame_column_post_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
-	$defaults['ame_post_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . '">' . __('Actions', 'admin-management-xtended') . '</abbr>' . ame_changeImgSet();
+	$defaults['ame_post_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Actions', 'admin-management-xtended') . '</abbr>' . ame_changeImgSet();
     return $defaults;
 }
 
@@ -226,25 +224,23 @@ add_filter('manage_posts_columns', 'ame_column_post_actions', 500, 2);
  * and adds a message to inform the user
  *
  * @since 1.3.0
+ * @deprecated Deprecated since version 1.4.0
+ * @see ame_is_plugin_active()
  * @author scripts@schloebe.de
  */
 function ame_plugin_footer() {
-	$current_page = basename($_SERVER['PHP_SELF'], ".php");
-	if( function_exists('better_tags_manager') && $current_page == 'edit' ) {
+	echo "<div id='ame_incompatibilitymessage' class='error fade'><p>" . __('You seem using the \"Better Tags Manager\" plugin, which collides with the \"Admin Management Xtended\" plugin since both extend the tags column. Please <a href=\"plugins.php\">deactivate</a> one of both to make this message disappear.') . "</p></div>";
 ?>
 <script type="text/javascript">
 	var incompMessage = "<br />"
 	incompMessage += "<div id=\"incompatibilitymessage\" class=\"error fade\">";
-	incompMessage += "<p><strong><?php _e('You seem using the \"Better Tags Manager\" plugin, which collides with the \"Admin Management Xtended\" plugin since both extend the tags column. Please <a href=\"plugins.php\">deactivate</a> one of both to make this message disappear.') ?></p>";
-	incompMessage += "<p align='right' style='font-weight:200;'><small><em><?php _e('(This message was created by Admin Management Xtended plugin)') ?></em></small></p>";
+	incompMessage += "<p><strong></p>";
+	incompMessage += "<p align='right' style='font-weight:200;'><small><em></em></small></p>";
 	incompMessage += "</div><br />";
 	jQuery(document).ready(function() {
 		jQuery("#posts-filter").before(incompMessage);
 	});
 	</script>
 <?php
-	}
 }
-
-add_action('admin_footer', 'ame_plugin_footer' );
 ?>

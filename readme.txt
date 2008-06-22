@@ -1,7 +1,7 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline
+Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media
 Requires at least: 2.5
 Tested up to: 2.5+
 Stable tag: trunk
@@ -31,6 +31,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * **NEW since 1.2**: Toggling comment status open/closed in posts/pages management view
 * **NEW since 1.3**: Changing tags inline on post management page (**inline tag management**)
 * **NEW since 1.3**: New default button set; now two different button sets selectable
+* **NEW since 1.4**: Change media order inline in media management view
 * Entirely possible to be localized, including the JS calendar
 
 **Included languages:**
@@ -41,8 +42,8 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * French (fr_FR) (Thanks for contributing french language goes to [Gilles Wittezaële](http://gilles.wittezaele.fr/blog/))
 * Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
 * Japanese (ja) (Thanks for contributing japanese language goes to [kzh](http://homepage1.nifty.com/))
-* Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to [Amir Ashtiani](http://ouo.ir
-))
+* Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to [Amir Ashtiani](http://ouo.ir))
+* Turkish (tr_TR) (Thanks for contributing turkish language goes to [wolkanca](http://blog.wolkanca.com))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
