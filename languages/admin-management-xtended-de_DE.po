@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin Management Xtended\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-06-22 22:29+0100\n"
-"Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
+"PO-Revision-Date: 2008-06-23 10:22+0100\n"
+"Last-Translator: \n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -133,9 +133,8 @@ msgid "Enhanced by Admin Management Xtended Plugin"
 msgstr "Erweitert durch das Admin Management Xtended Plugin"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/media-functions.php:43
-#, fuzzy
 msgid "Media Order"
-msgstr "Reigenfolge bearbeiten:"
+msgstr "Reigenfolge"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:43
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:170
