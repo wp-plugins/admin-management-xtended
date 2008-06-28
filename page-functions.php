@@ -72,9 +72,7 @@ function ame_column_page_order( $defaults ) {
 function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_page_actions' ) {
-    	$post_status = get_post_status($ame_id);
-    	#$q_post_status_datum = get_post($ame_id);
-    	#$post_status_datum = strtotime( $q_post_status_datum->post_date );
+    	$post_status = get_post_status( $ame_id );
     	echo '<div style="width:91px;" class="ame_options">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon

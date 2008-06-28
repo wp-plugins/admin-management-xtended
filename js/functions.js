@@ -2,6 +2,39 @@ function re_init() {
    tb_init('a.thickbox, area.thickbox, input.thickbox');
 }
 
+function ame_ajax_form_mediadesc( postid, mediadesc ) {
+	var ame_e = jQuery('#ame_mediadesc' + postid);
+	var ame_text = jQuery('#ame_mediadesc_text' + postid).html();
+	var revert_ame_e = ame_e.html();
+	ame_e.html('<input type="text" id="ame-new-mediadesc' + postid + '" value="" style="font-size:0.8em;" /> <a href="javascript:void(0);" id="ame_mediadesc_save' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'save_small.gif" border="0" alt="' + ameAjaxL10n.Save + '" title="' + ameAjaxL10n.Save + '" /></a> <a href="javascript:void(0);" id="ame_mediadesc_cancel' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'cancel_small.gif" border="0" alt="' + ameAjaxL10n.Cancel + '" title="' + ameAjaxL10n.Cancel + '" /></a>');
+	jQuery('input#ame-new-mediadesc' + postid).val( ame_text );
+	jQuery('#ame_mediadesc' + postid + ' #ame_mediadesc_cancel' + postid).click(function() {
+		ame_e.html( revert_ame_e );
+	});
+	jQuery('#ame_mediadesc' + postid + ' #ame_mediadesc_save' + postid).click(function() {
+		var new_mediadesc = jQuery('input#ame-new-mediadesc' + postid).val();
+		mediadescSpanFadeOut( postid, new_mediadesc );
+	});
+}
+
+function mediadescSpanFadeOut( postid, ame_mediadesc ) {
+	jQuery("span#ame_mediadesc" + postid).fadeOut('fast', function() {
+		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
+		jQuery("span#ame_mediadesc" + postid).fadeIn('fast', function() {
+			var ame_sack = new sack(
+			ameAjaxL10n.requestUrl);
+			ame_sack.execute = 1;
+			ame_sack.method = 'POST';
+			ame_sack.setVar( "action", "ame_ajax_save_mediadesc" );
+			ame_sack.setVar( "postid", postid );
+			ame_sack.setVar( "new_mediadesc", ame_mediadesc );
+			ame_sack.onError = function() { alert('Ajax error on saving media description'); };
+			ame_sack.runAJAX();
+		});
+		jQuery("span#ame_mediadesc" + postid).html( loading );
+	});
+}
+
 function ame_ajax_form_tags( postid, posttags ) {
 	var ame_e = jQuery('#ame_tags' + postid);
 	var revert_ame_e = ame_e.html();

@@ -8,9 +8,9 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.4.0
+Version: 1.5.0
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
-Description: Extends admin functionalities by introducing: <abbr title="">toggling post/page visibility inline</abbr>, <abbr title="">changing page order with drag'n'drop</abbr>, <abbr title="">inline category management</abbr>, <abbr title="">inline tag management</abbr>, <abbr title="">changing publication date inline</abbr>, <abbr title="">changing post slug inline</abbr>, <abbr title="">toggling comment status open/closed</abbr>, <abbr title="">hide draft posts</abbr>, <abbr title="">change media order</abbr>
+Description: Extends admin functionalities by introducing: <abbr title="">toggling post/page visibility inline</abbr>, <abbr title="">changing page order with drag'n'drop</abbr>, <abbr title="">inline category management</abbr>, <abbr title="">inline tag management</abbr>, <abbr title="">changing publication date inline</abbr>, <abbr title="">changing post slug inline</abbr>, <abbr title="">toggling comment status open/closed</abbr>, <abbr title="">hide draft posts</abbr>, <abbr title="">change media order</abbr>, <abbr title="">change media description inline</abbr>
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
@@ -51,7 +51,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.4.0");
+define("AME_VERSION", "1.5.0");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running

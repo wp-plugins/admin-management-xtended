@@ -41,9 +41,7 @@ function ame_column_tag_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	unset($defaults['tags']);
-	#if( $defaults['tags'] ) {
-		$defaults['ame_tag_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Tags') . '</abbr>';
-	#}
+	$defaults['ame_tag_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Tags') . '</abbr>';
     return $defaults;
 }
 
@@ -72,7 +70,7 @@ function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 			$ame_post_tags .= __('No Tags');
 			$ame_post_tags_plain .= '';
 		}
-		echo '<span id="ame_tags' . $ame_id . '">' . $ame_post_tags . '&nbsp;<a id="tageditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $ame_id . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $ame_id . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $ame_id . '" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $ame_id . '" /></a></span>';
+		echo '<span id="ame_tags' . $ame_id . '">' . $ame_post_tags . '&nbsp;<a id="tageditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $ame_id . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
     }
 }
 
@@ -142,7 +140,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 </div>
 </div>
 			<?php
-		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&width=300&inlineId=categorychoosewrap' . $ame_id . '&modal=true" title="' . __('Edit Categories for Post', 'admin-management-xtended') . ' #' . $ame_id . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit Categories', 'admin-management-xtended') . ' ' . $ame_id . '" title="' . __('Edit Categories for Post', 'admin-management-xtended') . ' ' . $ame_id . '" /></a>';
+		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&width=300&inlineId=categorychoosewrap' . $ame_id . '&modal=true" title="' . __('Edit') . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
     }
 }
 
@@ -225,7 +223,7 @@ add_filter('manage_posts_columns', 'ame_column_post_actions', 500, 2);
  *
  * @since 1.3.0
  * @deprecated Deprecated since version 1.4.0
- * @see ame_is_plugin_active()
+ * @see AdminManagementXtended::wpIncompCheck()
  * @author scripts@schloebe.de
  */
 function ame_plugin_footer() {

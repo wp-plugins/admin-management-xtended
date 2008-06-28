@@ -1,4 +1,10 @@
 <?php
+/**
+ * General functions used globally
+ *
+ * @package WordPress_Plugins
+ * @subpackage AdminManagementXtended
+ */
 
 /*
 Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
@@ -17,14 +23,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-/**
- * General functions used globally
- *
- * @package WordPress_Plugins
- * @subpackage AdminManagementXtended
- */
-
 
 /* ************************************************ */
 /* Capabilities	- propably for future release		*/
@@ -128,6 +126,25 @@ function return_function( $output ) {
 }
 
 /**
+ * SACK response function for saving media description
+ *
+ * @since 1.5.0
+ * @author scripts@schloebe.de
+ */
+function ame_ajax_save_mediadesc() {
+	global $wpdb;
+	$postid = intval( $_POST['postid'] );
+	$new_mediadesc = $_POST['new_mediadesc'];
+	
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_excerpt = %s WHERE ID = %d", stripslashes( $new_mediadesc ), $postid ) );
+	$ame_media_desc = '<span id="ame_mediadesc_text' . $postid . '">' . $new_mediadesc . '</span>';
+	$ame_media_desc .= '&nbsp;<a id="mediadesceditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_mediadesc(' . $postid . ');return false;" title="' . __('Edit') . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+	die( "jQuery('span#ame_mediadesc" . $postid . "').fadeOut('fast', function() {
+		jQuery('span#ame_mediadesc" . $postid . "').html('" . addslashes_gpc( $ame_media_desc ) . "').fadeIn('fast');
+	});" );
+}
+
+/**
  * SACK response function for saving comment status for a post
  *
  * @since 1.2.0
@@ -141,10 +158,10 @@ function ame_ajax_set_commentstatus() {
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
 	if ( $status == 'open' ) {
-		$wpdb->query("UPDATE $wpdb->posts SET comment_status = '" . $status . "' WHERE ID = '" . $postid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 0, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "comments_open.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} else {
-		$wpdb->query("UPDATE $wpdb->posts SET comment_status = '" . $status . "' WHERE ID = '" . $postid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 1, \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "comments_closed.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -164,7 +181,7 @@ function ame_get_pageorder() {
 		$value = intval( substr( $value, 5 ) );
 		$has_parent = get_post( $value );
 		if( $value != '0' && empty( $has_parent->post_parent ) ) {
-			$wpdb->query("UPDATE $wpdb->posts SET menu_order = " . $i . " WHERE ID = " . $value . " AND post_type = 'page'");
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET menu_order = %d WHERE ID = %d AND post_type = 'page'", $i, $value ) );
 			$i++;
 		}
 	}
@@ -202,7 +219,7 @@ function ame_ajax_save_tags() {
 		$ame_post_tags .= __('No Tags');
 		$ame_post_tags_plain .= '';
 	}
-	$ame_post_tags .= '&nbsp;<a id="tageditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $postid . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $postid . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $postid . '" title="' . __('Edit Tags for Post', 'admin-management-xtended') . ' #' . $ame_id . '" /></a>';
+	$ame_post_tags .= '&nbsp;<a id="tageditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $postid . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . get_bloginfo('wpurl') . '/' . PLUGINDIR . AME_PLUGINPATH . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
 	die( "jQuery('span#ame_tags" . $postid . "').fadeOut('fast', function() {
 		jQuery('span#ame_tags" . $postid . "').html('" . addslashes_gpc( $ame_post_tags ) . "').fadeIn('fast');
 	});" );
@@ -295,14 +312,14 @@ function ame_slug_edit() {
 	$newslug = $_POST['newslug'];
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	if( $posttype == 'post' ) { $postnumber = '1'; } elseif( $posttype == 'page' ) { $postnumber = '2'; }
-	$curpostslug = $wpdb->get_var("SELECT post_name FROM $wpdb->posts WHERE ID = " . $catid);
+	$curpostslug = $wpdb->get_var( $wpdb->prepare( "SELECT post_name FROM $wpdb->posts WHERE ID = %d", $catid ) );
 	
 	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>" . __('Post') . " #" . $catid . "</td><td colspan='8' align='right'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
 }
 
 /**
- * SACK response function for saving page order
+ * SACK response function for saving page order from direct input
  *
  * @since 1.0
  * @author scripts@schloebe.de
@@ -313,7 +330,7 @@ function ame_save_order() {
 	$neworderid = intval( $_POST['new_orderid'] );
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
-	$wpdb->query("UPDATE $wpdb->posts SET menu_order = '" . $neworderid . "' WHERE ID = '" . $catid . "'");
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET menu_order = %d WHERE ID = %d", $neworderid, $catid ) );
 	die( "jQuery('span#ame_order_loader" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -331,7 +348,7 @@ function ame_save_slug() {
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
 	
-	$wpdb->query("UPDATE $wpdb->posts SET post_name = '" . $new_slug . "' WHERE ID = '" . $catid . "'");
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = %s WHERE ID = %d", $new_slug, $catid ) );
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -347,7 +364,7 @@ function ame_save_title() {
 	$new_title = $_POST['new_title'];
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
-	$wpdb->query("UPDATE $wpdb->posts SET post_title = '" . $new_title . "' WHERE ID = '" . $catid . "'");
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s WHERE ID = %d", $new_title, $catid ) );
 	die( "jQuery('a[@href$=post=" . $catid . "]').html('" . $new_title . "'); jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -364,14 +381,13 @@ function ame_set_date() {
 	$newpostdate_gtm = get_gmt_from_date( $newpostdate );
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
-	//die( "alert('" . $newpostdate . "');alert('" . $newpostdate_gtm . "');" );
-	$wpdb->query("UPDATE $wpdb->posts SET post_date = '" . $newpostdate . "' WHERE ID = '" . $catid . "'");
-	$wpdb->query("UPDATE $wpdb->posts SET post_date_gmt = '" . $newpostdate_gtm . "' WHERE ID = '" . $catid . "'");
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_date = %s WHERE ID = %d", $newpostdate, $catid ) );
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_date = %s WHERE ID = %d", $newpostdate_gtm, $catid ) );
 	if( strtotime( current_time(mysql) ) < strtotime( $newpostdate ) ) {
-		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'future' WHERE ID = '" . $catid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'future' WHERE ID = %d", $catid ) );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
-		$wpdb->query("UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = '" . $catid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -389,10 +405,10 @@ function ame_toggle_visibility() {
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
 	if ( $status == 'publish' ) {
-		$wpdb->query("UPDATE $wpdb->posts SET post_status = '" . $status . "' WHERE ID = '" . $catid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
 		die( "jQuery('#visicon" . $catid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'draft\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "visible.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-draft').addClass('status-publish');" );
 	} else {
-		$wpdb->query("UPDATE $wpdb->posts SET post_status = '" . $status . "' WHERE ID = '" . $catid . "'");
+		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
 		die( "jQuery('#visicon$catid').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'publish\', \'" . $posttype . "\');return false;\"><img src=\"" . get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "img/" . AME_IMGSET . "hidden.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-draft');" );
 	}
 }
@@ -411,6 +427,7 @@ if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_ajax_set_commentstatus', 'ame_ajax_set_commentstatus' );
 	add_action('wp_ajax_ame_ajax_save_tags', 'ame_ajax_save_tags' );
 	add_action('wp_ajax_ame_ajax_toggle_imageset', 'ame_ajax_toggle_imageset' );
+	add_action('wp_ajax_ame_ajax_save_mediadesc', 'ame_ajax_save_mediadesc' );
 }
 
 
@@ -427,7 +444,7 @@ if( function_exists('add_action') ) {
  */
 function ame_js_jquery_datepicker_header() {
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
-	$posttype = "lala";
+	$posttype = "";
 	if( $current_page == 'edit' ) {
 		$posttype = "post";
 	} elseif ( $current_page == 'edit-pages' ) {
@@ -604,11 +621,11 @@ function ame_feheader_insert()
 
 $current_page = basename($_SERVER['PHP_SELF'], ".php");
 if( function_exists('add_action') ) {
+	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	add_action('wp_head', 'ame_feheader_insert', 1);
 	if( $current_page == 'edit' || $current_page == 'edit-pages' ) {
 		$cur_locale = get_locale();
 		add_action('admin_head', 'ame_css_admin_header' );
-		add_action('admin_head', wp_enqueue_script( array('thickbox') ) );
 		add_action('admin_print_scripts', 'ame_js_admin_header' );
 		add_action('admin_head', 'ame_js_jquery_datepicker_header' );
 		add_action('admin_head', wp_enqueue_script( 'date', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/date.js", array('jquery'), AME_VERSION ) );
@@ -619,6 +636,10 @@ if( function_exists('add_action') ) {
 		}
 		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
 			add_action('admin_head', wp_enqueue_script( 'tablednd', get_bloginfo('wpurl') . "/" . PLUGINDIR . AME_PLUGINPATH . "js/jquery-addons/jquery.tablednd.js", array('jquery'), AME_VERSION ) );
+		}
+		add_action('admin_head', wp_enqueue_script( array('thickbox') ) );
+		if ( version_compare( $wp_version, '2.5.9', '>=' ) ) {
+			add_action('admin_head', wp_enqueue_style( array('thickbox') ) );
 		}
 	}
 	if( $current_page == 'upload' ) {
