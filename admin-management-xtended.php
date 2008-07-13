@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.5.0
+Version: 1.5.2
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: Extends admin functionalities by introducing: <abbr title="">toggling post/page visibility inline</abbr>, <abbr title="">changing page order with drag'n'drop</abbr>, <abbr title="">inline category management</abbr>, <abbr title="">inline tag management</abbr>, <abbr title="">changing publication date inline</abbr>, <abbr title="">changing post slug inline</abbr>, <abbr title="">toggling comment status open/closed</abbr>, <abbr title="">hide draft posts</abbr>, <abbr title="">change media order</abbr>, <abbr title="">change media description inline</abbr>
 Author: Oliver Schl&ouml;be
@@ -34,6 +34,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 /**
+ * Pre-2.6 compatibility
+ */
+if ( !defined('WP_CONTENT_URL') )
+	define( 'WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
+if ( !defined('WP_CONTENT_DIR') )
+	define( 'WP_CONTENT_DIR', '/' . 'wp-content' );
+
+
+/**
  * Checks if a given plugin is active
  *
  * @since 1.4.0
@@ -48,10 +57,11 @@ function ame_is_plugin_active( $plugin_filename ) {
 	return ( in_array($plugin_filename, $plugins) );
 }
 
+
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.5.0");
+define("AME_VERSION", "1.5.2");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -67,7 +77,17 @@ define('ISINSTBTM', ame_is_plugin_active('better-tags-manager/better-tags-manage
 /**
  * Define the plugin path slug
  */
-define("AME_PLUGINPATH", "/admin-management-xtended/");
+define("AME_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
+
+/**
+ * Define the plugin full url
+ */
+define("AME_PLUGINFULLURL", WP_CONTENT_URL . '/plugins' . AME_PLUGINPATH );
+
+/**
+ * Define the plugin full directory
+ */
+define("AME_PLUGINFULLDIR", WP_CONTENT_DIR . '/plugins' . AME_PLUGINPATH );
 
 /**
  * Define the plugin image set
@@ -96,7 +116,11 @@ class AdminManagementXtended {
 			/**
 			* Load all the l18n data from languages path
 			*/
-			load_plugin_textdomain('admin-management-xtended', PLUGINDIR . AME_PLUGINPATH . 'languages');
+			if ( !defined('WP_PLUGIN_DIR') ) {
+				load_plugin_textdomain('admin-management-xtended', AME_PLUGINFULLDIR . 'languages');
+			} else {
+				load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
+			}
 		}
 		
 		if( ISINSTBTM ) {
@@ -112,22 +136,22 @@ class AdminManagementXtended {
 		/** 
  		* This file holds all of the general information and functions
  		*/
-		require_once('general-functions.php');
+		require_once(dirname (__FILE__) . '/' . 'general-functions.php');
 
 		/** 
  		* This file holds all of the post functions
  		*/
-		require_once('post-functions.php');
+		require_once(dirname (__FILE__) . '/' . 'post-functions.php');
 
 		/** 
  		* This file holds all of the page functions
  		*/
-		require_once('page-functions.php');
+		require_once(dirname (__FILE__) . '/' . 'page-functions.php');
 
 		/** 
  		* This file holds all of the media functions
  		*/
-		require_once('media-functions.php');
+		require_once(dirname (__FILE__) . '/' . 'media-functions.php');
 		
 		restore_include_path();
 		

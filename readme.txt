@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media
 Requires at least: 2.5
-Tested up to: 2.6-beta1
+Tested up to: 2.6
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop** and inline category management.
@@ -33,6 +33,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * **NEW since 1.3**: New default button set; now two different button sets selectable
 * **NEW since 1.4**: Change media order inline in media management view
 * **NEW since 1.5**: Change media description inline in media management view
+* **Supports changing of wp-content/ folder in WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
 **Included languages:**
