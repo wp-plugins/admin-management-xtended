@@ -47,6 +47,8 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to [Amir Ashtiani](http://ouo.ir))
 * Turkish (tr_TR) (Thanks for contributing turkish language goes to [wolkanca](http://blog.wolkanca.com))
 * Danish (da_DK) (Thanks for contributing danish language goes to [Mads Christian Jensen](http://mads.eu/))
+* Czech (cs_CZ) (Thanks for contributing czech language goes to Josef Klimosz)
+* Dutch (nl_NL) (Thanks for contributing dutch language goes to [Steven Goos](http://gooos.nl))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
