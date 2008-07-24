@@ -477,6 +477,15 @@ jQuery(document).ready(function() {
 </script>
 \n";
 	}
+	if( $current_page == 'edit' ) {
+	echo "<script type=\"text/javascript\" charset=\"utf-8\">
+//<![CDATA[
+function ame_setupSuggest( ame_suggestid ) {
+	jQuery('#ame-new-tags' + ame_suggestid).suggest( '" . get_bloginfo('wpurl') . "/wp-admin/admin-ajax.php?action=ajax-tag-search', { delay: 500, minchars: 2, multiple: true, multipleSep: \", \" } );
+}
+//]]>
+</script>\n";
+	}
 	echo "<link rel='stylesheet' href='" . AME_PLUGINFULLURL . "css/datePicker.css' type='text/css' />\n";
 	echo "<script type=\"text/javascript\" charset=\"utf-8\">
 //<![CDATA[
@@ -593,6 +602,14 @@ ameAjaxL10n = {
  */
 function ame_css_admin_header() {
 	echo '<link rel="stylesheet" type="text/css" href="' . AME_PLUGINFULLURL . 'css/styles.css?ver=' . AME_VERSION . '" />' . "\n";
+	echo '
+<style type="text/css">
+#TB_window #TB_title {
+	font-weight: 700;
+	color: #D7D7D7;
+	background-color: #222;
+}
+</style>' . "\n";
 }
 
 /**
@@ -645,6 +662,12 @@ if( function_exists('add_action') ) {
 	if( $current_page == 'upload' ) {
 		add_action('admin_print_scripts', 'ame_js_admin_header' );
 		add_action('admin_head', wp_enqueue_script( 'ame_miscsrcipts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
+	}
+	if( $current_page == 'edit' ) {
+		/**
+ 		* @since 1.6.0
+ 		*/
+		add_action('admin_head', wp_enqueue_script( array('suggest') ) );
 	}
 }
 ?>

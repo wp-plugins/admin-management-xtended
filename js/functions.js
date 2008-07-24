@@ -38,7 +38,7 @@ function mediadescSpanFadeOut( postid, ame_mediadesc ) {
 function ame_ajax_form_tags( postid, posttags ) {
 	var ame_e = jQuery('#ame_tags' + postid);
 	var revert_ame_e = ame_e.html();
-	ame_e.html('<input type="text" id="ame-new-tags' + postid + '" value="' + posttags + '" style="font-size:0.8em;" /> <a href="javascript:void(0);" id="ame_tag_save' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'save_small.gif" border="0" alt="' + ameAjaxL10n.Save + '" title="' + ameAjaxL10n.Save + '" /></a> <a href="javascript:void(0);" id="ame_tag_cancel' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'cancel_small.gif" border="0" alt="' + ameAjaxL10n.Cancel + '" title="' + ameAjaxL10n.Cancel + '" /></a>');
+	ame_e.html('<input type="text" id="ame-new-tags' + postid + '" value="' + posttags + '" style="font-size:0.8em;width:75%;" /> <a href="javascript:void(0);" id="ame_tag_save' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'save_small.gif" border="0" alt="' + ameAjaxL10n.Save + '" title="' + ameAjaxL10n.Save + '" /></a> <a href="javascript:void(0);" id="ame_tag_cancel' + postid + '"><img src="' + ameAjaxL10n.imgUrl + 'cancel_small.gif" border="0" alt="' + ameAjaxL10n.Cancel + '" title="' + ameAjaxL10n.Cancel + '" /></a>');
 	jQuery('#ame_tags' + postid + ' #ame_tag_cancel' + postid).click(function() {
 		ame_e.html( revert_ame_e );
 	});
@@ -46,6 +46,7 @@ function ame_ajax_form_tags( postid, posttags ) {
 		var new_tags = jQuery('input#ame-new-tags' + postid).val();
 		tagSpanFadeOut( postid, new_tags );
 	});
+	ame_setupSuggest( postid );
 }
 
 function tagSpanFadeOut( postid, ame_tags ) {

@@ -1,7 +1,7 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media
+Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revisions
 Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: trunk
@@ -33,7 +33,8 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * **NEW since 1.3**: New default button set; now two different button sets selectable
 * **NEW since 1.4**: Change media order inline in media management view
 * **NEW since 1.5**: Change media description inline in media management view
-* **Supports changing of wp-content/ folder in WP 2.6**
+* **NEW since 1.6**: Open post revisions inline in post management view
+* **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
 **Included languages:**

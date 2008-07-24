@@ -130,7 +130,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 	<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:165px;overflow:auto;">
 		<?php
 		if ( version_compare( $wp_version, '2.5.1', '>=' ) ) {
-			wp_category_checklist($ame_id);
+			wp_category_checklist( $ame_id );
 		} elseif ( version_compare( $wp_version, '2.5', '=' ) ) {
 			dropdown_categories(get_settings('default_category'));
 		}
@@ -203,6 +203,12 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
     	$comment_status = $q_commentstatus->comment_status;
     	if( $comment_status == 'open' ) { $c_status = 0; $c_img = '_open'; } else { $c_status = 1; $c_img = '_closed'; }
     	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
+		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
+			echo '<br />';
+			echo '<a class="thickbox" href="#TB_inline?height=105&width=300&inlineId=amerevisionwrap' . $ame_id . '" title="' . __('Post Revisions') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'post-revisions.gif" border="0" alt="' . __('Post Revisions') . '" title="' . __('Post Revisions') . '" /></a><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
+			wp_list_post_revisions();
+			echo '</div>';
+		}
     	echo '</div>';
     }
 }
