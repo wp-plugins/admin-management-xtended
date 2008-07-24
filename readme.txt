@@ -1,7 +1,7 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revisions
+Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision
 Requires at least: 2.5
 Tested up to: 2.6
 Stable tag: trunk
