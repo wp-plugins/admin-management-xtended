@@ -33,7 +33,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * **NEW since 1.3**: New default button set; now two different button sets selectable
 * **NEW since 1.4**: Change media order inline in media management view
 * **NEW since 1.5**: Change media description inline in media management view
-* **NEW since 1.6**: Open post revisions inline in post management view
+* **NEW since 1.6**: Open post revisions inline in post/page management view
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
