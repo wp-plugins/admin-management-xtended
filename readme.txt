@@ -50,6 +50,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * Danish (da_DK) (Thanks for contributing danish language goes to [Mads Christian Jensen](http://mads.eu/))
 * Czech (cs_CZ) (Thanks for contributing czech language goes to Josef Klimosz)
 * Dutch (nl_NL) (Thanks for contributing dutch language goes to [Steven Goos](http://gooos.nl))
+* Polish (pl_PL) (Thanks for contributing polish language goes to [Cezary Tomczyk ](http://www.ikeris.com))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
