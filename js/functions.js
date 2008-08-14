@@ -211,7 +211,7 @@ function ame_ajax_set_postdate( cat_id, pickedDate, posttype ) {
 }
 
 function ame_title_edit( cat_id, title_text, posttype ) {
-	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td>' + ameAjaxL10n.Post + ' #' + cat_id + '</td><td colspan="8" align="right"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="' + ameAjaxL10n.Save + '" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="' + ameAjaxL10n.Cancel + '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
+	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td>&nbsp;</td><td colspan="8" align="center"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="' + ameAjaxL10n.Save + '" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="' + ameAjaxL10n.Cancel + '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
 	jQuery("#" + posttype + "-" + cat_id).after( addHTML );
 	jQuery("#" + posttype + "-" + cat_id).hide();
 }
@@ -241,6 +241,32 @@ function ame_ajax_slug_save( cat_id, typenumber ) {
 	ame_sack.setVar( "new_slug", newslug );
 	ame_sack.setVar( "typenumber", typenumber );
 	ame_sack.onError = function() { alert('Ajax error on saving post slug') };
+	ame_sack.runAJAX();
+}
+
+function ame_ajax_author_save( cat_id, typenumber ) {
+	var newauthor = jQuery("select#author-" + cat_id).attr('value');
+	var ame_sack = new sack(
+	ameAjaxL10n.requestUrl);
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_save_author" );
+	ame_sack.setVar( "category_id", cat_id );
+	ame_sack.setVar( "newauthor", newauthor );
+	ame_sack.setVar( "typenumber", typenumber );
+	ame_sack.onError = function() { alert('Ajax error on saving post authot') };
+	ame_sack.runAJAX();
+}
+
+function ame_author_edit( post_id, posttype ) {
+	var ame_sack = new sack(
+	ameAjaxL10n.requestUrl);
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_author_edit" );
+	ame_sack.setVar( "post_id", post_id );
+	ame_sack.setVar( "posttype", posttype );
+	ame_sack.onError = function() { alert('Ajax error on editing author') };
 	ame_sack.runAJAX();
 }
 

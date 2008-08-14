@@ -56,7 +56,7 @@ function ame_column_tag_actions( $defaults ) {
  */
 function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
-    if( $ame_column_name == 'ame_tag_actions' && current_user_can( 'edit_post', $ame_id ) ) {
+    if( $ame_column_name == 'ame_tag_actions' ) {
     	$tags = get_the_tags();
 		if ( !empty( $tags ) ) {
 			$out = array();
@@ -70,7 +70,10 @@ function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 			$ame_post_tags .= __('No Tags');
 			$ame_post_tags_plain .= '';
 		}
-		echo '<span id="ame_tags' . $ame_id . '">' . $ame_post_tags . '&nbsp;<a id="tageditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $ame_id . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
+		echo '<span id="ame_tags' . $ame_id . '">' . $ame_post_tags . '&nbsp;';
+		if( current_user_can( 'edit_post', $ame_id ) ) {
+			echo '<a id="tageditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $ame_id . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
+		}
     }
 }
 
@@ -112,7 +115,7 @@ function ame_column_category_actions( $defaults ) {
 function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
-    if( $ame_column_name == 'ame_cat_actions' && current_user_can( 'edit_post', $ame_id ) ) {
+    if( $ame_column_name == 'ame_cat_actions' ) {
     	$categories = get_the_category( $ame_id );
     	$post_cats = "";
 		if ( !empty( $categories ) ) {
@@ -124,6 +127,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		} else {
 			$ame_post_cats .= __('Uncategorized');
 		}
+		if( current_user_can( 'edit_post', $ame_id ) ) {
 ?>
 <div id="categorychoosewrap<?php echo $ame_id; ?>" style="width:300px;height:165px;overflow:auto;display:none;">
 <div id="categorychoose<?php echo $ame_id; ?>" class="categorydiv">
@@ -139,8 +143,12 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 	<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-secondary" onclick="ame_ajax_save_categories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
 </div>
 </div>
-			<?php
-		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&width=300&inlineId=categorychoosewrap' . $ame_id . '&modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+		<?php
+		}
+		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;';
+		if( current_user_can( 'edit_post', $ame_id ) ) {
+		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&width=300&inlineId=categorychoosewrap' . $ame_id . '&modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+		}
     }
 }
 

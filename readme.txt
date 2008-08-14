@@ -34,6 +34,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * **NEW since 1.4**: Change media order inline in media management view
 * **NEW since 1.5**: Change media description inline in media management view
 * **NEW since 1.6**: Open post revisions inline in post/page management view
+* **NEW since 1.7**: Change post/page author inline in post/page management view
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
@@ -50,7 +51,7 @@ It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known
 * Danish (da_DK) (Thanks for contributing danish language goes to [Mads Christian Jensen](http://mads.eu/))
 * Czech (cs_CZ) (Thanks for contributing czech language goes to Josef Klimosz)
 * Dutch (nl_NL) (Thanks for contributing dutch language goes to [Steven Goos](http://gooos.nl))
-* Polish (pl_PL) (Thanks for contributing polish language goes to [Cezary Tomczyk ](http://www.ikeris.com))
+* Polish (pl_PL) (Thanks for contributing polish language goes to [Cezary Tomczyk](http://www.ikeris.com))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 

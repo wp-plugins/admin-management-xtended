@@ -314,8 +314,48 @@ function ame_slug_edit() {
 	if( $posttype == 'post' ) { $postnumber = '1'; } elseif( $posttype == 'page' ) { $postnumber = '2'; }
 	$curpostslug = $wpdb->get_var( $wpdb->prepare( "SELECT post_name FROM $wpdb->posts WHERE ID = %d", $catid ) );
 	
-	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>" . __('Post') . " #" . $catid . "</td><td colspan='8' align='right'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
+	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>&nbsp;</td><td colspan='8' align='center'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
+}
+
+/**
+ * SACK response function for displaying the author edit form inline
+ *
+ * @since 1.7.0
+ * @author scripts@schloebe.de
+ */
+function ame_author_edit() {
+	global $wpdb, $current_user;
+	$postid = intval($_POST['post_id']);
+	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
+	if( $posttype == 'post' ) { $typenumber = '1'; } elseif( $posttype == 'page' ) { $typenumber = '2'; }
+	if( $typenumber == '1' && !current_user_can('edit_post', $postid) ) {
+		die( "alert('" . js_escape( __('You are not allowed to change the post author as this user.') ) . "');" );
+		return;
+	} elseif( $typenumber == '2' && !current_user_can('edit_page', $postid) ) {
+		die( "alert('" . js_escape( __('You are not allowed to change the page author as this user.') ) . "');" );
+		return;
+	}
+	$post = get_post( $postid );
+	
+	$authors = get_editable_user_ids( $current_user->id ); // TODO: ROLE SYSTEM
+ 	if ( $post->post_author && !in_array($post->post_author, $authors) )
+		$authors[] = $post->post_author;
+	if ( $authors && count( $authors ) > 1 ) {
+		$output = wp_dropdown_users( array('echo' => 0, 'include' => $authors, 'name' => 'author-' . $postid, 'selected' => $post->post_author) );
+	} else {
+		if( $typenumber == '1' ) {
+			die( "alert('" . js_escape( __('You are not allowed to change the post author as this user.') ) . "');" );
+			return;
+		} elseif( $typenumber == '2' ) {
+			die( "alert('" . js_escape( __('You are not allowed to change the page author as this user.') ) . "');" );
+			return;
+		}
+	}
+	$output = str_replace("\n", "", $output);
+	
+	$addHTML = "<tr id='alter" . $posttype . "-" . $postid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>&nbsp;</td><td colspan='8' align='center'>" . $output . "  <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_author_save(" . $postid . ", " . $typenumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel($postid)' /></td></tr>";
+	die( "jQuery('#" . $posttype . "-" . $postid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $postid . "').hide();" );
 }
 
 /**
@@ -350,6 +390,24 @@ function ame_save_slug() {
 	
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = %s WHERE ID = %d", $new_slug, $catid ) );
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+}
+
+/**
+ * SACK response function for saving post author
+ *
+ * @since 1.7.0
+ * @author scripts@schloebe.de
+ */
+function ame_save_author() {
+	global $wpdb;
+	$catid = intval($_POST['category_id']);
+	$newauthorid = intval( $_POST['newauthor'] );
+	if( is_string($_POST['typenumber']) ) $posttype = $_POST['typenumber'];
+	$current_page = basename($_SERVER['PHP_SELF'], ".php");
+	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
+	
+	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_author = %d WHERE ID = %d", $newauthorid, $catid ) );
+	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery(\"a[href^='edit.php?author=" . $catid . "'], a[href^='edit-pages.php?author=" . $catid . "']\").html('" . $newauthorid . "');" );
 }
 
 /**
@@ -428,6 +486,8 @@ if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_ajax_save_tags', 'ame_ajax_save_tags' );
 	add_action('wp_ajax_ame_ajax_toggle_imageset', 'ame_ajax_toggle_imageset' );
 	add_action('wp_ajax_ame_ajax_save_mediadesc', 'ame_ajax_save_mediadesc' );
+	add_action('wp_ajax_ame_author_edit', 'ame_author_edit' );
+	add_action('wp_ajax_ame_save_author', 'ame_save_author' );
 }
 
 
@@ -502,6 +562,8 @@ if ( get_locale() == 'de_DE' ) {
 }\n";
 }
 	echo "jQuery(function() {
+	ame_roll_through_author_rows();
+	ame_roll_through_title_rows();
 	jQuery('.date-pick')
 		.datePicker({startDate:'2000-01-01', createButton:false, displayClose:true})
 		.dpSetPosition(jQuery.dpConst.POS_TOP, jQuery.dpConst.POS_RIGHT)
@@ -587,7 +649,7 @@ function ame_js_admin_header() {
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>"
 }
 //]]>
 </script>
@@ -626,13 +688,12 @@ function ame_changeImgSet() {
 }
 
 /**
- * Writes a version metatag to the fe page for support info
+ * Writes a version metatag to the FE page for support info
  *
  * @since 1.3.0
  * @author scripts@schloebe.de
  */
-function ame_feheader_insert()
-{
+function ame_feheader_insert() {
 	echo "<meta name='AMEWP' content='" . AME_VERSION . "' />\n";
 }
 
@@ -647,7 +708,8 @@ if( function_exists('add_action') ) {
 		add_action('admin_head', 'ame_js_jquery_datepicker_header' );
 		add_action('admin_head', wp_enqueue_script( 'date', AME_PLUGINFULLURL . "js/jquery-addons/date.js", array('jquery'), AME_VERSION ) );
 		add_action('admin_head', wp_enqueue_script( 'datePicker', AME_PLUGINFULLURL . "js/jquery-addons/jquery.datePicker.js", array('jquery'), AME_VERSION ) );
-		add_action('admin_head', wp_enqueue_script( 'ame_miscsrcipts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', wp_enqueue_script( 'ame_gui-modificators', AME_PLUGINFULLURL . "js/gui-modificators.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', wp_enqueue_script( 'ame_miscscripts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
 		if( ame_locale_exists() === true ) {
 			add_action('admin_head', wp_enqueue_script( 'localdate', AME_PLUGINFULLURL . "js/jquery-addons/date_" . $cur_locale . ".js", array('jquery'), AME_VERSION ) );
 		}
@@ -661,7 +723,8 @@ if( function_exists('add_action') ) {
 	}
 	if( $current_page == 'upload' ) {
 		add_action('admin_print_scripts', 'ame_js_admin_header' );
-		add_action('admin_head', wp_enqueue_script( 'ame_miscsrcipts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', wp_enqueue_script( 'ame_gui-modificators', AME_PLUGINFULLURL . "js/gui-modificators.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', wp_enqueue_script( 'ame_miscscripts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
 	}
 	if( $current_page == 'edit' ) {
 		/**

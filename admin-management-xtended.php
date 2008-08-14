@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.6.1
+Version: 1.7.0
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline
 Author: Oliver Schl&ouml;be
@@ -58,11 +58,10 @@ function ame_is_plugin_active( $plugin_filename ) {
 	return ( in_array($plugin_filename, $plugins) );
 }
 
-
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.6.1");
+define("AME_VERSION", "1.7.0");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -118,10 +117,10 @@ class AdminManagementXtended {
 			* Load all the l18n data from languages path
 			*/
 			if ( !defined('WP_PLUGIN_DIR') ) {
-				load_plugin_textdomain('admin-management-xtended', AME_PLUGINFULLDIR . 'languages');
-			} else {
-				load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
-			}
+                load_plugin_textdomain('admin-management-xtended', str_replace( ABSPATH, '', dirname(__FILE__) ) . '/languages');
+        	} else {
+                load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
+        	}
 		}
 		
 		if( ISINSTBTM ) {

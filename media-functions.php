@@ -91,10 +91,13 @@ function ame_custom_column_media_order( $ame_column_name, $ame_id ) {
  */
 function ame_custom_column_media_desc( $ame_column_name, $ame_id ) {
 	global $wpdb;
-    if( $ame_column_name == 'ame_media_desc' && current_user_can( 'edit_files', $ame_id ) ) {
+    if( $ame_column_name == 'ame_media_desc' ) {
     	$q_media_desc = get_post( $ame_id );
     	$media_desc = $q_media_desc->post_excerpt;
-    	echo '<span id="ame_mediadesc' . $ame_id . '"><span id="ame_mediadesc_text' . $ame_id . '">' . $media_desc . '</span>&nbsp;<a id="mediadesceditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_mediadesc(' . $ame_id . ');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
+    	echo '<span id="ame_mediadesc' . $ame_id . '"><span id="ame_mediadesc_text' . $ame_id . '">' . $media_desc . '</span>&nbsp;';
+		if( current_user_can( 'edit_post', $ame_id ) ) {
+			echo '<a id="mediadesceditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_mediadesc(' . $ame_id . ');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
+		}
     }
 }
 
