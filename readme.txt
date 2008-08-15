@@ -3,22 +3,22 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision
 Requires at least: 2.5
-Tested up to: 2.6
+Tested up to: 2.6.1
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop** and inline category management.
 
 == Description ==
 
-When you want to edit properties of posts/pages, you'll have to open the edit page, set the new options and save the post/page… which obviously takes time. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
+As a whole, the new WordPress Admin panel is organized fairly well, however when it comes to editing posts or pages quickly without having to open each post or page in a new tab or window, it isn't a very efficient process. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
-It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management.
+It adds some icons to the Manage posts/pages view with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management, plus much more.
 
 [Theres a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
 
 **Features:**
 
-* Changing post/pages properties inline in posts/pages management view
+* Ability to change post and page properties inline in the post or page management view
 * Toggling visibility with a single click
 * Changing the publication date with a neat comfortable calendar
 * Change post/page title inline in posts/pages management view
