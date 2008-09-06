@@ -8,7 +8,7 @@ function add_author_edit_links( row ) {
 }
 
 function ame_roll_through_author_rows() {
-	jQuery("tr[id^='" + ameAjaxL10n.postType + "-']").each(function() {
+	jQuery(".widefat tr[id^='" + ameAjaxL10n.postType + "-']").each(function() {
     	add_author_edit_links(this);
   	});
 }
@@ -26,7 +26,7 @@ function add_title_edit_links( row ) {
 }
 
 function ame_roll_through_title_rows() {
-	jQuery("tr[id^='" + ameAjaxL10n.postType + "-']").each(function() {
+	jQuery(".widefat tr[id^='" + ameAjaxL10n.postType + "-']").each(function() {
     	add_title_edit_links(this);
   	});
 }

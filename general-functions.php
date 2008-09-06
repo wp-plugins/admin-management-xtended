@@ -383,7 +383,12 @@ function ame_save_order() {
 function ame_save_slug() {
 	global $wpdb;
 	$catid = intval($_POST['category_id']);
-	$new_slug = sanitize_title($_POST['new_slug']);
+	$new_slug = $_POST['new_slug'];
+	if( empty( $new_slug ) || $new_slug == '' ) {
+		$postinfo = get_post( $catid, ARRAY_A );
+		$new_slug = $postinfo['post_title'];
+	}
+	$new_slug = sanitize_title( $new_slug );
 	if( is_string($_POST['typenumber']) ) $posttype = $_POST['typenumber'];
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
@@ -562,8 +567,6 @@ if ( get_locale() == 'de_DE' ) {
 }\n";
 }
 	echo "jQuery(function() {
-	ame_roll_through_author_rows();
-	ame_roll_through_title_rows();
 	jQuery('.date-pick')
 		.datePicker({startDate:'2000-01-01', createButton:false, displayClose:true})
 		.dpSetPosition(jQuery.dpConst.POS_TOP, jQuery.dpConst.POS_RIGHT)
@@ -590,19 +593,19 @@ if( $current_page == 'edit-pages' ) {
 	if ( get_option('ame_show_orderoptions') == '0' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div[class='tablenav'] div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '1' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div[class='tablenav'] div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '2' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div[class='tablenav'] div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>", 'admin-management-xtended') . "</span></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>", 'admin-management-xtended') . "</span></div>\");
 });
 </script>\n";
 	}
@@ -611,13 +614,13 @@ if( $current_page == 'edit' ) {
 	if ( get_option('ame_toggle_showinvisposts') == '1' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div#ajax-response + div[class='tablenav'] div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Hide invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(0)' id='ame_toggle_showinvisposts' /></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:last div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Hide invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(0)' id='ame_toggle_showinvisposts' /></div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_toggle_showinvisposts') == '0' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div#ajax-response + div[class='tablenav'] div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Show invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(1)' id='ame_toggle_showinvisposts' /></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:last div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Show invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(1)' id='ame_toggle_showinvisposts' /></div>\");
 });
 </script>\n";
 	}
@@ -626,8 +629,8 @@ if ( get_option('ame_toggle_showinvisposts') == '0' ) {
 	if( !isset( $_GET['post_status'] ) ) {
 		echo '<script type="text/javascript" charset="utf-8">
 jQuery(document).ready(function() {
-   jQuery("tr[class*=\'status-draft\']").hide();
-   jQuery("tr[class*=\'status-future\']").hide();
+   jQuery(".wrap .widefat tr[class*=\'status-draft\']").hide();
+   jQuery(".wrap .widefat tr[class*=\'status-future\']").hide();
 });
 </script>' . "\n";
 	}
@@ -644,12 +647,12 @@ function ame_js_admin_header() {
 	wp_print_scripts( array( 'sack' ));
 
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
-	if( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'edit-pages' ) { $posttype = 'page'; }
+	if( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'edit-pages' ) { $posttype = 'page'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
 ?>
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>"
 }
 //]]>
 </script>
@@ -663,6 +666,7 @@ ameAjaxL10n = {
  * @author scripts@schloebe.de
  */
 function ame_css_admin_header() {
+	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	echo '<link rel="stylesheet" type="text/css" href="' . AME_PLUGINFULLURL . 'css/styles.css?ver=' . AME_VERSION . '" />' . "\n";
 	echo '
 <style type="text/css">
@@ -672,6 +676,24 @@ function ame_css_admin_header() {
 	background-color: #222;
 }
 </style>' . "\n";
+	switch( $current_page ) {
+		case 'edit':
+			echo '<script type="text/javascript">
+jQuery(document).ready(function() {
+	ame_roll_through_title_rows()
+	ame_roll_through_author_rows();
+});
+</script>' . "\n";
+			break;
+		case 'edit-pages':
+			echo '<script type="text/javascript">
+jQuery(document).ready(function() {
+	ame_roll_through_title_rows()
+	ame_roll_through_author_rows();
+});
+</script>' . "\n";
+			break;
+	}
 }
 
 /**
@@ -684,7 +706,7 @@ function ame_css_admin_header() {
  */
 function ame_changeImgSet() {
 	if( get_option("ame_imgset") == 'set1' ) { $imgset = '2'; } elseif( get_option("ame_imgset") == 'set2' ) { $imgset = '1'; }
-	return ' <a tip="' . __('Change image set', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_toggle_imageset(' . $imgset . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'changeimgset.gif" border="0" alt="' . __('Change image set', 'admin-management-xtended') . '" title="' . __('Change image set', 'admin-management-xtended') . '" /></a>';
+	return ' <a href="javascript:void(0);" onclick="ame_ajax_toggle_imageset(' . $imgset . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'changeimgset.gif" border="0" alt="' . __('Change image set', 'admin-management-xtended') . '" title="' . __('Change image set', 'admin-management-xtended') . '" /></a>';
 }
 
 /**
@@ -716,6 +738,19 @@ if( function_exists('add_action') ) {
 		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
 			add_action('admin_head', wp_enqueue_script( 'tablednd', AME_PLUGINFULLURL . "js/jquery-addons/jquery.tablednd.js", array('jquery'), AME_VERSION ) );
 		}
+		add_action('admin_head', wp_enqueue_script( array('thickbox') ) );
+		if ( version_compare( $wp_version, '2.5.9', '>=' ) ) {
+			add_action('admin_head', wp_enqueue_style( array('thickbox') ) );
+		}
+	}
+	/**
+ 	* @since 1.8.0
+ 	*/
+	if( $current_page == 'link-manager' ) {
+		add_action('admin_print_scripts', 'ame_js_admin_header' );
+		add_action('admin_head', wp_enqueue_script( 'ame_gui-modificators', AME_PLUGINFULLURL . "js/gui-modificators.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', wp_enqueue_script( 'ame_miscscripts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
+		add_action('admin_head', 'ame_css_admin_header' );
 		add_action('admin_head', wp_enqueue_script( array('thickbox') ) );
 		if ( version_compare( $wp_version, '2.5.9', '>=' ) ) {
 			add_action('admin_head', wp_enqueue_style( array('thickbox') ) );

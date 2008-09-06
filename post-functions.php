@@ -147,7 +147,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		}
 		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;';
 		if( current_user_can( 'edit_post', $ame_id ) ) {
-		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&width=300&inlineId=categorychoosewrap' . $ame_id . '&modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=205&amp;width=300&amp;inlineId=categorychoosewrap' . $ame_id . '&amp;modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
 		}
     }
 }
@@ -193,7 +193,7 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
     	echo '<div style="width:91px;" class="ame_options">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon
-    		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Toggle visibility', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
+    		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
     	} else {
     		// Visibility icon
     		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'publish\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'hidden.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
@@ -210,11 +210,11 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
     	$q_commentstatus = get_post($ame_id);
     	$comment_status = $q_commentstatus->comment_status;
     	if( $comment_status == 'open' ) { $c_status = 0; $c_img = '_open'; } else { $c_status = 1; $c_img = '_closed'; }
-    	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
+    	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
 		// Post revisions
 		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
 			echo '<br />';
-			echo '<a class="thickbox" href="#TB_inline?height=165&width=300&inlineId=amerevisionwrap' . $ame_id . '" title="' . __('Post Revisions') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'post-revisions.gif" border="0" alt="' . __('Post Revisions') . '" title="' . __('Post Revisions') . '" /></a><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
+			echo '<a class="thickbox" href="#TB_inline?height=165&amp;width=300&amp;inlineId=amerevisionwrap' . $ame_id . '" title="' . __('Post Revisions') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'post-revisions.gif" border="0" alt="' . __('Post Revisions') . '" title="' . __('Post Revisions') . '" /></a><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
 			wp_list_post_revisions( $ame_id );
 			echo '</div>';
 		}

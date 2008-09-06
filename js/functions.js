@@ -97,6 +97,36 @@ function ame_ajax_save_categories( postid ) {
 	//alert( ame_cats );
 }
 
+function linkcatSpanFadeOut( linkid, ame_linkcats ) {
+	jQuery("span#ame_linkcategory" + linkid + ", a#thickboxlink" + linkid).fadeOut('fast', function() {
+		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
+		jQuery("span#ame_linkcategory" + linkid).fadeIn('fast', function() {
+			var ame_sack = new sack(
+			ameAjaxL10n.requestUrl);
+			ame_sack.execute = 1;
+			ame_sack.method = 'POST';
+			ame_sack.setVar( "action", "ame_ajax_save_linkcategories" );
+			ame_sack.setVar( "linkid", linkid );
+			ame_sack.setVar( "ame_linkcats", ame_linkcats );
+			ame_sack.onError = function() { alert('Ajax error on saving link categories'); };
+			ame_sack.onSuccess = function() { re_init(); };
+			ame_sack.runAJAX();
+		});
+		jQuery("span#ame_linkcategory" + linkid + "").html( loading );
+	});
+}
+
+function ame_ajax_save_linkcategories( linkid ) {
+	tb_remove();
+	var n = jQuery("#linkcategorychoose" + linkid + " #categorychecklist input:checked").length;
+	var ame_linkcats = '';
+	for(var a=0;a<n;a++){
+		ame_linkcats += jQuery("#linkcategorychoose" + linkid + " #categorychecklist input:checked")[a].value + ',';
+	}
+	window.setTimeout("linkcatSpanFadeOut(" + linkid + ", '" + ame_linkcats + "')", 500);
+	//alert( ame_linkcats );
+}
+
 function ame_ajax_set_commentstatus( postid, status, posttype ) {
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
@@ -232,6 +262,10 @@ function ame_ajax_title_save( cat_id, posttype ) {
 
 function ame_ajax_slug_save( cat_id, typenumber ) {
 	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
+	if ( newslug == '' || newslug == ' ' || newslug == '  ' ) {
+		alert( ameAjaxL10n.slugEmpty );
+		return;
+	}
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
 	ame_sack.execute = 1;
@@ -267,6 +301,17 @@ function ame_author_edit( post_id, posttype ) {
 	ame_sack.setVar( "post_id", post_id );
 	ame_sack.setVar( "posttype", posttype );
 	ame_sack.onError = function() { alert('Ajax error on editing author') };
+	ame_sack.runAJAX();
+}
+
+function ame_ajax_set_linkvisibility( link_id ) {
+	var ame_sack = new sack(
+	ameAjaxL10n.requestUrl);
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_toggle_linkvisibility" );
+	ame_sack.setVar( "link_id", link_id );
+	ame_sack.onError = function() { alert('Ajax error on toggling link visibility') };
 	ame_sack.runAJAX();
 }
 
