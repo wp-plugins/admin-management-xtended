@@ -10,7 +10,7 @@
 Plugin Name: Admin Management Xtended
 Version: 1.8.0
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
-Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline
+Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
