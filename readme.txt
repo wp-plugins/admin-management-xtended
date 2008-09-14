@@ -54,6 +54,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Czech (cs_CZ) (Thanks for contributing czech language goes to Josef Klimosz)
 * Dutch (nl_NL) (Thanks for contributing dutch language goes to [Steven Goos](http://gooos.nl))
 * Polish (pl_PL) (Thanks for contributing polish language goes to [Cezary Tomczyk](http://www.ikeris.com))
+* Russian (ru_RU) (Thanks for contributing polish language goes to [Lecactus](http://lecactus.ru/))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
