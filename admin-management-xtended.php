@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.8.0
+Version: 1.8.4
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -36,10 +36,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 /**
  * Pre-2.6 compatibility
  */
-if ( !defined('WP_CONTENT_URL') )
-    define( 'WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
-if ( !defined('WP_CONTENT_DIR') )
-    define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+if ( !defined( 'WP_CONTENT_URL' ) )
+	define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
+if ( !defined( 'WP_CONTENT_DIR' ) )
+	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
+if ( !defined( 'WP_PLUGIN_URL' ) )
+	define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
+if ( !defined( 'WP_PLUGIN_DIR' ) )
+	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
 
 
 
@@ -61,7 +65,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.8.0");
+define("AME_VERSION", "1.8.4");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -82,12 +86,12 @@ define("AME_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
 /**
  * Define the plugin full url
  */
-define("AME_PLUGINFULLURL", WP_CONTENT_URL . '/plugins' . AME_PLUGINPATH );
+define("AME_PLUGINFULLURL", WP_PLUGIN_URL . AME_PLUGINPATH );
 
 /**
  * Define the plugin full directory
  */
-define("AME_PLUGINFULLDIR", WP_CONTENT_DIR . '/plugins' . AME_PLUGINPATH );
+define("AME_PLUGINFULLDIR", WP_PLUGIN_DIR . AME_PLUGINPATH );
 
 /**
  * Define the plugin image set

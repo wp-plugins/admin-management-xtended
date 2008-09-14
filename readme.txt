@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
 Requires at least: 2.5
-Tested up to: 2.6.1
+Tested up to: 2.6.*
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop** and inline category management.
@@ -35,7 +35,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * **NEW since 1.5**: Change media description inline in media management view
 * **NEW since 1.6**: Open post revisions inline in post/page management view
 * **NEW since 1.7**: Change post/page author inline in post/page management view
-* **NEW since 1.8**: Changing categories inline on link management page
+* **NEW since 1.8**: Changing link categories inline on link management page
 * **NEW since 1.8**: Toggling link visibility with a single click
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
@@ -67,12 +67,26 @@ Well, show me a neat jQuery calendar plugin that can entirely be localized and t
 
 If you have suggestions please let me know by dropping me a line via e-mail or the wp.org forums.
 
+= History? =
+
+Please visit [the official website](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#english "Admin Management Xtended") for the latest information on this plugin.
+
+= Where can I get more information? =
+
+Please visit [the official website](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#english "Admin Management Xtended") for the latest information on this plugin.
+
 == Installation ==
 
 1. Download the plugin and unzip it.
 2. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
 3. Activate the plugin from your WordPress admin panel.
 4. Installation finished.
+
+== Other Notes ==
+
+= Licence =
+
+This plugins is released under the GPL, you can use it free of charge on your personal or commercial blog.
 
 == Screenshots ==
 

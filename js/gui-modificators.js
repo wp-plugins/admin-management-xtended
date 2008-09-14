@@ -30,3 +30,22 @@ function ame_roll_through_title_rows() {
     	add_title_edit_links(this);
   	});
 }
+
+
+function add_revision_links( row ) {
+	var reg = ameAjaxL10n.postType + "-([0-9]+)";
+	var Ausdruck = new RegExp(reg, "i");
+	var post_id = Ausdruck.exec(row.id)[1];
+	jQuery("a[href^='post.php?action=edit&post='], a[href^='page.php?action=edit&post=']", row).each(function() {
+		if ( jQuery(".widefat tr[id='" + row.id + "'] input[name^='amehasrev']").length > 0 ) {
+			jQuery(this).next().after('<br />&#8212; <a class="thickbox" href="#TB_inline?height=165&amp;width=300&amp;inlineId=amerevisionwrap' + post_id + '" title="' + ameAjaxL10n.Revisions + '" style="font-weight:200;">' + ameAjaxL10n.Revisions + '</a>');
+			re_init();
+		}
+	});
+}
+
+function ame_roll_through_revision_rows() {
+	jQuery(".widefat tr[id^='" + ameAjaxL10n.postType + "-']").each(function() {
+		add_revision_links(this);
+  	});
+}

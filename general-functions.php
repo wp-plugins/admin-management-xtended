@@ -139,6 +139,7 @@ function ame_ajax_save_mediadesc() {
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_excerpt = %s WHERE ID = %d", stripslashes( $new_mediadesc ), $postid ) );
 	$ame_media_desc = '<span id="ame_mediadesc_text' . $postid . '">' . $new_mediadesc . '</span>';
 	$ame_media_desc .= '&nbsp;<a id="mediadesceditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_mediadesc(' . $postid . ');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+	do_action('edit_attachment', $postid);
 	die( "jQuery('span#ame_mediadesc" . $postid . "').fadeOut('fast', function() {
 		jQuery('span#ame_mediadesc" . $postid . "').html('" . addslashes_gpc( $ame_media_desc ) . "').fadeIn('fast');
 	});" );
@@ -156,12 +157,19 @@ function ame_ajax_set_commentstatus() {
 	$q_status = intval($_POST['comment_status']);
 	( $q_status == '1' ) ? $status = 'open' : $status = 'closed';
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
+	$post = get_post( $postid );
 	
 	if ( $status == 'open' ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
+		do_action('edit_post', $postid, $post);
+		do_action('save_post', $postid, $post);
+		do_action('wp_insert_post', $postid, $post);
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 0, \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "comments_open.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} else {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
+		do_action('edit_post', $postid, $post);
+		do_action('save_post', $postid, $post);
+		do_action('wp_insert_post', $postid, $post);
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 1, \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "comments_closed.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -220,6 +228,9 @@ function ame_ajax_save_tags() {
 		$ame_post_tags_plain .= '';
 	}
 	$ame_post_tags .= '&nbsp;<a id="tageditlink' . $postid . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $postid . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+	$post = get_post( $postid );
+	do_action('edit_post', $postid, $post);
+	do_action('save_post', $postid, $post);
 	die( "jQuery('span#ame_tags" . $postid . "').fadeOut('fast', function() {
 		jQuery('span#ame_tags" . $postid . "').html('" . addslashes_gpc( $ame_post_tags ) . "').fadeIn('fast');
 	});" );
@@ -252,6 +263,8 @@ function ame_ajax_save_categories() {
 	} else {
 		$ame_post_cats = __('Uncategorized');
 	}
+	do_action('edit_post', $postid, $post);
+	do_action('save_post', $postid, $post);
 	die( "re_init();jQuery('span#ame_category" . $postid . "').fadeOut('fast', function() {
 		jQuery('a#thickboxlink" . $postid . "').show();
 		jQuery('span#ame_category" . $postid . "').html('" . addslashes_gpc( $ame_post_cats ) . "').fadeIn('fast');
@@ -394,6 +407,11 @@ function ame_save_slug() {
 	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
 	
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = %s WHERE ID = %d", $new_slug, $catid ) );
+	
+	$post = get_post( $catid );
+	do_action('edit_post', $catid, $post);
+	do_action('save_post', $catid, $post);
+	do_action('wp_insert_post', $catid, $post);
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -411,6 +429,10 @@ function ame_save_author() {
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
 	
+	$post = get_post( $catid );
+	do_action('edit_post', $catid, $post);
+	do_action('save_post', $catid, $post);
+	do_action('wp_insert_post', $catid, $post);
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_author = %d WHERE ID = %d", $newauthorid, $catid ) );
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery(\"a[href^='edit.php?author=" . $catid . "'], a[href^='edit-pages.php?author=" . $catid . "']\").html('" . $newauthorid . "');" );
 }
@@ -428,6 +450,12 @@ function ame_save_title() {
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s WHERE ID = %d", stripslashes( $new_title ), $catid ) );
+	
+	$new_title = apply_filters( 'the_title', $new_title );
+	$post = get_post( $postid );
+	do_action('edit_post', $catid, $post);
+	do_action('save_post', $catid, $post);
+	do_action('wp_insert_post', $catid, $post);
 	die( "jQuery('a[@href$=post=" . $catid . "]').html('" . $new_title . "'); jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -448,9 +476,17 @@ function ame_set_date() {
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_date_gmt = %s WHERE ID = %d", $newpostdate_gmt, $catid ) );
 	if( strtotime( current_time(mysql) ) < strtotime( $newpostdate ) ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'future' WHERE ID = %d", $catid ) );
+		$post = get_post( $catid );
+		do_action('edit_post', $catid, $post);
+		do_action('save_post', $catid, $post);
+		do_action('wp_insert_post', $catid, $post);
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
+		$post = get_post( $catid );
+		do_action('edit_post', $catid, $post);
+		do_action('save_post', $catid, $post);
+		do_action('wp_insert_post', $catid, $post);
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -469,9 +505,17 @@ function ame_toggle_visibility() {
 	
 	if ( $status == 'publish' ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
+		$post = get_post( $catid );
+		do_action('edit_post', $catid, $post);
+		do_action('save_post', $catid, $post);
+		do_action('wp_insert_post', $catid, $post);
 		die( "jQuery('#visicon" . $catid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'draft\', \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "visible.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-draft').addClass('status-publish');" );
 	} else {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
+		$post = get_post( $catid );
+		do_action('edit_post', $catid, $post);
+		do_action('save_post', $catid, $post);
+		do_action('wp_insert_post', $catid, $post);
 		die( "jQuery('#visicon$catid').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'publish\', \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "hidden.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-draft');" );
 	}
 }
@@ -542,7 +586,7 @@ jQuery(document).ready(function() {
 </script>
 \n";
 	}
-	if( $current_page == 'edit' ) {
+	if( $current_page == 'edit' && !isset( $_GET['page'] ) ) {
 	echo "<script type=\"text/javascript\" charset=\"utf-8\">
 //<![CDATA[
 function ame_setupSuggest( ame_suggestid ) {
@@ -593,31 +637,31 @@ if( $current_page == 'edit-pages' ) {
 	if ( get_option('ame_show_orderoptions') == '0' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '1' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '2' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>", 'admin-management-xtended') . "</span></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>", 'admin-management-xtended') . "</span>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	}
 }
 if( $current_page == 'edit' ) {
-	if ( get_option('ame_toggle_showinvisposts') == '1' ) {
+	if ( get_option('ame_toggle_showinvisposts') == '1' && !isset( $_GET['page'] ) ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
    jQuery(\"div.wrap div[class='tablenav']:last div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Hide invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(0)' id='ame_toggle_showinvisposts' /></div>\");
 });
 </script>\n";
-	} elseif ( get_option('ame_toggle_showinvisposts') == '0' ) {
+	} elseif ( get_option('ame_toggle_showinvisposts') == '0' && !isset( $_GET['page'] ) ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
    jQuery(\"div.wrap div[class='tablenav']:last div[class='tablenav-pages']\").after(\"<div class='alignleft' style='margin-right:5px;'><input type='button' value='" . __('Show invisible Posts', 'admin-management-xtended') . "' class='button-secondary' onclick='ame_ajax_toggle_showinvisposts(1)' id='ame_toggle_showinvisposts' /></div>\");
@@ -625,7 +669,7 @@ jQuery(document).ready(function() {
 </script>\n";
 	}
 }
-if ( get_option('ame_toggle_showinvisposts') == '0' ) {
+if ( get_option('ame_toggle_showinvisposts') == '0' && !isset( $_GET['page'] ) ) {
 	if( !isset( $_GET['post_status'] ) ) {
 		echo '<script type="text/javascript" charset="utf-8">
 jQuery(document).ready(function() {
@@ -648,15 +692,18 @@ function ame_js_admin_header() {
 
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	if( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'edit-pages' ) { $posttype = 'page'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
+	if( $current_page == 'edit' ) { $revisionL10n = __("Post Revisions"); } elseif( $current_page == 'edit-pages' ) { $revisionL10n = __("Page Revisions"); }
 ?>
+<?php if( !isset( $_GET['page'] ) ) { ?>
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>", Revisions: "<?php echo $revisionL10n; ?>"
 }
 //]]>
 </script>
 <?php
+}
 }
 
 /**
@@ -676,24 +723,23 @@ function ame_css_admin_header() {
 	background-color: #222;
 }
 </style>' . "\n";
-	switch( $current_page ) {
-		case 'edit':
-			echo '<script type="text/javascript">
+if ( $current_page == 'edit' && !isset( $_GET['page'] ) ) {
+	echo '<script type="text/javascript">
 jQuery(document).ready(function() {
-	ame_roll_through_title_rows()
+	ame_roll_through_title_rows();
 	ame_roll_through_author_rows();
+	ame_roll_through_revision_rows();
 });
 </script>' . "\n";
-			break;
-		case 'edit-pages':
-			echo '<script type="text/javascript">
+} elseif ( $current_page == 'edit-pages' && !isset( $_GET['page'] ) ) {
+	echo '<script type="text/javascript">
 jQuery(document).ready(function() {
-	ame_roll_through_title_rows()
+	ame_roll_through_title_rows();
 	ame_roll_through_author_rows();
+	ame_roll_through_revision_rows();
 });
 </script>' . "\n";
-			break;
-	}
+}
 }
 
 /**
@@ -723,7 +769,7 @@ $current_page = basename($_SERVER['PHP_SELF'], ".php");
 if( function_exists('add_action') ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	add_action('wp_head', 'ame_feheader_insert', 1);
-	if( $current_page == 'edit' || $current_page == 'edit-pages' ) {
+	if( ($current_page == 'edit' || $current_page == 'edit-pages') && !isset( $_GET['page'] ) ) {
 		$cur_locale = get_locale();
 		add_action('admin_head', 'ame_css_admin_header' );
 		add_action('admin_print_scripts', 'ame_js_admin_header' );
@@ -735,7 +781,7 @@ if( function_exists('add_action') ) {
 		if( ame_locale_exists() === true ) {
 			add_action('admin_head', wp_enqueue_script( 'localdate', AME_PLUGINFULLURL . "js/jquery-addons/date_" . $cur_locale . ".js", array('jquery'), AME_VERSION ) );
 		}
-		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' ) {
+		if( $current_page == 'edit-pages' && get_option('ame_show_orderoptions') == '2' && !isset( $_GET['page'] ) ) {
 			add_action('admin_head', wp_enqueue_script( 'tablednd', AME_PLUGINFULLURL . "js/jquery-addons/jquery.tablednd.js", array('jquery'), AME_VERSION ) );
 		}
 		add_action('admin_head', wp_enqueue_script( array('thickbox') ) );
@@ -761,7 +807,7 @@ if( function_exists('add_action') ) {
 		add_action('admin_head', wp_enqueue_script( 'ame_gui-modificators', AME_PLUGINFULLURL . "js/gui-modificators.js", array('sack'), AME_VERSION ) );
 		add_action('admin_head', wp_enqueue_script( 'ame_miscscripts', AME_PLUGINFULLURL . "js/functions.js", array('sack'), AME_VERSION ) );
 	}
-	if( $current_page == 'edit' ) {
+	if( $current_page == 'edit' && !isset( $_GET['page'] ) ) {
 		/**
  		* @since 1.6.0
  		*/

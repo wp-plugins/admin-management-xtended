@@ -138,6 +138,7 @@ function ame_toggle_linkvisibility() {
 	$link = get_bookmark( $linkid );
 	$status = ($link->link_visible == 'Y') ? 'N' : 'Y';
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->links SET link_visible = %s WHERE link_id = %d", $status, $linkid ) );
+	do_action( 'edit_link', $linkid );
 	$visible = ($link->link_visible == 'Y') ? __('No') : __('Yes');
 	die( "jQuery('span#ame_linkvis" . $linkid . "').text('" . addslashes_gpc( $visible ) . "');jQuery('#" . $posttype . "-" . $linkid . " td, #" . $posttype . "-" . $linkid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
@@ -150,12 +151,13 @@ function ame_toggle_linkvisibility() {
  */
 function ame_ajax_save_linkcategories() {
 	global $wpdb;
-	$linkid = intval( $_POST['linkid'] );
+	$linkid = (int) $_POST['linkid'];
 	$ame_linkcats = $_POST['ame_linkcats'];
 	
 	$ame_linkcategories = substr( $ame_linkcats, 0, -1 );
 	$catarray = explode(",", $ame_linkcategories);
 	wp_set_link_cats( $linkid, $catarray );
+	do_action( 'edit_link', $linkid );
 	unset($GLOBALS['category_cache']);
 	
 	$link = wp_get_link_cats( $linkid );

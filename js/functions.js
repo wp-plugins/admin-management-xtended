@@ -68,7 +68,7 @@ function tagSpanFadeOut( postid, ame_tags ) {
 }
 
 function catSpanFadeOut( postid, ame_cats ) {
-	jQuery("span#ame_category" + postid + ", a#thickboxlink" + postid).fadeOut('fast', function() {
+	//jQuery("span#ame_category" + postid + ", a#thickboxlink" + postid).fadeOut('fast', function() {
 		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
 		jQuery("span#ame_category" + postid).fadeIn('fast', function() {
 			var ame_sack = new sack(
@@ -83,7 +83,7 @@ function catSpanFadeOut( postid, ame_cats ) {
 			ame_sack.runAJAX();
 		});
 		jQuery("span#ame_category" + postid + "").html( loading );
-	});
+	//});
 }
 
 function ame_ajax_save_categories( postid ) {
@@ -98,7 +98,7 @@ function ame_ajax_save_categories( postid ) {
 }
 
 function linkcatSpanFadeOut( linkid, ame_linkcats ) {
-	jQuery("span#ame_linkcategory" + linkid + ", a#thickboxlink" + linkid).fadeOut('fast', function() {
+	//jQuery("span#ame_linkcategory" + linkid + ", a#thickboxlink" + linkid).fadeOut('fast', function() {
 		var loading = '<img border="0" alt="" src="' + ameAjaxL10n.imgUrl + 'loader.gif" align="absbottom" /> ' + ameAjaxL10n.pleaseWait;
 		jQuery("span#ame_linkcategory" + linkid).fadeIn('fast', function() {
 			var ame_sack = new sack(
@@ -112,17 +112,18 @@ function linkcatSpanFadeOut( linkid, ame_linkcats ) {
 			ame_sack.onSuccess = function() { re_init(); };
 			ame_sack.runAJAX();
 		});
-		jQuery("span#ame_linkcategory" + linkid + "").html( loading );
-	});
+		jQuery( "span#ame_linkcategory" + linkid ).html( loading );
+	//});
 }
 
 function ame_ajax_save_linkcategories( linkid ) {
-	tb_remove();
 	var n = jQuery("#linkcategorychoose" + linkid + " #categorychecklist input:checked").length;
 	var ame_linkcats = '';
 	for(var a=0;a<n;a++){
 		ame_linkcats += jQuery("#linkcategorychoose" + linkid + " #categorychecklist input:checked")[a].value + ',';
 	}
+	tb_remove();
+	//linkcatSpanFadeOut( linkid, ame_linkcats );
 	window.setTimeout("linkcatSpanFadeOut(" + linkid + ", '" + ame_linkcats + "')", 500);
 	//alert( ame_linkcats );
 }

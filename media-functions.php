@@ -72,7 +72,7 @@ function ame_column_media_desc( $defaults ) {
  */
 function ame_custom_column_media_order( $ame_column_name, $ame_id ) {
 	global $wpdb;
-    if( $ame_column_name == 'ame_media_order' && current_user_can( 'edit_files', $ame_id ) ) {
+    if( $ame_column_name == 'ame_media_order' && current_user_can( 'edit_post', $ame_id ) ) {
     	$q_media_order = get_post( $ame_id );
     	echo '<div style="width:75px;" class="ame_options">';
     	echo '<input type="text" value="' . $q_media_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_postorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'post\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'loader.gif" border="0" alt="" /></span>';

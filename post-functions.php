@@ -190,7 +190,7 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_post_actions' && current_user_can( 'edit_post', $ame_id ) ) {
     	$post_status = get_post_status($ame_id); $q_post = get_post($ame_id);
-    	echo '<div style="width:91px;" class="ame_options">';
+    	echo '<div style="width:75px;" class="ame_options">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon
     		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
@@ -200,10 +200,6 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
     	}
     	// Date icon
     	echo '<div id="date' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" class="date-pick" id="datepicker' . $ame_id . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'date.png" border="0" alt="' . __('Change Publication Date', 'admin-management-xtended') . '" title="' . __('Change Publication Date', 'admin-management-xtended') . '" /></a></div>';
-		// Title edit icon
-    	$q_post_title = get_post($ame_id);
-    	$post_title = $q_post_title->post_title;
-    	echo '<div id="title' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="titledit' . $ame_id . '" onclick="ame_title_edit(' . $ame_id . ', \'' . wptexturize( $post_title ) . '\', \'post\');"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'page_white_edit.png" border="0" alt="' . __('Change Post Title', 'admin-management-xtended') . '" title="' . __('Change Post Title', 'admin-management-xtended') . '" /></a></div>';
     	// Slug edit icon
     	echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'post\');"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'slug_edit.png" border="0" alt="' . __('Edit Post Slug', 'admin-management-xtended') . '" title="' . __('Edit Post Slug', 'admin-management-xtended') . '" /></a></div>';
     	// Comment open/closed status icon
@@ -213,8 +209,7 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
     	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
 		// Post revisions
 		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
-			echo '<br />';
-			echo '<a class="thickbox" href="#TB_inline?height=165&amp;width=300&amp;inlineId=amerevisionwrap' . $ame_id . '" title="' . __('Post Revisions') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'post-revisions.gif" border="0" alt="' . __('Post Revisions') . '" title="' . __('Post Revisions') . '" /></a><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
+			echo '<input type="hidden" name="amehasrev' . $ame_id . '" class="amehasrev" value="1" /><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
 			wp_list_post_revisions( $ame_id );
 			echo '</div>';
 		}
