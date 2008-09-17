@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.8.4
+Version: 1.8.5
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -65,7 +65,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.8.4");
+define("AME_VERSION", "1.8.5");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -98,6 +98,7 @@ define("AME_PLUGINFULLDIR", WP_PLUGIN_DIR . AME_PLUGINPATH );
  */
 define("AME_IMGSET", get_option("ame_imgset") . "/" );
 
+
 /** 
 * The AdminManagementXtended class
 *
@@ -115,18 +116,7 @@ class AdminManagementXtended {
  	* @since 1.4.0
  	* @author scripts@schloebe.de
  	*/
-	function adminmanagementxtended() {
-		if ( function_exists('load_plugin_textdomain') ) {
-			/**
-			* Load all the l18n data from languages path
-			*/
-			if ( !defined('WP_PLUGIN_DIR') ) {
-                load_plugin_textdomain('admin-management-xtended', str_replace( ABSPATH, '', dirname(__FILE__) ) . '/languages');
-        	} else {
-                load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
-        	}
-		}
-		
+	function adminmanagementxtended() {	
 		if( ISINSTBTM ) {
 			add_action('admin_notices', array(&$this, 'wpIncompCheck'));
 		}
@@ -135,6 +125,7 @@ class AdminManagementXtended {
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return;
 		}
+		add_action('init', array(&$this, 'ame_load_textdomain'));
 		
 		set_include_path( dirname(__FILE__) . PATH_SEPARATOR . get_include_path() );
 		/** 
@@ -178,6 +169,22 @@ class AdminManagementXtended {
 		}
 		if( get_option("ame_version") != AME_VERSION ) {
 			update_option("ame_version", AME_VERSION);
+		}
+	}
+	
+	/**
+ 	* Initialize and load the plugin textdomain
+ 	*
+ 	* @since 1.8.5
+ 	* @author scripts@schloebe.de
+ 	*/
+	function ame_load_textdomain() {
+		if ( function_exists('load_plugin_textdomain') ) {
+			if ( !defined('WP_PLUGIN_DIR') ) {
+       		 	load_plugin_textdomain('admin-management-xtended', str_replace( ABSPATH, '', dirname(__FILE__) ) . '/languages');
+        	} else {
+        		load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
+        	}
 		}
 	}
 	

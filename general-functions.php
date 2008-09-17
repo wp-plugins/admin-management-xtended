@@ -755,6 +755,7 @@ function ame_changeImgSet() {
 	return ' <a href="javascript:void(0);" onclick="ame_ajax_toggle_imageset(' . $imgset . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'changeimgset.gif" border="0" alt="' . __('Change image set', 'admin-management-xtended') . '" title="' . __('Change image set', 'admin-management-xtended') . '" /></a>';
 }
 
+
 /**
  * Writes a version metatag to the FE page for support info
  *

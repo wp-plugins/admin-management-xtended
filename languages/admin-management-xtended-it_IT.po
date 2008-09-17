@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Admin Management Xtended in italiano\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/admin-management-xtended\n"
+"POT-Creation-Date: 2008-07-24 21:46+0000\n"
+"PO-Revision-Date: 2008-09-17 09:35+0100\n"
+"Last-Translator: Gianni Diurno (aka gidibao) <gidibao@gmail.com>\n"
+"Language-Team: Gianni Diurno | http://gidibao.net/ <gidibao@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-xtended\\trunk\n"
+
+#: admin-management-xtended.php:185
+msgid "Admin Management Xtended requires at least WordPress 2.5!"
+msgstr "Admin Management Xtended necessita della WordPress 2.5 o versione superiore!"
+
+#: admin-management-xtended.php:197
+msgid "You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear."
+msgstr "Pare che tu stia utilizzado il plugin <em>Better Tags Manager</em>. Potrebbero verificarsi delle incompatibilità con <em>Admin Management Xtended</em> circa la colonna dei tag. Disattiva uno od entrambi i plugin affinché questo messaggio possa svanire."
+
+#: admin-management-xtended.php:197
+msgid "(This message was created by Admin Management Xtended plugin)"
+msgstr "(Questo messaggio proviene dal plugin Admin Management Xtended)"
+
+# Doesnt need to be translated.
+#: general-functions.php:141
+#: general-functions.php:222
+#: media-functions.php:97
+#: post-functions.php:73
+#: post-functions.php:143
+msgid "Edit"
+msgstr "Modifica"
+
+#: general-functions.php:162
+#: general-functions.php:165
+#: page-functions.php:96
+#: post-functions.php:205
+msgid "Toggle comment status open/closed"
+msgstr "Commuta lo stato dei commenti in aperto/chiuso"
+
+# Doesnt need to be translated.
+#: general-functions.php:219
+#: post-functions.php:70
+msgid "No Tags"
+msgstr "Nessun tag"
+
+# Doesnt need to be translated.
+#: general-functions.php:253
+#: post-functions.php:125
+msgid "Uncategorized"
+msgstr "Senza categoria"
+
+#: general-functions.php:317
+#: general-functions.php:590
+msgid "Post"
+msgstr "Articolo"
+
+#: general-functions.php:317
+#: general-functions.php:590
+#: post-functions.php:139
+msgid "Save"
+msgstr "Salva"
+
+#: general-functions.php:317
+#: general-functions.php:590
+#: post-functions.php:139
+msgid "Cancel"
+msgstr "Cancella"
+
+# Doesnt need to be translated.
+#: general-functions.php:388
+#: general-functions.php:391
+msgid "Y/m/d"
+msgstr "Y/m/d"
+
+#: general-functions.php:409
+#: general-functions.php:412
+#: page-functions.php:79
+#: page-functions.php:82
+#: post-functions.php:188
+#: post-functions.php:191
+msgid "Toggle visibility"
+msgstr "Commuta la visibilità"
+
+#: general-functions.php:531
+#: general-functions.php:537
+#: general-functions.php:543
+msgid "Edit Page Order:"
+msgstr "Modifica la disposizione della pagina:"
+
+#: general-functions.php:531
+#: general-functions.php:537
+#: general-functions.php:543
+msgid "Off"
+msgstr "Spento"
+
+#: general-functions.php:531
+#: general-functions.php:537
+#: general-functions.php:543
+msgid "Direct input"
+msgstr "Input diretto"
+
+#: general-functions.php:531
+#: general-functions.php:537
+msgid "Drag & Drop"
+msgstr "Drag & Drop"
+
+#: general-functions.php:543
+msgid "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
+msgstr "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
+
+#: general-functions.php:552
+msgid "Hide invisible Posts"
+msgstr "Nascondi gli articoli invisibili"
+
+#: general-functions.php:558
+msgid "Show invisible Posts"
+msgstr "Mostra gli articoli invisibili"
+
+#: general-functions.php:590
+msgid "Please wait..."
+msgstr "Attendi..."
+
+#: general-functions.php:625
+msgid "Change image set"
+msgstr "Modifica l'impostazione della immagine"
+
+#: media-functions.php:43
+#: media-functions.php:60
+#: page-functions.php:43
+#: page-functions.php:59
+#: post-functions.php:44
+#: post-functions.php:98
+#: post-functions.php:168
+msgid "Enhanced by Admin Management Xtended Plugin"
+msgstr "Fornito dal plugin Admin Management Xtended"
+
+#: media-functions.php:43
+msgid "Media Order"
+msgstr "Disposizione dei media"
+
+# Doesnt need to be translated.
+#: media-functions.php:60
+msgid "Description"
+msgstr "Descrizione"
+
+#: page-functions.php:43
+#: post-functions.php:168
+msgid "Actions"
+msgstr "Azioni"
+
+#: page-functions.php:59
+msgid "Page Order"
+msgstr "Disposizione delle pagine"
+
+#: page-functions.php:85
+#: post-functions.php:194
+msgid "Change Publication Date"
+msgstr "Modifica la data di pubblicazione"
+
+#: page-functions.php:89
+msgid "Change Page Title"
+msgstr "Modifica il titolo della pagina"
+
+#: page-functions.php:91
+msgid "Edit Page Slug"
+msgstr "Modifica lo slug della pagina"
+
+# Doesnt need to be translated.
+#: post-functions.php:44
+msgid "Tags"
+msgstr "Tags"
+
+# Doesnt need to be translated.
+#: post-functions.php:98
+msgid "Categories"
+msgstr "Categorie"
+
+#: post-functions.php:198
+msgid "Change Post Title"
+msgstr "Modifica il titolo dell'articolo"
+
+#: post-functions.php:200
+msgid "Edit Post Slug"
+msgstr "Modifica lo slug dell'articolo"
+
+# Doesnt need to be translated.
+#: post-functions.php:208
+msgid "Post Revisions"
+msgstr "Revisioni articolo"
+
+#: post-functions.php:236
+msgid "You seem using the \\\"Better Tags Manager\\\" plugin, which collides with the \\\"Admin Management Xtended\\\" plugin since both extend the tags column. Please <a href=\\\"plugins.php\\\">deactivate</a> one of both to make this message disappear."
+msgstr "Pare che tu stia utilizzado il plugin \\\"Better Tags Manager\\\". Potrebbero verificarsi delle incompatibilità con \\\"Admin Management Xtended\\\" circa la colonna dei tag. <a href=\\\"plugins.php\\\">Disattiva</a> uno od entrambi i plugin affinché questo messaggio possa svanire."
+
+#. Plugin Name of an extension
+msgid "Admin Management Xtended"
+msgstr "Admin Management Xtended"
+
+#. Plugin URI of an extension
+msgid "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
+msgstr "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
+
+#. Description of an extension
+msgid "<strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline"
+msgstr "<strong>Solo per WordPress 2.5 o superiore.</strong> Questo plugin estende le funzionalità della sezione di amministrazione introducendo: commuta inline la visibilità per articolo/pagina, modifica drag'n'drop per la disposizione delle pagine, gestione inline per le categorie, gestione inline per i tag, modifica inline della data di pubblicazione, modifica inline dello slug dell'articolo, commuta lo stato dei commenti aperto/chiuso, nasconde gli articoli in bozza, modifica della disposizionde dei media, modifica inline della descrizione dei media"
+
+#. Author of an extension
+msgid "Oliver Schl&ouml;be"
+msgstr "Oliver Schl&ouml;be"
+
+#. Author URI of an extension
+msgid "http://www.schloebe.de/"
+msgstr "http://www.schloebe.de/"
+
