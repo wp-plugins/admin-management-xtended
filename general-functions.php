@@ -125,6 +125,7 @@ function return_function( $output ) {
 	return $output;
 }
 
+
 /**
  * SACK response function for saving media description
  *
@@ -161,15 +162,11 @@ function ame_ajax_set_commentstatus() {
 	
 	if ( $status == 'open' ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
-		do_action('edit_post', $postid, $post);
-		do_action('save_post', $postid, $post);
-		do_action('wp_insert_post', $postid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 0, \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "comments_open.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} else {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET comment_status = %s WHERE ID = %d", $status, $postid ) );
-		do_action('edit_post', $postid, $post);
-		do_action('save_post', $postid, $post);
-		do_action('wp_insert_post', $postid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#commentstatus" . $postid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_commentstatus(" . $postid . ", 1, \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "comments_closed.png\" border=\"0\" alt=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" title=\"" . __('Toggle comment status open/closed', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $postid . " td, #" . $posttype . "-" . $postid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -409,9 +406,7 @@ function ame_save_slug() {
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_name = %s WHERE ID = %d", $new_slug, $catid ) );
 	
 	$post = get_post( $catid );
-	do_action('edit_post', $catid, $post);
-	do_action('save_post', $catid, $post);
-	do_action('wp_insert_post', $catid, $post);
+	AdminManagementXtended::fireActions( 'post', $catid, $post );
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -430,9 +425,7 @@ function ame_save_author() {
 	if( $posttype == '1' ) { $posttype = 'post'; } elseif( $posttype == '2' ) { $posttype = 'page'; }
 	
 	$post = get_post( $catid );
-	do_action('edit_post', $catid, $post);
-	do_action('save_post', $catid, $post);
-	do_action('wp_insert_post', $catid, $post);
+	AdminManagementXtended::fireActions( 'post', $catid, $post );
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_author = %d WHERE ID = %d", $newauthorid, $catid ) );
 	die( "jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery(\"a[href^='edit.php?author=" . $catid . "'], a[href^='edit-pages.php?author=" . $catid . "']\").html('" . $newauthorid . "');" );
 }
@@ -452,10 +445,8 @@ function ame_save_title() {
 	$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s WHERE ID = %d", stripslashes( $new_title ), $catid ) );
 	
 	$new_title = apply_filters( 'the_title', $new_title );
-	$post = get_post( $postid );
-	do_action('edit_post', $catid, $post);
-	do_action('save_post', $catid, $post);
-	do_action('wp_insert_post', $catid, $post);
+	$post = get_post( $catid );
+	AdminManagementXtended::fireActions( 'post', $catid, $post );
 	die( "jQuery('a[@href$=post=" . $catid . "]').html('" . $new_title . "'); jQuery('#" . $posttype . "-" . $catid . "').show(); jQuery('#alter" . $posttype . "-" . $catid . "').hide(); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 }
 
@@ -477,16 +468,12 @@ function ame_set_date() {
 	if( strtotime( current_time(mysql) ) < strtotime( $newpostdate ) ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'future' WHERE ID = %d", $catid ) );
 		$post = get_post( $catid );
-		do_action('edit_post', $catid, $post);
-		do_action('save_post', $catid, $post);
-		do_action('wp_insert_post', $catid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
 		$post = get_post( $catid );
-		do_action('edit_post', $catid, $post);
-		do_action('save_post', $catid, $post);
-		do_action('wp_insert_post', $catid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	}
 }
@@ -506,16 +493,12 @@ function ame_toggle_visibility() {
 	if ( $status == 'publish' ) {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
 		$post = get_post( $catid );
-		do_action('edit_post', $catid, $post);
-		do_action('save_post', $catid, $post);
-		do_action('wp_insert_post', $catid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#visicon" . $catid . "').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'draft\', \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "visible.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-draft').addClass('status-publish');" );
 	} else {
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
 		$post = get_post( $catid );
-		do_action('edit_post', $catid, $post);
-		do_action('save_post', $catid, $post);
-		do_action('wp_insert_post', $catid, $post);
+		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#visicon$catid').html('<a href=\"javascript:void(0);\" onclick=\"ame_ajax_set_visibility(" . $catid . ", \'publish\', \'" . $posttype . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "hidden.png\" border=\"0\" alt=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" title=\"" . __('Toggle visibility', 'admin-management-xtended') . "\" /></a>');jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-draft');" );
 	}
 }

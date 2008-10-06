@@ -8,14 +8,14 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.8.5
+Version: 1.8.6
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
 
-Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
+Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -65,12 +65,17 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.8.5");
+define("AME_VERSION", "1.8.6");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
  */
 define('AMEISWP25', version_compare($wp_version, '2.4', '>='));
+
+/**
+ * Define the global var AMEISWP27, returning bool if WP 2.7 or higher is running
+ */
+define('AMEISWP27', version_compare($wp_version, '2.7', '>='));
 
 /**
  * Define the global var ISINSTBTM, returning bool
@@ -118,16 +123,20 @@ class AdminManagementXtended {
  	*/
 	function adminmanagementxtended() {	
 		if( ISINSTBTM ) {
-			add_action('admin_notices', array(&$this, 'wpIncompCheck'));
+			add_action('admin_notices', array(&$this, 'wpBTMIncompCheck'));
 		}
 		
 		if ( !AMEISWP25 ) {
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return;
 		}
+		
+		if ( AMEISWP27 ) {
+			add_action('admin_notices', array(&$this, 'wpVersion27Failed'));
+			return;
+		}
 		add_action('init', array(&$this, 'ame_load_textdomain'));
 		
-		set_include_path( dirname(__FILE__) . PATH_SEPARATOR . get_include_path() );
 		/** 
  		* This file holds all of the general information and functions
  		*/
@@ -153,8 +162,6 @@ class AdminManagementXtended {
  		*/
 		require_once(dirname (__FILE__) . '/' . 'link-functions.php');
 		
-		restore_include_path();
-		
 		if( !get_option("ame_show_orderoptions") ) {
 			add_option("ame_show_orderoptions", "1");
 		}
@@ -169,6 +176,23 @@ class AdminManagementXtended {
 		}
 		if( get_option("ame_version") != AME_VERSION ) {
 			update_option("ame_version", AME_VERSION);
+		}
+	}
+
+
+	/**
+	 * Fires several actions, depending on type
+	 *
+	 * @since 1.8.6
+	 * @author scripts@schloebe.de
+	 */
+	function fireActions( $type, $catid, $post ) {
+		switch( $type ) {
+			case "post":
+				do_action('edit_post', $catid, $post);
+				//do_action('save_post', $catid, $post); # Causing some problems?
+				do_action('wp_insert_post', $catid, $post);
+				return $post;
 		}
 	}
 	
@@ -197,7 +221,19 @@ class AdminManagementXtended {
  	* @author scripts@schloebe.de
  	*/
 	function wpVersionFailed() {
-		echo "<div id='message' class='error fade'><p>" . __('Admin Management Xtended requires at least WordPress 2.5!', 'admin-management-xtended') . "</p></div>";
+		echo "<div id='wpversionfailedmessage' class='error fade'><p>" . __('Admin Management Xtended requires at least WordPress 2.5!', 'admin-management-xtended') . "</p></div>";
+	}
+	
+	/**
+ 	* Checks for the version of WordPress,
+ 	* and adds a message to inform the user
+ 	* if WP version is >= 2.7 which isnt supported
+ 	*
+ 	* @since 1.8.6
+ 	* @author scripts@schloebe.de
+ 	*/
+	function wpVersion27Failed() {
+		echo "<div id='wpversion27failedmessage' class='error fade'><p>" . __("The <strong>Admin Management Xtended</strong> plugin wasnt developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature.", 'admin-management-xtended') . "</p></div>";
 	}
 	
 	/**
@@ -208,8 +244,8 @@ class AdminManagementXtended {
  	* @since 1.4.0
  	* @author scripts@schloebe.de
  	*/
-	function wpIncompCheck() {
-		echo "<div id='message' class='error fade'><p>" . __('You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear.', 'admin-management-xtended') . "</p><p align='right' style='font-weight:200;'><small><em>" . __('(This message was created by Admin Management Xtended plugin)', 'admin-management-xtended') . "</em></small></p></div>";
+	function wpBTMIncompCheck() {
+		echo "<div id='wpbtmincompmessage' class='error fade'><p>" . __('You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear.', 'admin-management-xtended') . "</p><p align='right' style='font-weight:200;'><small><em>" . __('(This message was created by Admin Management Xtended plugin)', 'admin-management-xtended') . "</em></small></p></div>";
 	}
 	
 }
