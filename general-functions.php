@@ -471,6 +471,10 @@ function ame_set_date() {
 		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
+		if( $posttype == 'post' && !current_user_can( 'publish_posts' ) ) {
+			die( "alert('" . js_escape( __('You are not allowed to edit this post.') ) . "');" );
+			return;
+		}
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
 		$post = get_post( $catid );
 		AdminManagementXtended::fireActions( 'post', $catid, $post );
@@ -489,8 +493,18 @@ function ame_toggle_visibility() {
 	$catid = intval($_POST['category_id']);
 	if( is_string($_POST['vis_status']) ) $status = $_POST['vis_status'];
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
+	$post_status = get_post_status( $catid );
 	
 	if ( $status == 'publish' ) {
+		if( $posttype == 'post' && !current_user_can( 'publish_posts' ) ) {
+			die( "alert('" . js_escape( __('Sorry, you do not have the right to publish this post.') ) . "');" );
+			return;
+		}
+		if( $posttype == 'post' && $post_status == 'pending' ) {
+			$postdate = current_time('mysql'); $postdate_gmt = get_gmt_from_date( $postdate );
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_date = %s WHERE ID = %d", $postdate, $catid ) );
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_date_gmt = %s WHERE ID = %d", $postdate_gmt, $catid ) );
+		}
 		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = %s WHERE ID = %d", $status, $catid ) );
 		$post = get_post( $catid );
 		AdminManagementXtended::fireActions( 'post', $catid, $post );

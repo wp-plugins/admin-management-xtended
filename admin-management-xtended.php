@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.8.6
+Version: 1.8.7
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -65,7 +65,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.8.6");
+define("AME_VERSION", "1.8.7");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -140,27 +140,27 @@ class AdminManagementXtended {
 		/** 
  		* This file holds all of the general information and functions
  		*/
-		require_once(dirname (__FILE__) . '/' . 'general-functions.php');
+		require_once(AME_PLUGINFULLDIR . 'general-functions.php');
 
 		/** 
  		* This file holds all of the post functions
  		*/
-		require_once(dirname (__FILE__) . '/' . 'post-functions.php');
+		require_once(AME_PLUGINFULLDIR . 'post-functions.php');
 
 		/** 
  		* This file holds all of the page functions
  		*/
-		require_once(dirname (__FILE__) . '/' . 'page-functions.php');
+		require_once(AME_PLUGINFULLDIR . 'page-functions.php');
 
 		/** 
  		* This file holds all of the media functions
  		*/
-		require_once(dirname (__FILE__) . '/' . 'media-functions.php');
+		require_once(AME_PLUGINFULLDIR . 'media-functions.php');
 
 		/** 
  		* This file holds all of the link functions
  		*/
-		require_once(dirname (__FILE__) . '/' . 'link-functions.php');
+		require_once(AME_PLUGINFULLDIR . 'link-functions.php');
 		
 		if( !get_option("ame_show_orderoptions") ) {
 			add_option("ame_show_orderoptions", "1");
