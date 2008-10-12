@@ -1,4 +1,4 @@
-// date localization for locale ‘en’
+// date localization for locale 'en'
 // file created by Blaine Sherman, theblaine.com
 Date.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 Date.abbrDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
