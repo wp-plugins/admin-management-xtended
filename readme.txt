@@ -37,6 +37,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * **NEW since 1.7**: Change post/page author inline in post/page management view
 * **NEW since 1.8**: Changing link categories inline on link management page
 * **NEW since 1.8**: Toggling link visibility with a single click
+* **NEW since 1.9**: Time now can be chosen in the js popout calendar aswell
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
