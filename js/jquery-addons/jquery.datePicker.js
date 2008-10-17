@@ -141,6 +141,7 @@
 				tbody.append(r);
 			}
 			calendarTable.append(tbody);
+			//calendarTable.append('dasd');
 			
 			return this.each(
 				function()
@@ -796,6 +797,12 @@
 				if (this.showYearNavigation == false) {
 					$('.dp-nav-prev-year, .dp-nav-next-year', c.context).css('display', 'none');
 				}
+				
+				// Edit for Admin Management Xtended WordPress Plugin
+				$pop.append(
+						$('<div style="text-align:center;border-bottom:solid 1px #328AB2;border-left:solid 1px #328AB2;border-right:solid 1px #328AB2;"><strong>' + ameAjaxL10n.Time + ':</strong> <input name="ame_hour" id="ame_hour" type="text" size="1" maxlength="2" value="12" style="font-size:0.85em;padding:1px;" />:<input name="ame_minutes" id="ame_minutes" type="text" size="1" maxlength="2" value="00" style="font-size:0.85em;padding:1px;" /></div>')
+				);
+				
 				if (this.displayClose) {
 					$pop.append(
 						$('<a href="#" id="dp-close">' + $.dpText.TEXT_CLOSE + '</a>')

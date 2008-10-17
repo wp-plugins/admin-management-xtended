@@ -451,7 +451,7 @@ function ame_save_title() {
 }
 
 /**
- * SACK response function for saving post/page publication date
+ * SACK response function for saving post/page date
  *
  * @since 0.7
  * @author scripts@schloebe.de
@@ -459,7 +459,7 @@ function ame_save_title() {
 function ame_set_date() {
 	global $wpdb;
 	$catid = intval(substr($_POST['category_id'], 10, 5));
-	$newpostdate = get_date_from_gmt( date("Y-m-d H:i:s", strtotime( $_POST['pickedDate'] )) );
+	$newpostdate = date("Y-m-d H:i:s", strtotime( $_POST['pickedDate'] ));
 	$newpostdate_gmt = get_gmt_from_date( $newpostdate );
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	
@@ -475,7 +475,7 @@ function ame_set_date() {
 			die( "alert('" . js_escape( __('You are not allowed to edit this post.') ) . "');" );
 			return;
 		}
-		$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
+		//$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
 		$post = get_post( $catid );
 		AdminManagementXtended::fireActions( 'post', $catid, $post );
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-future').addClass('status-publish'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
@@ -623,8 +623,13 @@ if ( get_locale() == 'de_DE' ) {
 			'dateSelected',
 			function(e, selectedDate) {
 				var cat_id = this.id;
-				var selDate = selectedDate.getFullYear() + '-' + (Number(selectedDate.getMonth())+1) + '-' + selectedDate.getDate() + ' ' + selectedDate.getHours() + ':' + selectedDate.getMinutes() + ':' + selectedDate.getMilliseconds();
+				var ame_hour = jQuery('#ame_hour').val();
+				var ame_minute = jQuery('#ame_minutes').val();
+				( ame_hour > 23) ? ame_hour = '12' : ame_hour = ame_hour;
+				( ame_minute > 59) ? ame_minute = '00' : ame_minute = ame_minute;
+				var selDate = selectedDate.getFullYear() + '-' + (Number(selectedDate.getMonth())+1) + '-' + selectedDate.getDate() + ' ' + ame_hour + ':' + ame_minute + ':' + '00';
 				ame_ajax_set_postdate( cat_id, selDate, posttype='" . $posttype . "' );
+				//alert( selDate );
 			}
 		);
 });
@@ -695,7 +700,7 @@ function ame_js_admin_header() {
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>", Revisions: "<?php echo $revisionL10n; ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>", Revisions: "<?php echo $revisionL10n; ?>", Time: "<?php _e("Insert time"); ?>"
 }
 //]]>
 </script>
