@@ -58,6 +58,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Russian (ru_RU) (Thanks for contributing polish language goes to [Lecactus](http://lecactus.ru/))
 * Italian (it_IT) (Thanks for contributing italian language goes to [Gianni Diurno](http://gidibao.net))
 * Traditional Chinese (zh_TW) (Thanks for contributing traditional chinese language goes to Disway Dong)
+* Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to Prem Prakash)
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
