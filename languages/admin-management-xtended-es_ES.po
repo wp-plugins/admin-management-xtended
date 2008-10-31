@@ -1,12 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Admin Management Xtended\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-06-01 21:26+0100\n"
-"Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/admin-management-xtended\n"
+"POT-Creation-Date: 2008-10-17 20:47+0000\n"
+"PO-Revision-Date: 2008-10-28 10:40-0600\n"
+"Last-Translator: Karin Sequen <karin.sequen@bumerang180.com>\n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
@@ -15,136 +16,255 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-xtended\\trunk\n"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:95
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:98
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:67
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:105
+#: admin-management-xtended.php:224
+msgid "Admin Management Xtended requires at least WordPress 2.5!"
+msgstr "Admin Management Xtended requiere al menos WordPress 2.5!"
+
+#: admin-management-xtended.php:236
+msgid "The <strong>Admin Management Xtended</strong> plugin wasnt developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature."
+msgstr "El plugin <strong>Admin Management Xtended</strong> no fue creado para WordPress 2.7 o superior, que incluye una función de edición rápida ya incluída. Por favor, desactive este plugin y utilice la función preinstalada por  WordPress."
+
+#: admin-management-xtended.php:248
+msgid "You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear."
+msgstr "Parece estar utilizando el plugin <em>Better Tags Manager</em>, que no es compatible con el plugin <em>Admin Management Xtended</em> pues ambos extienden la columna de etiquetas. Por favor, desactive uno de los dos para que este mensaje desaparezca."
+
+#: admin-management-xtended.php:248
+msgid "(This message was created by Admin Management Xtended plugin)"
+msgstr "(Este mensaje fue generado por el plugin Admin Management Xtended)"
+
+#: general-functions.php:142
+#: general-functions.php:227
+#: general-functions.php:703
+#: link-functions.php:62
+#: link-functions.php:111
+#: media-functions.php:99
+#: post-functions.php:75
+#: post-functions.php:150
+msgid "Edit"
+msgstr "Editar"
+
+#: general-functions.php:166
+#: general-functions.php:170
+#: page-functions.php:92
+#: post-functions.php:209
 msgid "Toggle comment status open/closed"
 msgstr "Cambiar estatus de comentarios: abiertos/cerrados"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:139
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:48
-#, fuzzy
+#: general-functions.php:224
+#: post-functions.php:70
+msgid "No Tags"
+msgstr "No hay etiquetas"
+
+#: general-functions.php:261
+#: post-functions.php:128
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sin categoría"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:171
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:426
-msgid "Post"
-msgstr "Entrada"
-
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:171
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:426
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:56
+#: general-functions.php:327
+#: general-functions.php:367
+#: general-functions.php:703
+#: link-functions.php:118
+#: post-functions.php:143
 msgid "Save"
 msgstr "Guardar"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:171
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:426
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:56
+#: general-functions.php:327
+#: general-functions.php:367
+#: general-functions.php:703
+#: link-functions.php:118
+#: post-functions.php:143
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:219
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:222
-#, fuzzy
-msgid "Y/m/d"
-msgstr ""
+#: general-functions.php:343
+#: general-functions.php:358
+msgid "You are not allowed to change the post author as this user."
+msgstr "No tiene autorización para cambiar el autor de esta entrada."
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:234
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:237
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:49
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:52
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:87
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:90
+#: general-functions.php:346
+#: general-functions.php:361
+msgid "You are not allowed to change the page author as this user."
+msgstr "No tiene autorización para cambiar el autor de del página."
+
+#: general-functions.php:472
+#: general-functions.php:481
+msgid "Y/m/d"
+msgstr "Y/m/d"
+
+#: general-functions.php:475
+msgid "You are not allowed to edit this post."
+msgstr "No tiene autorización para editar esta entrada."
+
+#: general-functions.php:500
+msgid "Sorry, you do not have the right to publish this post."
+msgstr "No tiene autorización para publicar esta entrada."
+
+#: general-functions.php:511
+#: general-functions.php:516
+#: link-functions.php:62
+#: page-functions.php:79
+#: page-functions.php:82
+#: post-functions.php:196
+#: post-functions.php:199
 msgid "Toggle visibility"
 msgstr "Cambiar Visibilidad"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:338
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:344
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:350
+#: general-functions.php:642
+#: general-functions.php:648
+#: general-functions.php:654
 msgid "Edit Page Order:"
 msgstr "Editar Orden de Páginas:"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:338
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:344
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:350
+#: general-functions.php:642
+#: general-functions.php:648
+#: general-functions.php:654
 msgid "Off"
 msgstr "Desactivado"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:338
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:344
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:350
+#: general-functions.php:642
+#: general-functions.php:648
+#: general-functions.php:654
 msgid "Direct input"
 msgstr "Ingreso Manual"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:338
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:344
+#: general-functions.php:642
+#: general-functions.php:648
 msgid "Drag & Drop"
 msgstr "Arrastrar y Soltar"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:350
+#: general-functions.php:654
 msgid "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
 msgstr "Arrastrar y Soltar <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:394
+#: general-functions.php:663
 msgid "Hide invisible Posts"
 msgstr "Ocultar Entradas Invisibles"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:400
+#: general-functions.php:669
 msgid "Show invisible Posts"
 msgstr "Mostrar Entradas Invisibles"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:426
+#: general-functions.php:697
+msgid "Post Revisions"
+msgstr "Revisiones de Entradas"
+
+#: general-functions.php:697
+msgid "Page Revisions"
+msgstr "Revisiones de Páginas"
+
+#: general-functions.php:703
+msgid "Post"
+msgstr "Entrada"
+
+#: general-functions.php:703
 msgid "Please wait..."
 msgstr "Por favor, espere..."
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:29
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:36
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:31
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:76
+#: general-functions.php:703
+msgid "Slug may not be empty!"
+msgstr "El Permalink no debe estar vacío!"
+
+#: general-functions.php:703
+msgid "Insert time"
+msgstr "Insertar hora"
+
+#: general-functions.php:757
+msgid "Change image set"
+msgstr "Cambiar set de la imagen"
+
+#: link-functions.php:44
+#: link-functions.php:82
+#: media-functions.php:43
+#: media-functions.php:60
+#: page-functions.php:43
+#: page-functions.php:59
+#: post-functions.php:44
+#: post-functions.php:101
+#: post-functions.php:176
 msgid "Enhanced by Admin Management Xtended Plugin"
 msgstr "Mejorado por el plugin Admin Management Xtended"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:29
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:76
-msgid "Actions"
-msgstr "Acciones"
+#: link-functions.php:44
+msgid "Visible"
+msgstr "Visible"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:36
-msgid "Page Order"
-msgstr "Orden de Páginas"
+#: link-functions.php:61
+#: link-functions.php:142
+msgid "Yes"
+msgstr "Sí"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:56
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:94
-msgid "Change Publication Date"
-msgstr "Cambiar Fecha de Publicación"
+#: link-functions.php:61
+#: link-functions.php:142
+msgid "No"
+msgstr "No"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:60
-msgid "Change Page Title"
-msgstr "Cambiar Título de la Página"
-
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:62
-msgid "Edit Page Slug"
-msgstr "Cambiar Ruta de la Página"
-
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:31
+#: link-functions.php:82
+#: post-functions.php:101
 msgid "Categories"
 msgstr "Categorías"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:60
-msgid "Edit Categories for Post"
-msgstr "Editar Categorías de la Entrada"
+#: media-functions.php:43
+msgid "Media Order"
+msgstr "Orden de la Biblioteca de Medios:"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:60
-msgid "Edit Categories"
-msgstr "Editar Categorías"
+#: media-functions.php:60
+msgid "Description"
+msgstr "Descripción"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:98
-msgid "Change Post Title"
-msgstr "Cambiar Título de la Entrada"
+#: page-functions.php:43
+#: post-functions.php:176
+msgid "Actions"
+msgstr "Acciones"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:100
+#: page-functions.php:59
+msgid "Page Order"
+msgstr "Orden de Páginas"
+
+#: page-functions.php:85
+#: post-functions.php:202
+msgid "Change Publication Date"
+msgstr "Cambiar Fecha de Publicación"
+
+#: page-functions.php:87
+msgid "Edit Page Slug"
+msgstr "Cambiar Ruta de la Página"
+
+#: post-functions.php:44
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: post-functions.php:204
 msgid "Edit Post Slug"
 msgstr "Editar Ruta de la Entrada"
+
+#: post-functions.php:240
+msgid "You seem using the \\\"Better Tags Manager\\\" plugin, which collides with the \\\"Admin Management Xtended\\\" plugin since both extend the tags column. Please <a href=\\\"plugins.php\\\">deactivate</a> one of both to make this message disappear."
+msgstr "Parece estar utilizando el plugin \\\"Better Tags Manager\\\", que no es compatible con el plugin \\\"Admin Management Xtended\\\" pues ambos extienden la columna de etiquetas. Por favor, <a href=\\\"plugins.php\\\">desactive</a> uno de los dos para que este mensaje desaparezca."
+
+#. Plugin Name of an extension
+msgid "Admin Management Xtended"
+msgstr "Admin Management Xtended"
+
+#. Plugin URI of an extension
+msgid "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
+msgstr "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
+
+#. Description of an extension
+msgid "<strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories"
+msgstr "<strong>Sólo para WordPress 2.5+.</strong> Amplía las funcionalidades administrativas introduciendo el manejo desde el listado principal de entradas y páginas de: activación y desactivación de la visibilidad de las páginas/entradas, cambio de órden de página a través de una interfaz de arrastrar y soltar, administración de categorías y etiquetas, cambio de fecha de publicación, cambio del permalink, apertura y cierre de comentarios, ocultar borradores. Adicionalmente, permite cambiar el orden y descripciones de la biblioteca de medios, activar visibilidad de enlaces y cambiar las categorías de enlaces."
+
+#. Author of an extension
+msgid "Oliver Schl&ouml;be"
+msgstr "Oliver Schl&ouml;be"
+
+#. Author URI of an extension
+msgid "http://www.schloebe.de/"
+msgstr "http://www.schloebe.de/"
+
+#~ msgid "Edit Categories for Post"
+#~ msgstr "Editar Categorías de la Entrada"
+#~ msgid "Edit Categories"
+#~ msgstr "Editar Categorías"
+#~ msgid "Change Post Title"
+#~ msgstr "Cambiar Título de la Entrada"
 
