@@ -62,6 +62,8 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
+[Kleindatenhaltung](http://www.schloebe.de/kleindatenhaltung/)
+
 == Frequently Asked Questions ==
 
 = Why cant I set the time with the inline calendar? =
