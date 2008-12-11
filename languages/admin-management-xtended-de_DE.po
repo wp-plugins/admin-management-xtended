@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin Management Xtended\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-10-17 22:26+0100\n"
+"PO-Revision-Date: 2008-12-11 21:52+0100\n"
 "Last-Translator: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "Language-Team: Oliver Schlöbe <scripts@schloebe.de>\n"
 "MIME-Version: 1.0\n"
@@ -15,21 +15,22 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-xtended\\trunk\n"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:224
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:232
 msgid "Admin Management Xtended requires at least WordPress 2.5!"
 msgstr "Admin Management Xtended benötigt mindestens WordPress 2.5!"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:236
-msgid "The <strong>Admin Management Xtended</strong> plugin wasnt developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature."
-msgstr "Das <strong>Admin Management Xtended</strong>-Plugin ist nicht mit WordPress 2.7 und höher kompatibel, welches ein QuickEdit Feature standardmäßig zur Verfügung stellt. Bitte deaktivieren Sie das <strong>Admin Management Xtended</strong>-Plugin und nutzen Sie das QuickEdit-Feature von WordPress."
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:244
+msgid "The <strong>Admin Management Xtended</strong> plugin hasn't been developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature. <em><a href='?ame_use27anyway=1'>Use it anyway!</a></em>"
+msgstr "Das <strong>Admin Management Xtended</strong>-Plugin ist nicht mit WordPress 2.7 und höher kompatibel, welches ein QuickEdit Feature standardmäßig zur Verfügung stellt. Bitte deaktivieren Sie das <strong>Admin Management Xtended</strong>-Plugin und nutzen Sie das QuickEdit-Feature von WordPress. <em><a href='?ame_use27anyway=1'>Trotzdem benutzen!</a></em>"
 
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:248
-msgid "You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear."
-msgstr "Sie scheinen das <em>Better Tags Manager</em>-Plugin zu nutzen, das Probleme mit dem<em>Admin Management Xtended</em>-Plugin hat, die beide die Tags-Spalte erweitern. Bitte deaktiviere eines der beiden Plugins, damit diese Meldung verschwindet."
-
-#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:248
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:244
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:256
 msgid "(This message was created by Admin Management Xtended plugin)"
 msgstr "(Dieser Hinweis stammt vom Admin Management Xtended Plugin)"
+
+#: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/admin-management-xtended.php:256
+msgid "You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear."
+msgstr "Sie scheinen das <em>Better Tags Manager</em>-Plugin zu nutzen, das Probleme mit dem<em>Admin Management Xtended</em>-Plugin hat, die beide die Tags-Spalte erweitern. Bitte deaktiviere eines der beiden Plugins, damit diese Meldung verschwindet."
 
 # Doesnt need to be translated.
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:142

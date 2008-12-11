@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 1.9
+Version: 1.9.1
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -65,7 +65,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "1.9");
+define("AME_VERSION", "1.9.1");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -122,6 +122,14 @@ class AdminManagementXtended {
  	* @author scripts@schloebe.de
  	*/
 	function adminmanagementxtended() {	
+		if( !get_option("ame_use27anyway") ) {
+			add_option("ame_use27anyway", '0');
+		}
+		
+		if( isset( $_GET['ame_use27anyway'] ) && $_GET['ame_use27anyway'] == '1' ) {
+			update_option("ame_use27anyway", '1');
+		}
+		
 		if( ISINSTBTM ) {
 			add_action('admin_notices', array(&$this, 'wpBTMIncompCheck'));
 		}
@@ -131,7 +139,7 @@ class AdminManagementXtended {
 			return;
 		}
 		
-		if ( AMEISWP27 ) {
+		if ( AMEISWP27 && get_option("ame_use27anyway") == '0' ) {
 			add_action('admin_notices', array(&$this, 'wpVersion27Failed'));
 			return;
 		}
@@ -233,7 +241,7 @@ class AdminManagementXtended {
  	* @author scripts@schloebe.de
  	*/
 	function wpVersion27Failed() {
-		echo "<div id='wpversion27failedmessage' class='error fade'><p>" . __("The <strong>Admin Management Xtended</strong> plugin wasnt developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature.", 'admin-management-xtended') . "</p></div>";
+		echo "<div id='wpversion27failedmessage' class='error fade'><p>" . __("The <strong>Admin Management Xtended</strong> plugin hasn't been developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature. <em><a href='?ame_use27anyway=1'>Use it anyway!</a></em>", 'admin-management-xtended') . "</p><p align='right' style='font-weight:200;'><small><em>" . __('(This message was created by Admin Management Xtended plugin)', 'admin-management-xtended') . "</em></small></p></div>";
 	}
 	
 	/**
