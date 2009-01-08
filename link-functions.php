@@ -41,7 +41,7 @@ function ame_column_link_visibility( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	unset( $defaults['visible'] );
-    $defaults['ame_link_visibility'] = '<th><abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Visible') . '</abbr></th>';
+    $defaults['ame_link_visibility'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Visible') . '</abbr>';
     return $defaults;
 }
 
@@ -64,7 +64,7 @@ function ame_custom_column_link_visibility( $ame_column_name, $ame_id ) {
 }
 
 add_action('manage_link_custom_column', 'ame_custom_column_link_visibility', 3, 2);
-add_filter('manage_link_columns', 'ame_column_link_visibility', 3, 2);
+add_filter('manage_link-manager_columns', 'ame_column_link_visibility', 3, 2);
 
 /**
  * Adds a new 'Link Categories' column to the link management panel
@@ -79,7 +79,7 @@ function ame_column_link_categories( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
 	
 	unset( $defaults['categories'] );
-    $defaults['ame_link_categories'] = '<th><abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Categories') . '</abbr></th>';
+    $defaults['ame_link_categories'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Categories') . '</abbr>';
     return $defaults;
 }
 
@@ -115,7 +115,7 @@ function ame_custom_column_link_categories( $ame_column_name, $ame_id ) {
 			<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:165px;overflow:auto;">
 				<?php wp_link_category_checklist( $link->link_id ); ?>
 			</ul>
-			<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-secondary" onclick="ame_ajax_save_linkcategories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
+			<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-primary" onclick="ame_ajax_save_linkcategories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
 		</div>
 		</div>
 		<?php
@@ -123,7 +123,7 @@ function ame_custom_column_link_categories( $ame_column_name, $ame_id ) {
 }
 
 add_action('manage_link_custom_column', 'ame_custom_column_link_categories', 2, 2);
-add_filter('manage_link_columns', 'ame_column_link_categories', 2, 2);
+add_filter('manage_link-manager_columns', 'ame_column_link_categories', 2, 2);
 
 /**
  * SACK response function for toggling link visibility

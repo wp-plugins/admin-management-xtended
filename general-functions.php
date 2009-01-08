@@ -7,7 +7,7 @@
  */
 
 /*
-Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
+Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -323,8 +323,9 @@ function ame_slug_edit() {
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	if( $posttype == 'post' ) { $postnumber = '1'; } elseif( $posttype == 'page' ) { $postnumber = '2'; }
 	$curpostslug = $wpdb->get_var( $wpdb->prepare( "SELECT post_name FROM $wpdb->posts WHERE ID = %d", $catid ) );
+	if( $posttype == 'post' ) { $cols = '8'; } elseif( $posttype == 'page' ) { $cols = '7'; }
 	
-	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>&nbsp;</td><td colspan='8' align='center'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
+	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-primary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
 }
 
@@ -339,6 +340,7 @@ function ame_author_edit() {
 	$postid = intval($_POST['post_id']);
 	if( is_string($_POST['posttype']) ) $posttype = $_POST['posttype'];
 	if( $posttype == 'post' ) { $typenumber = '1'; } elseif( $posttype == 'page' ) { $typenumber = '2'; }
+	if( $posttype == 'post' ) { $cols = '8'; } elseif( $posttype == 'page' ) { $cols = '7'; }
 	if( $typenumber == '1' && !current_user_can('edit_post', $postid) ) {
 		die( "alert('" . js_escape( __('You are not allowed to change the post author as this user.') ) . "');" );
 		return;
@@ -364,7 +366,7 @@ function ame_author_edit() {
 	}
 	$output = str_replace("\n", "", $output);
 	
-	$addHTML = "<tr id='alter" . $posttype . "-" . $postid . "' class='author-other status-publish' valign='middle'><th scope='row' class='check-column'></th><td>&nbsp;</td><td colspan='8' align='center'>" . $output . "  <input value='" . __('Save') . "' class='button-secondary' type='button' style='font-size:1em;' onclick='ame_ajax_author_save(" . $postid . ", " . $typenumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel($postid)' /></td></tr>";
+	$addHTML = "<tr id='alter" . $posttype . "-" . $postid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'>" . $output . "  <input value='" . __('Save') . "' class='button-primary' type='button' style='font-size:1em;' onclick='ame_ajax_author_save(" . $postid . ", " . $typenumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel($postid)' /></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $postid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $postid . "').hide();" );
 }
 
@@ -560,10 +562,15 @@ function ame_js_jquery_datepicker_header() {
 		echo "<script type=\"text/javascript\">
 //<![CDATA[
 jQuery(document).ready(function() {
+	jQuery(\".widefat th#title, .widefat th.column-title\").before('<th id=\"ame_sort\">&nbsp;</th>');
+	jQuery(\".widefat:first td.post-title\").each(function() {
+		jQuery(this).before('<td class=\"ame_sort\" title=\"" . __('Change page order', 'admin-management-xtended') . "\">&nbsp;</td>');
+	});
 	jQuery(\".widefat\").attr(\"id\", \"pageordertable\");
 	jQuery(\"#pageordertable > thead > tr\").attr(\"id\", \"page-0\");
 	jQuery(\"tr:has('a:contains('—')')\").addClass('nodrop').addClass('nodrag');
     jQuery(\"#pageordertable\").tableDnD({
+    	dragHandle: \"ame_sort\",
     	scrollAmount: \"30\",
     	onDragClass: \"ondragrow\",
     	onDragStart: function(table, row) {
@@ -639,19 +646,19 @@ if( $current_page == 'edit-pages' ) {
 	if ( get_option('ame_show_orderoptions') == '0' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
+   jQuery(\"div.wrap div[class='tablenav-pages']:first\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '1' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
+   jQuery(\"div.wrap div[class='tablenav-pages']:first\").after(\"<div class='tablenav-pages'><span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '2' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first div[class='alignleft']\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>", 'admin-management-xtended') . "</span>&nbsp;|&nbsp;&nbsp;</div>\");
+   jQuery(\"div.wrap div[class='tablenav-pages']:first\").after(\"<div class='tablenav-pages'><span id='ame_ordersave_loader'></span> <span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank'>[?]</a>", 'admin-management-xtended') . "</span>&nbsp;|&nbsp;&nbsp;</div>\");
 });
 </script>\n";
 	}
@@ -724,6 +731,10 @@ function ame_css_admin_header() {
 	color: #D7D7D7;
 	background-color: #222;
 }
+
+table.widefat td.ame_handleDrag {
+	background: url(' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'draghandle.gif) center no-repeat;
+}
 </style>' . "\n";
 if ( $current_page == 'edit' && !isset( $_GET['page'] ) ) {
 	echo '<script type="text/javascript">
@@ -739,6 +750,12 @@ jQuery(document).ready(function() {
 	ame_roll_through_title_rows();
 	ame_roll_through_author_rows();
 	ame_roll_through_revision_rows();
+	
+	jQuery(".widefat tr").hover(function() {
+          jQuery(this).find("td.ame_sort").addClass("ame_handleDrag");
+    }, function() {
+          jQuery(this).find("td.ame_sort").removeClass("ame_handleDrag");
+    });
 });
 </script>' . "\n";
 }

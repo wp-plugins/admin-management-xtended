@@ -94,7 +94,6 @@ function ame_ajax_save_categories( postid ) {
 		ame_cats += jQuery("#categorychoose" + postid + " #categorychecklist input:checked")[a].value + ',';
 	}
 	window.setTimeout("catSpanFadeOut(" + postid + ", '" + ame_cats + "')", 500);
-	//alert( ame_cats );
 }
 
 function linkcatSpanFadeOut( linkid, ame_linkcats ) {
@@ -123,9 +122,7 @@ function ame_ajax_save_linkcategories( linkid ) {
 		ame_linkcats += jQuery("#linkcategorychoose" + linkid + " #categorychecklist input:checked")[a].value + ',';
 	}
 	tb_remove();
-	//linkcatSpanFadeOut( linkid, ame_linkcats );
 	window.setTimeout("linkcatSpanFadeOut(" + linkid + ", '" + ame_linkcats + "')", 500);
-	//alert( ame_linkcats );
 }
 
 function ame_ajax_set_commentstatus( postid, status, posttype ) {
@@ -242,9 +239,14 @@ function ame_ajax_set_postdate( cat_id, pickedDate, posttype ) {
 }
 
 function ame_title_edit( cat_id, title_text, posttype ) {
-	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle"><th scope="row" class="check-column"></th><td>&nbsp;</td><td colspan="8" align="center"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="' + ameAjaxL10n.Save + '" class="button-secondary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="' + ameAjaxL10n.Cancel + '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
-	jQuery("#" + posttype + "-" + cat_id).after( addHTML );
-	jQuery("#" + posttype + "-" + cat_id).hide();
+	var anz_cols = jQuery('.widefat:first thead th:visible').length;
+	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle" style="display:none;"><td colspan="' + anz_cols + '" align="center"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="' + ameAjaxL10n.Save + '" class="button-primary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="' + ameAjaxL10n.Cancel + '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
+	//jQuery("#" + posttype + "-" + cat_id).after( addHTML );
+	jQuery("#" + posttype + "-" + cat_id).fadeOut( function() {
+		jQuery("#" + posttype + "-" + cat_id).after( addHTML );
+		jQuery("#alter" + posttype + "-" + cat_id).fadeIn();
+	});
+	//jQuery("#" + posttype + "-" + cat_id).hide();
 }
 
 function ame_ajax_title_save( cat_id, posttype ) {

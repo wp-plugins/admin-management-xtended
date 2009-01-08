@@ -7,7 +7,7 @@
  */
  
 /*
-Copyright 2008 Oliver Schlöbe (email : webmaster@schloebe.de)
+Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ function ame_column_tag_actions( $defaults ) {
 function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_tag_actions' ) {
-    	$tags = get_the_tags();
+    	$tags = get_the_tags( $ame_id );
 		if ( !empty( $tags ) ) {
 			$out = array();
 			foreach ( $tags as $c ) {
@@ -140,7 +140,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		}
 		?>
 	</ul>
-	<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-secondary" onclick="ame_ajax_save_categories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
+	<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-primary" onclick="ame_ajax_save_categories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
 </div>
 </div>
 		<?php
@@ -219,36 +219,4 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 
 add_action('manage_posts_custom_column', 'ame_custom_column_post_actions', 500, 2);
 add_filter('manage_posts_columns', 'ame_column_post_actions', 500, 2);
-
-
-
-/* ************************************************ */
-/* Checking for plugin incopatibilities				*/
-/* ************************************************ */
-
-/**
- * Checks for the existance of 'Better Tags Manager' plugin,
- * which is known to cause problems with this plugin
- * and adds a message to inform the user
- *
- * @since 1.3.0
- * @deprecated Deprecated since version 1.4.0
- * @see AdminManagementXtended::wpIncompCheck()
- * @author scripts@schloebe.de
- */
-function ame_plugin_footer() {
-	echo "<div id='ame_incompatibilitymessage' class='error fade'><p>" . __('You seem using the \"Better Tags Manager\" plugin, which collides with the \"Admin Management Xtended\" plugin since both extend the tags column. Please <a href=\"plugins.php\">deactivate</a> one of both to make this message disappear.') . "</p></div>";
-?>
-<script type="text/javascript">
-	var incompMessage = "<br />"
-	incompMessage += "<div id=\"incompatibilitymessage\" class=\"error fade\">";
-	incompMessage += "<p><strong></p>";
-	incompMessage += "<p align='right' style='font-weight:200;'><small><em></em></small></p>";
-	incompMessage += "</div><br />";
-	jQuery(document).ready(function() {
-		jQuery("#posts-filter").before(incompMessage);
-	});
-	</script>
-<?php
-}
 ?>

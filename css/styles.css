@@ -29,3 +29,14 @@ ul#categorychecklist ul ul {
 	padding: 0;
 }
 
+th#ame_post_actions, th#ame_page_actions {
+	width: 100px;
+}
+
+.widefat th#ame_sort {
+	width: 20px;
+}
+
+.widefat td.ame_sort {
+	cursor: move;
+}
