@@ -3,10 +3,10 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
 Requires at least: 2.7
-Tested up to: 2.7
+Tested up to: 2.7.1
 Stable tag: trunk
 
-Adds AJAX-driven options to some admin management pages with CMS-known functions like toggling post/page visibility without having to open the edit screens, **plus changing page order with drag'n'drop** and inline category management.
+Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
 
 == Description ==
 
@@ -17,6 +17,10 @@ As a whole, the new WordPress Admin panel is organized fairly well, however when
 It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management, plus much more.
 
 [There's a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
+
+**Changelog:**
+
+*05.03.2009 - version 2.0.2* - Support for symlinks
 
 **Features:**
 
