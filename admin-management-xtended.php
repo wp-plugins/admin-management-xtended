@@ -8,7 +8,7 @@
  
 /*
 Plugin Name: Admin Management Xtended
-Version: 2.0.1
+Version: 2.0.2
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.7+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -65,7 +65,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "2.0.1");
+define("AME_VERSION", "2.0.2");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -86,7 +86,7 @@ define('ISINSTBTM', ame_is_plugin_active('better-tags-manager/better-tags-manage
 /**
  * Define the plugin path slug
  */
-define("AME_PLUGINPATH", "/" . plugin_basename( dirname(__FILE__) ) . "/");
+define("AME_PLUGINPATH", "/" . plugin_basename( basename( dirname(__FILE__) ) ) . "/");
 
 /**
  * Define the plugin full url
