@@ -3,49 +3,63 @@ msgstr ""
 "Project-Id-Version: Admin Management Xtended\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/admin-management-xtended\n"
 "POT-Creation-Date: 2008-10-17 20:47+0000\n"
-"PO-Revision-Date: 2008-10-28 10:40-0600\n"
+"PO-Revision-Date: 2009-01-26 09:57-0600\n"
 "Last-Translator: Karin Sequen <karin.sequen@bumerang180.com>\n"
-"Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
+"Language-Team: Karin Sequen || Bumerang 180 <info@bumerang180.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-Country: GUATEMALA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: D:\\schloebeweb\\xampp\\htdocs\\wordpresssource\\plugins\\admin-management-xtended\\trunk\n"
+"X-Poedit-SearchPath-0: D:/schloebeweb/xampp/htdocs/wordpresssource/plugins/admin-management-xtended/trunk\n"
+": "
 
-#: admin-management-xtended.php:224
+#: admin-management-xtended.php:221
 msgid "Admin Management Xtended requires at least WordPress 2.5!"
 msgstr "Admin Management Xtended requiere al menos WordPress 2.5!"
 
-#: admin-management-xtended.php:236
-msgid "The <strong>Admin Management Xtended</strong> plugin wasnt developed for WordPress 2.7 and higher, which has a QuickEdit feature already built-in. Please deactivate Admin Management Xtended plugin and use WordPress' QuickEdit feature."
-msgstr "El plugin <strong>Admin Management Xtended</strong> no fue creado para WordPress 2.7 o superior, que incluye una función de edición rápida ya incluída. Por favor, desactive este plugin y utilice la función preinstalada por  WordPress."
-
-#: admin-management-xtended.php:248
+#: admin-management-xtended.php:245
 msgid "You seem using the <em>Better Tags Manager</em> plugin, which collides with the <em>Admin Management Xtended</em> plugin since both extend the tags column. Please deactivate one of both to make this message disappear."
 msgstr "Parece estar utilizando el plugin <em>Better Tags Manager</em>, que no es compatible con el plugin <em>Admin Management Xtended</em> pues ambos extienden la columna de etiquetas. Por favor, desactive uno de los dos para que este mensaje desaparezca."
 
-#: admin-management-xtended.php:248
+#: admin-management-xtended.php:245
 msgid "(This message was created by Admin Management Xtended plugin)"
 msgstr "(Este mensaje fue generado por el plugin Admin Management Xtended)"
 
 #: general-functions.php:142
+#: general-functions.php:142
+#: general-functions.php:142
 #: general-functions.php:227
-#: general-functions.php:703
+#: general-functions.php:227
+#: general-functions.php:227
+#: general-functions.php:710
 #: link-functions.php:62
 #: link-functions.php:111
+#: link-functions.php:111
+#: link-functions.php:111
+#: media-functions.php:99
+#: media-functions.php:99
 #: media-functions.php:99
 #: post-functions.php:75
+#: post-functions.php:75
+#: post-functions.php:75
+#: post-functions.php:150
+#: post-functions.php:150
 #: post-functions.php:150
 msgid "Edit"
 msgstr "Editar"
 
 #: general-functions.php:166
+#: general-functions.php:166
+#: general-functions.php:170
 #: general-functions.php:170
 #: page-functions.php:92
+#: page-functions.php:92
+#: page-functions.php:92
+#: post-functions.php:209
 #: post-functions.php:209
 msgid "Toggle comment status open/closed"
 msgstr "Cambiar estatus de comentarios: abiertos/cerrados"
@@ -60,115 +74,119 @@ msgstr "No hay etiquetas"
 msgid "Uncategorized"
 msgstr "Sin categoría"
 
-#: general-functions.php:327
-#: general-functions.php:367
-#: general-functions.php:703
+#: general-functions.php:328
+#: general-functions.php:369
+#: general-functions.php:710
 #: link-functions.php:118
 #: post-functions.php:143
 msgid "Save"
 msgstr "Guardar"
 
-#: general-functions.php:327
-#: general-functions.php:367
-#: general-functions.php:703
+#: general-functions.php:328
+#: general-functions.php:369
+#: general-functions.php:710
 #: link-functions.php:118
 #: post-functions.php:143
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: general-functions.php:343
-#: general-functions.php:358
+#: general-functions.php:345
+#: general-functions.php:360
 msgid "You are not allowed to change the post author as this user."
 msgstr "No tiene autorización para cambiar el autor de esta entrada."
 
-#: general-functions.php:346
-#: general-functions.php:361
+#: general-functions.php:348
+#: general-functions.php:363
 msgid "You are not allowed to change the page author as this user."
 msgstr "No tiene autorización para cambiar el autor de del página."
 
-#: general-functions.php:472
-#: general-functions.php:481
+#: general-functions.php:474
+#: general-functions.php:483
 msgid "Y/m/d"
 msgstr "Y/m/d"
 
-#: general-functions.php:475
+#: general-functions.php:477
 msgid "You are not allowed to edit this post."
 msgstr "No tiene autorización para editar esta entrada."
 
-#: general-functions.php:500
+#: general-functions.php:502
 msgid "Sorry, you do not have the right to publish this post."
 msgstr "No tiene autorización para publicar esta entrada."
 
-#: general-functions.php:511
-#: general-functions.php:516
+#: general-functions.php:513
+#: general-functions.php:513
+#: general-functions.php:518
+#: general-functions.php:518
+#: link-functions.php:62
 #: link-functions.php:62
 #: page-functions.php:79
+#: page-functions.php:79
+#: page-functions.php:82
 #: page-functions.php:82
 #: post-functions.php:196
+#: post-functions.php:196
+#: post-functions.php:199
 #: post-functions.php:199
 msgid "Toggle visibility"
 msgstr "Cambiar Visibilidad"
 
-#: general-functions.php:642
-#: general-functions.php:648
-#: general-functions.php:654
+#: general-functions.php:649
+#: general-functions.php:655
+#: general-functions.php:661
 msgid "Edit Page Order:"
 msgstr "Editar Orden de Páginas:"
 
-#: general-functions.php:642
-#: general-functions.php:648
-#: general-functions.php:654
+#: general-functions.php:649
+#: general-functions.php:655
+#: general-functions.php:661
 msgid "Off"
 msgstr "Desactivado"
 
-#: general-functions.php:642
-#: general-functions.php:648
-#: general-functions.php:654
+#: general-functions.php:649
+#: general-functions.php:655
+#: general-functions.php:661
 msgid "Direct input"
 msgstr "Ingreso Manual"
 
-#: general-functions.php:642
-#: general-functions.php:648
+#: general-functions.php:649
+#: general-functions.php:655
 msgid "Drag & Drop"
 msgstr "Arrastrar y Soltar"
 
-#: general-functions.php:654
-msgid "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
-msgstr "Arrastrar y Soltar <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
-
-#: general-functions.php:663
+#: general-functions.php:670
 msgid "Hide invisible Posts"
 msgstr "Ocultar Entradas Invisibles"
 
-#: general-functions.php:669
+#: general-functions.php:676
 msgid "Show invisible Posts"
 msgstr "Mostrar Entradas Invisibles"
 
-#: general-functions.php:697
+#: general-functions.php:704
 msgid "Post Revisions"
 msgstr "Revisiones de Entradas"
 
-#: general-functions.php:697
+#: general-functions.php:704
 msgid "Page Revisions"
 msgstr "Revisiones de Páginas"
 
-#: general-functions.php:703
+#: general-functions.php:710
 msgid "Post"
 msgstr "Entrada"
 
-#: general-functions.php:703
+#: general-functions.php:710
 msgid "Please wait..."
 msgstr "Por favor, espere..."
 
-#: general-functions.php:703
+#: general-functions.php:710
 msgid "Slug may not be empty!"
 msgstr "El Permalink no debe estar vacío!"
 
-#: general-functions.php:703
+#: general-functions.php:710
 msgid "Insert time"
 msgstr "Insertar hora"
 
-#: general-functions.php:757
+#: general-functions.php:774
+#: general-functions.php:774
 msgid "Change image set"
 msgstr "Cambiar set de la imagen"
 
@@ -221,10 +239,13 @@ msgid "Page Order"
 msgstr "Orden de Páginas"
 
 #: page-functions.php:85
+#: page-functions.php:85
+#: post-functions.php:202
 #: post-functions.php:202
 msgid "Change Publication Date"
 msgstr "Cambiar Fecha de Publicación"
 
+#: page-functions.php:87
 #: page-functions.php:87
 msgid "Edit Page Slug"
 msgstr "Cambiar Ruta de la Página"
@@ -234,37 +255,20 @@ msgid "Tags"
 msgstr "Etiquetas"
 
 #: post-functions.php:204
+#: post-functions.php:204
 msgid "Edit Post Slug"
 msgstr "Editar Ruta de la Entrada"
 
-#: post-functions.php:240
-msgid "You seem using the \\\"Better Tags Manager\\\" plugin, which collides with the \\\"Admin Management Xtended\\\" plugin since both extend the tags column. Please <a href=\\\"plugins.php\\\">deactivate</a> one of both to make this message disappear."
-msgstr "Parece estar utilizando el plugin \\\"Better Tags Manager\\\", que no es compatible con el plugin \\\"Admin Management Xtended\\\" pues ambos extienden la columna de etiquetas. Por favor, <a href=\\\"plugins.php\\\">desactive</a> uno de los dos para que este mensaje desaparezca."
+#: admin-management-xtended.php:233
+#, php-format
+msgid "<strong>Admin Management Xtended</strong> plugin version 2.0 requires at least WordPress 2.7! If you're still using a WP version prior to 2.7, please <a href='%s'>use Admin Management Xtended version 1.9.1</a>! Consider updating to the latest WP version for your own safety!"
+msgstr "¡El plugin <strong>Admin Management Xtended</strong> versión 2.0 requiere al menos WordPress 2.7! Si aún está usando una versión anterior, por favor <a href='%s'>use la versión 1.9.1 de Admin Management Xtended</a>! Considere actualizarse a la última versión de WP por su propia seguridad!"
 
-#. Plugin Name of an extension
-msgid "Admin Management Xtended"
-msgstr "Admin Management Xtended"
+#: general-functions.php:567
+msgid "Change page order"
+msgstr "Cambiar orden de páginas"
 
-#. Plugin URI of an extension
-msgid "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
-msgstr "http://www.schloebe.de/wordpress/admin-management-xtended-plugin/"
-
-#. Description of an extension
-msgid "<strong>WordPress 2.5+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories"
-msgstr "<strong>Sólo para WordPress 2.5+.</strong> Amplía las funcionalidades administrativas introduciendo el manejo desde el listado principal de entradas y páginas de: activación y desactivación de la visibilidad de las páginas/entradas, cambio de órden de página a través de una interfaz de arrastrar y soltar, administración de categorías y etiquetas, cambio de fecha de publicación, cambio del permalink, apertura y cierre de comentarios, ocultar borradores. Adicionalmente, permite cambiar el orden y descripciones de la biblioteca de medios, activar visibilidad de enlaces y cambiar las categorías de enlaces."
-
-#. Author of an extension
-msgid "Oliver Schl&ouml;be"
-msgstr "Oliver Schl&ouml;be"
-
-#. Author URI of an extension
-msgid "http://www.schloebe.de/"
-msgstr "http://www.schloebe.de/"
-
-#~ msgid "Edit Categories for Post"
-#~ msgstr "Editar Categorías de la Entrada"
-#~ msgid "Edit Categories"
-#~ msgstr "Editar Categorías"
-#~ msgid "Change Post Title"
-#~ msgstr "Cambiar Título de la Entrada"
+#: general-functions.php:661
+msgid "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank'>[?]</a>"
+msgstr "Arrastrar & Soltar <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank'>[?]</a>"
 
