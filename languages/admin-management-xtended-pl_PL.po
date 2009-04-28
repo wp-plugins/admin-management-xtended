@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Admin Management Xtended\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-08-11 17:33+0100\n"
+"PO-Revision-Date: 2009-04-27 15:06+0100\n"
 "Last-Translator: Cezary Tomczyk <cezary.tomczyk@ikeris.com>\n"
 "Language-Team: Oliver Schlöbe <webmaster@schloebe.de>\n"
 "MIME-Version: 1.0\n"
@@ -108,11 +108,11 @@ msgstr "Bezpośrednie wprowadzanie"
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:531
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:537
 msgid "Drag & Drop"
-msgstr "Drag & Drop"
+msgstr "Chwyć i przeciągnij"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:543
 msgid "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
-msgstr "Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#reihenfolge' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
+msgstr "Chwyć i przeciągnij <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#reihenfolge' target='_blank' style='color:#fff;text-decoration:underline;'>[?]</a>"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/general-functions.php:552
 msgid "Hide invisible Posts"
@@ -152,7 +152,7 @@ msgstr "Opis"
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:43
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:168
 msgid "Actions"
-msgstr "Czynność"
+msgstr "Czynności"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:59
 msgid "Page Order"
@@ -169,7 +169,7 @@ msgstr "Zmień tytuł strony"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/page-functions.php:91
 msgid "Edit Page Slug"
-msgstr "Zmień slug strony"
+msgstr "Zmień znacznik strony"
 
 # Doesnt need to be translated.
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:44
@@ -187,7 +187,7 @@ msgstr "Zmień tytuł wpisu"
 
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:200
 msgid "Edit Post Slug"
-msgstr "Zmień slug wpisu"
+msgstr "Zmień znacznik wpisu"
 
 # Doesnt need to be translated.
 #: D:\schloebeweb\xampp\htdocs\wordpresssource\plugins\admin-management-xtended\trunk/post-functions.php:208
