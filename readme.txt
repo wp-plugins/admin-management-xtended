@@ -10,7 +10,7 @@ Adds AJAX-driven options to some admin management pages with CMS-known functions
 
 == Description ==
 
-**Version 2.0 and above of this plugin is WP2.7+ only!**
+**Version 2.0 is WP2.7+ only!**
 
 As a whole, the new WordPress Admin panel is organized fairly well, however when it comes to editing posts or pages quickly without having to open each post or page in a new tab or window, it isn't a very efficient process. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
@@ -66,8 +66,8 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Traditional Chinese (zh_TW) (Thanks for contributing traditional chinese language goes to Disway Dong)
 * Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to Prem Prakash)
 * Belorussian (by_BY) (Thanks for contributing belorussian language goes to [Marcis Gasuns](http://www.fatcow.com))
-* Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to [Håvard Grimelid](http://grx.no))
-* Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to [Håvard Grimelid](http://grx.no/))
+* Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to [H&aring;vard Grimelid](http://grx.no))
+* Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to [H&aring;vard Grimelid](http://grx.no/))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
