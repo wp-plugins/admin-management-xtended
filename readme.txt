@@ -67,7 +67,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to Prem Prakash)
 * Belorussian (by_BY) (Thanks for contributing belorussian language goes to [Marcis Gasuns](http://www.fatcow.com))
 * Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to [Håvard Grimelid](http://grx.no))
-* Norwegian Bokmål (nb_NO) (Thanks for contributing norwegian bokmål language goes to [Håvard Grimelid](http://grx.no/))
+* Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to [Håvard Grimelid](http://grx.no/))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
