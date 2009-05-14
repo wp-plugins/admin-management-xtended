@@ -10,7 +10,7 @@ Adds AJAX-driven options to some admin management pages with CMS-known functions
 
 == Description ==
 
-**Version 2.0+ of this plugin is 2.7-only!**
+**Version 2.0 and above of this plugin is WP2.7+ only!**
 
 As a whole, the new WordPress Admin panel is organized fairly well, however when it comes to editing posts or pages quickly without having to open each post or page in a new tab or window, it isn't a very efficient process. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
