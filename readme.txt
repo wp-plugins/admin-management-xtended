@@ -95,7 +95,7 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 == Changelog ==
 
 = 2.0.3 =
-* FIXED: Post tag aut-suggest returned 0 insted of suggested tags
+* FIXED: Post tag auto-suggest returned 0 instead of suggested tags
 * NEW: Support for new Changelog readme.txt standard
 
 = 2.0.2 =
