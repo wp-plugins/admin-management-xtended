@@ -3,24 +3,20 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
 Requires at least: 2.5
-Tested up to: 2.8
+Tested up to: 2.8.1
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
 
 == Description ==
 
-**Version 2.0 is WP2.7+ only!**
+**Version 2.0 and above is WP2.7+ only!**
 
 As a whole, the new WordPress Admin panel is organized fairly well, however when it comes to editing posts or pages quickly without having to open each post or page in a new tab or window, it isn't a very efficient process. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
 It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management, plus much more.
 
 [There's a little screencast available introducing what the plugin does!](http://www.schloebe.de/wordpress/admin-management-xtended-plugin/screencast/)
-
-**Changelog:**
-
-*05.03.2009 - version 2.0.2* - Support for symlinks
 
 **Features:**
 
@@ -95,6 +91,126 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 2. Upload the folder admin-management-xtended/ to your /wp-content/plugins/ folder.
 3. Activate the plugin from your WordPress admin panel.
 4. Installation finished.
+
+== Changelog ==
+
+= 2.0.3 =
+* FIXED: Post tag aut-suggest returned 0 insted of suggested tags
+* NEW: Support for new Changelog readme.txt standard
+
+= 2.0.2 =
+* NEW: Support for symlinks (Thanks to Georg S. Adamsen!)
+
+= 2.0.1 =
+* FIXED: buttons for switching the way of sorting pages didn't show up if there wasn't pagination
+* FIXED: page drag'n'drop now stores the new page order
+
+= 2.0 =
+* FIXED: WP 2.7 Look & Feel, completely compatible
+* FIXED: New DragHandle for Page drag&drop
+* FIXED: Inline Tag Management fixes
+* FIXED: Link Management fixes
+
+= 1.9.1 =
+* NEW: Added possibility to use the plugin though it's not officially supported for WP 2.7 (That might cause misbehaviour!)
+
+= 1.9 =
+* NEW: Time now can be chosen in the js popout calendar aswell
+* FIXED: Some logical minor issues
+
+= 1.8.8 =
+* FIXED: Added missing date js-file for en_US locale that caused 404 errors in server logs
+
+= 1.8.6 =
+* FIXED: Incompatibility with More Fields plugin (Thanks to Guillermo Jimeno Espinosa!)
+* FIXED: Added note for WP 2.7 users
+
+= 1.8.5 =
+* NEW: Added italian localization (Thanks to Gianni Diurno!)
+* FIXED: Fixed incompatibility with Gengo plugin (Thanks to dragunoff!)
+
+= 1.8.4 =
+* NEW: Added russian localization (Thanks to Lecactus!)
+* FIXED: Improved pre WP 2.6 compatibility
+* FIXED: Fixed error occuring with the Codestyling Localization plugin and other potential plugins
+* FIXED: some GUI improvement, e.g. put the revisions link below the title
+* FIXED: Added a whole bunch of do_actions und apply_filters
+
+= 1.8.0 =
+* NEW: Changing categories inline on link management page
+* NEW: Toggling link visibility with a single click
+* FIXED: post/page slugs cannot be empty anymore
+* FIXED: HTML markup cleanup
+
+= 1.7.0 =
+* NEW: Change post/page author inline in post/page management view
+* NEW: Added polish localization (Thanks to Cezary Tomczyk!)
+* NEW: Added another icon to edit page/post title
+* FIXED: Extensive changes in rights management, that caused misbehaviour
+* FIXED: Localization issue in WP 2.5
+
+= 1.6.1 =
+* NEW: Open page revisions inline in page management view
+* FIXED: Fixed formatting issue on saving and editing post/page title
+
+= 1.6.0 =
+* NEW: Open post revisions inline in post management view
+* NEW: Auto-suggest for inline tag management
+* NEW: Added czech localization (Thanks to Josef Klimosz!)
+* NEW: Added dutch localization (Thanks to Steven Goos!)
+* FIXED: input field for tag management now uses full available width
+
+= 1.5.2 =
+* NEW: Added danish localization (Thanks to Mads Christian Jensen!)
+* FIXED: Compatible with WordPress 2.6
+* FIXED: Supports changing location/ renaming of wp-content/ folder with WP 2.6
+
+= 1.5.0 =
+* NEW: Change media description inline in media management view
+* FIXED: Applied wpdb->prepare to all SQL queries
+* FIXED: Compatible with WP2.6-beta1
+* FIXED: Minor language fixes
+
+= 1.4.0 =
+* NEW: Change media order inline in media management view
+* NEW: Added turkish localization (Thanks to wolkanca!)
+* NEW: Added persian localization (Thanks to Amir Ashtiani!)
+* FIXED: structure changes in code
+
+= 1.3.0 =
+* NEW: Changing tags inline on post management page (Inline Tag Management)
+* NEW: New default button set (twotiny); now two different button sets selectable
+* NEW: Added spanisch localization (Thanks to Karin Sequen!)
+* NEW: Added hebrew localization (Thanks to Meir Pinto!)
+* FIXED: structure changes in files and code
+* FIXED: Fixed possible error, occuring on some systems (Thanks to Marcus Sykes!)
+* FIXED: Improved compatibility with WP 2.5 (Thanks to Aouni Tahech!)
+
+= 1.2.0 =
+* NEW: Changing categories inline on post management page
+* NEW: Toggling comment status open/closed in posts/pages management view
+* FIXED: Code and performance improvements
+
+= 1.0.1 =
+* NEW: Added french localization file to the download package
+* NEW: Added raw localization file to the download package, for you to (hopefully) helping to translate this plugin to your language
+* FIXED: Code- and performance improvements
+
+= 1.0 =
+* NEW: Changing order of (top level) pages via Drag'n'Drop
+
+= 0.9 =
+* NEW: Change page order inline in pages management view
+* NEW: Show/hide invisible (draft/future) posts
+* NEW: Toggle visibility of page order column
+* FIXED: Error with date chosing script
+
+= 0.8 =
+* NEW: Change post/page slug inline in posts/pages management view
+* FIXED: Misbehaviour with special chars
+
+= 0.7 =
+* Plugin released
 
 == Other Notes ==
 

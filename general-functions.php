@@ -594,7 +594,7 @@ jQuery(document).ready(function() {
 	echo "<script type=\"text/javascript\" charset=\"utf-8\">
 //<![CDATA[
 function ame_setupSuggest( ame_suggestid ) {
-	jQuery('#ame-new-tags' + ame_suggestid).suggest( '" . get_bloginfo('wpurl') . "/wp-admin/admin-ajax.php?action=ajax-tag-search', { delay: 500, minchars: 2, multiple: true, multipleSep: \", \" } );
+	jQuery('#ame-new-tags' + ame_suggestid).suggest( '" . get_bloginfo('wpurl') . "/wp-admin/admin-ajax.php?action=ajax-tag-search&tax=post_tag', { delay: 500, minchars: 2, multiple: true, multipleSep: \", \" } );
 }
 //]]>
 </script>\n";
