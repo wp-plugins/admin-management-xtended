@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
 Requires at least: 2.5
-Tested up to: 2.8.1
+Tested up to: 2.9
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -40,7 +40,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * **NEW in 1.8**: Changing link categories inline on link management page
 * **NEW in 1.8**: Toggling link visibility with a single click
 * **NEW in 1.9**: Time now can be chosen in the js popout calendar aswell
-* **NEW in 2.1.0**: Change *post order* inline in post management view
+* **NEW in 2.1.0**: Change *post order* inline in post management view (Props [Jeff Cole](http://www.coolcave.co.uk/ "Jeff Cole")
 * **NEW in 2.1.0**: Support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
@@ -98,7 +98,7 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 = 2.1.0 =
 * NEW: Added support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin (thanks to danf for suggesting!)
-* NEW: Change post order inline in post management view
+* NEW: Change post order inline in post management view (Props [Jeff Cole](http://www.coolcave.co.uk/ "Jeff Cole")
 
 = 2.0.3 =
 * FIXED: Post tag auto-suggest returned 0 instead of suggested tags
