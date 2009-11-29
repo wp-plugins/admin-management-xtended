@@ -40,7 +40,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * **NEW in 1.8**: Changing link categories inline on link management page
 * **NEW in 1.8**: Toggling link visibility with a single click
 * **NEW in 1.9**: Time now can be chosen in the js popout calendar aswell
-* **NEW in 2.1.0**: Change *post order* inline in post management view
+* **NEW in 2.1.0**: Change *post order* inline in post management view (Props [Jeff Cole](http://www.coolcave.co.uk/ "Jeff Cole")
 * **NEW in 2.1.0**: Support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
