@@ -322,3 +322,15 @@ function ame_edit_cancel( cat_id ) {
 	jQuery("#alter" + ameAjaxL10n.postType + "-" + cat_id).hide();
 	jQuery("#" + ameAjaxL10n.postType + "-" + cat_id).show();
 }
+
+function ame_ajax_set_excludestatus( page_id, status_id ) {
+	var ame_sack = new sack(
+	ameAjaxL10n.requestUrl);
+	ame_sack.execute = 1;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_toggle_excludestatus" );
+	ame_sack.setVar( "pageid", page_id );
+	ame_sack.setVar( "statusid", status_id );
+	ame_sack.onError = function() { alert('Ajax error on toggling image set') };
+	ame_sack.runAJAX();
+}

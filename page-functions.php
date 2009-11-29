@@ -34,8 +34,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @since 0.7
  * @author scripts@schloebe.de
  *
- * @param array
- * @return array
+ * @param array $defaults
+ * @return array $defaults
  */
 function ame_column_page_actions( $defaults ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
@@ -49,14 +49,18 @@ function ame_column_page_actions( $defaults ) {
  *
  * @since 1.0
  * @author scripts@schloebe.de
+ * @author Jeff Cole <upekshapriya@coolcave.co.uk>
  *
- * @param array
- * @return array
+ * @param array $defaults
+ * @return array $defaults
  */
 function ame_column_page_order( $defaults ) {
-	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	$current_page = basename($_SERVER['PHP_SELF'], ".php");
 	
-    $defaults['ame_page_order'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Page Order') . '</abbr>';
+	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
+	if( $current_page == 'edit-pages' ) $ame_column_heading = __('Page Order:', 'admin-management-xtended'); else $ame_column_heading = __('Post Order:', 'admin-management-xtended');
+	
+	$defaults['ame_page_order'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . $ame_column_heading . '</abbr>';
     return $defaults;
 }
 
@@ -66,14 +70,15 @@ function ame_column_page_order( $defaults ) {
  * @since 0.7
  * @author scripts@schloebe.de
  *
- * @param string
- * @param int
+ * @param string $ame_column_name
+ * @param int $ame_id
  */
 function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_page_actions' ) {
-    	$post_status = get_post_status( $ame_id );
-    	echo '<div style="width:75px;" class="ame_options">';
+		
+		$post_status = get_post_status( $ame_id );
+    	echo '<div style="width:105px;" class="ame_options">';
     	if ( $post_status == 'publish' ) {
     		// Visibility icon
     		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'page\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div> ';
@@ -90,6 +95,12 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
     	$comment_status = $q_commentstatus->comment_status;
     	if( $comment_status == 'open' ) { $c_status = 0; $c_img = '_open'; } else { $c_status = 1; $c_img = '_closed'; }
     	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'page\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
+		// Plugin: Exclude Pages
+		if( is_plugin_active( 'exclude-pages/exclude_pages.php' ) ) {
+			$excluded_pages = ep_get_excluded_ids();
+    		if( in_array( $ame_id, $excluded_pages ) ) { $e_status = 0; $e_img = ''; } else { $e_status = 1; $e_img = '_off'; }
+			echo '<div id="excludepagewrap' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_excludestatus(' . $ame_id . ', ' . $e_status . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'excludepages' . $e_img . '.gif" border="0" alt="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" title="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" /></a></div>';
+		}
 		// Post revisions
 		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
 			echo '<input type="hidden" name="amehasrev' . $ame_id . '" class="amehasrev" value="1" /><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
@@ -106,8 +117,8 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
  * @since 1.0
  * @author scripts@schloebe.de
  *
- * @param string
- * @param int
+ * @param string $ame_column_name
+ * @param int $ame_id
  */
 function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
 	global $wpdb;

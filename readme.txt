@@ -24,22 +24,24 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Toggling visibility with a single click
 * Changing the publication date with a neat comfortable calendar
 * Change post/page title inline in posts/pages management view
-* **NEW since 0.8**: Change post/page slug inline in posts/pages management view
-* **NEW since 0.9**: Change page order inline in pages management view
-* **NEW since 0.9**: Show/hide invisible (draft/future) posts
-* **NEW since 0.9**: Toggle visibility of page order column
-* **NEW since 1.0**: Changing order of (top level) pages via Drag'n'Drop
-* **NEW since 1.2**: Changing categories inline on post management page (**inline category management**)
-* **NEW since 1.2**: Toggling comment status open/closed in posts/pages management view
-* **NEW since 1.3**: Changing tags inline on post management page (**inline tag management**)
-* **NEW since 1.3**: New default button set; now two different button sets selectable
-* **NEW since 1.4**: Change media order inline in media management view
-* **NEW since 1.5**: Change media description inline in media management view
-* **NEW since 1.6**: Open post revisions inline in post/page management view
-* **NEW since 1.7**: Change post/page author inline in post/page management view
-* **NEW since 1.8**: Changing link categories inline on link management page
-* **NEW since 1.8**: Toggling link visibility with a single click
-* **NEW since 1.9**: Time now can be chosen in the js popout calendar aswell
+* **NEW in 0.8**: Change post/page slug inline in posts/pages management view
+* **NEW in 0.9**: Change page order inline in pages management view
+* **NEW in 0.9**: Show/hide invisible (draft/future) posts
+* **NEW in 0.9**: Toggle visibility of page order column
+* **NEW in 1.0**: Changing order of (top level) pages via Drag'n'Drop
+* **NEW in 1.2**: Changing categories inline on post management page (**inline category management**)
+* **NEW in 1.2**: Toggling comment status open/closed in posts/pages management view
+* **NEW in 1.3**: Changing tags inline on post management page (**inline tag management**)
+* **NEW in 1.3**: New default button set; now two different button sets selectable
+* **NEW in 1.4**: Change media order inline in media management view
+* **NEW in 1.5**: Change media description inline in media management view
+* **NEW in 1.6**: Open post revisions inline in post/page management view
+* **NEW in 1.7**: Change post/page author inline in post/page management view
+* **NEW in 1.8**: Changing link categories inline on link management page
+* **NEW in 1.8**: Toggling link visibility with a single click
+* **NEW in 1.9**: Time now can be chosen in the js popout calendar aswell
+* **NEW in 2.1.0**: Change *post order* inline in post management view
+* **NEW in 2.1.0**: Support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin
 * **Supports changing location/ renaming of wp-content/ folder with WP 2.6**
 * Entirely possible to be localized, including the JS calendar
 
@@ -93,6 +95,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.1.0 =
+* NEW: Added support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin (thanks to danf for suggesting!)
+* NEW: Change post order inline in post management view
 
 = 2.0.3 =
 * FIXED: Post tag auto-suggest returned 0 instead of suggested tags

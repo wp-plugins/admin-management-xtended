@@ -219,4 +219,9 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 
 add_action('manage_posts_custom_column', 'ame_custom_column_post_actions', 500, 2);
 add_filter('manage_posts_columns', 'ame_column_post_actions', 500, 2);
+
+if ( get_option('ame_show_orderoptions') == '1' ) {
+	add_action('manage_posts_custom_column', 'ame_custom_column_page_order', 500, 2);
+	add_filter('manage_posts_columns', 'ame_column_page_order', 500, 2);
+}
 ?>

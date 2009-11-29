@@ -519,6 +519,31 @@ function ame_toggle_visibility() {
 	}
 }
 
+/**
+ * SACK response function for toggling page exclusion status
+ *
+ * @since 2.1.0
+ * @author scripts@schloebe.de
+ * @link http://plugins.trac.wordpress.org/browser/exclude-pages/trunk/exclude_pages.php#L162
+ */
+function ame_toggle_excludestatus() {
+	$pageid = intval($_POST['pageid']);
+	$statusid = intval($_POST['statusid']);
+	$excluded_ids = ep_get_excluded_ids();
+	if( $statusid == 1 ) {
+		array_push( $excluded_ids, $pageid );
+		$excluded_ids = array_unique( $excluded_ids );
+	} else {
+		$index = array_search( $pageid, $excluded_ids );
+		if ( $index !== false ) unset( $excluded_ids[$index] );
+	}
+	$excluded_ids_str = implode( ',', $excluded_ids );
+	ep_set_option( EP_OPTION_NAME, $excluded_ids_str, "Comma separated list of post and page IDs to exclude when returning pages from the get_pages function." );
+	
+	if( $statusid == 0 ) { $e_status = 1; $e_img = '_off'; } else { $e_status = 0; $e_img = ''; }
+	die( "jQuery('#excludepagewrap$pageid').html('<a tip=\"" . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . "\" href=\"javascript:void(0);\" onclick=\"ame_ajax_set_excludestatus(\'" . $pageid . "\', \'" . $e_status . "\');return false;\"><img src=\"" . AME_PLUGINFULLURL . "img/" . AME_IMGSET . "excludepages" . $e_img . ".gif\" border=\"0\" alt=\"" . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . "\" title=\"" . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . "\" /></a>');jQuery('#page-" . $pageid . " td, #page-" . $pageid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
+}
+
 if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_toggle_visibility', 'ame_toggle_visibility' );
 	add_action('wp_ajax_ame_set_date', 'ame_set_date' );
@@ -536,6 +561,7 @@ if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_ajax_save_mediadesc', 'ame_ajax_save_mediadesc' );
 	add_action('wp_ajax_ame_author_edit', 'ame_author_edit' );
 	add_action('wp_ajax_ame_save_author', 'ame_save_author' );
+	add_action('wp_ajax_ame_toggle_excludestatus', 'ame_toggle_excludestatus' );
 }
 
 
@@ -549,6 +575,7 @@ if( function_exists('add_action') ) {
  *
  * @since 0.7
  * @author scripts@schloebe.de
+ * @author Jeff Cole <upekshapriya@coolcave.co.uk>
  */
 function ame_js_jquery_datepicker_header() {
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
@@ -642,23 +669,25 @@ if ( get_locale() == 'de_DE' ) {
 });
 //]]>
 </script>\n";
-if( $current_page == 'edit-pages' ) {
+if( $current_page == 'edit-pages' || $current_page == 'edit' ) {
+	if( $current_page == 'edit-pages' ) $ame_column_heading = __('Edit Page Order:', 'admin-management-xtended'); else $ame_column_heading = __('Edit Post Order:', 'admin-management-xtended');
+	
 	if ( get_option('ame_show_orderoptions') == '0' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_order2_loader' class='displaying-num'>" . $ame_column_heading . "</span> <span class='page-numbers current'>" . __('Off', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '1' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_order2_loader' class='displaying-num'>" . $ame_column_heading . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __('Direct input', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(2)'>" . __('Drag & Drop', 'admin-management-xtended') . "</a></div>\");
 });
 </script>\n";
 	} elseif ( get_option('ame_show_orderoptions') == '2' ) {
 		echo "<script type=\"text/javascript\" charset=\"utf-8\">
 jQuery(document).ready(function() {
-   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_ordersave_loader'></span> <span id='ame_order2_loader' class='displaying-num'>" . __('Edit Page Order:', 'admin-management-xtended') . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank'>[?]</a>", 'admin-management-xtended') . "</span></div>\");
+   jQuery(\"div.wrap div[class='tablenav']:first\").prepend(\"<div class='tablenav-pages'>&nbsp;&nbsp;|&nbsp;<span id='ame_ordersave_loader'></span> <span id='ame_order2_loader' class='displaying-num'>" . $ame_column_heading . "</span> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(0)'>" . __('Off', 'admin-management-xtended') . "</a> <a class='page-numbers' href='javascript:void(0);' onclick='ame_ajax_toggle_orderoptions(1)'>" . __('Direct input', 'admin-management-xtended') . "</a> <span class='page-numbers current'>" . __("Drag & Drop <a href='http://www.schloebe.de/wordpress/admin-management-xtended-plugin/#pageorder' target='_blank'>[?]</a>", 'admin-management-xtended') . "</span></div>\");
 });
 </script>\n";
 	}
