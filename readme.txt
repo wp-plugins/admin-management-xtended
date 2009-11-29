@@ -98,7 +98,7 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 = 2.1.0 =
 * NEW: Added support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin (thanks to danf for suggesting!)
-* NEW: Change post order inline in post management view
+* NEW: Change post order inline in post management view (Props [Jeff Cole](http://www.coolcave.co.uk/ "Jeff Cole")
 
 = 2.0.3 =
 * FIXED: Post tag auto-suggest returned 0 instead of suggested tags
