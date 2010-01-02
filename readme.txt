@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
 Requires at least: 2.5
-Tested up to: 2.9
+Tested up to: 2.9.1
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -66,6 +66,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Belorussian (by_BY) (Thanks for contributing belorussian language goes to [Marcis Gasuns](http://www.fatcow.com))
 * Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to [H&aring;vard Grimelid](http://grx.no))
 * Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to [H&aring;vard Grimelid](http://grx.no/))
+* Ukranian (uk_UA) (Thanks for contributing ukranian language goes to [ghost](http://antsar.info/))
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
