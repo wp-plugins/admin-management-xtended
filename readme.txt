@@ -97,6 +97,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.1.1 =
+* FIXED: The save button on editing page title stopped working (Thanks to Michael Johnston!)
+
 = 2.1.0 =
 * NEW: Added support for [Exclude Pages](http://wordpress.org/extend/plugins/exclude-pages/ "Exclude Pages") plugin (thanks to danf for suggesting!)
 * NEW: Change post order inline in post management view (Props [Jeff Cole](http://www.coolcave.co.uk/ "Jeff Cole")
