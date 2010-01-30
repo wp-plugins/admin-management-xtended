@@ -225,7 +225,7 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 == Upgrade Notice ==
 
 = 2.1.1 =
-* FIXED: The save button on editing page title stopped working (Thanks to Michael Johnston!)
+The save button on editing page title stopped working (Thanks to Michael Johnston!)
 
 == Other Notes ==
 
