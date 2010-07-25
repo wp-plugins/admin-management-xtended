@@ -1,16 +1,14 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, plugin, category, inline, media, revision, link, bookmark
-Requires at least: 2.5
-Tested up to: 2.9.2
+Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
+Requires at least: 2.7
+Tested up to: 3.0
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
 
 == Description ==
-
-**Version 2.0 and above is WP2.7+ only!**
 
 As a whole, the new WordPress Admin panel is organized fairly well, however when it comes to editing posts or pages quickly without having to open each post or page in a new tab or window, it isn't a very efficient process. For those who are using **WordPress as a CMS**, it's important to be able to manage contents easily and quickly. That's what this plugin helps to do.
 
@@ -96,6 +94,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.1.5 =
+* FIXED: Basic WP 3.0 compatibility
 
 = 2.1.1 =
 * FIXED: The save button on editing page title stopped working (Thanks to Michael Johnston!)

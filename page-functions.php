@@ -7,7 +7,7 @@
  */
  
 /*
-Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2010 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
