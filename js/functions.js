@@ -334,3 +334,7 @@ function ame_ajax_set_excludestatus( page_id, status_id ) {
 	ame_sack.onError = function() { alert('Ajax error on toggling image set') };
 	ame_sack.runAJAX();
 }
+
+function ame_check_all( id, status ) {
+	jQuery('div#categorychoose' + id).find('ul li input::checkbox').attr('checked', status);
+}
