@@ -95,6 +95,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.1.6 =
+* FIXED: Check All/Uncheck All for category selection
+
 = 2.1.5 =
 * FIXED: Basic WP 3.0 compatibility
 
