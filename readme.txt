@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
 Requires at least: 2.7
-Tested up to: 3.0
+Tested up to: 3.0.1
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
