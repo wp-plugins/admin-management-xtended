@@ -95,6 +95,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.1.7 =
+* FIXED: Updated german localization
+* FIXED: Updated italian localization
+
 = 2.1.6 =
 * FIXED: Check All/Uncheck All for category selection
 
