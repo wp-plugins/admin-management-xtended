@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
 Requires at least: 2.7
-Tested up to: 3.0.1
+Tested up to: 3.0.4
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -94,6 +94,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.1.8 =
+* FIXED: German localization wasn't loading
 
 = 2.1.7 =
 * FIXED: Updated german localization
