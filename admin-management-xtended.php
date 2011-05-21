@@ -1,14 +1,14 @@
 <?php 
 /*
 Plugin Name: Admin Management Xtended
-Version: 2.1.9
+Version: 2.2
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 2.7+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
 Author URI: http://www.schloebe.de/
 
 
-Copyright 2008-2010 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2011 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "2.1.9");
+define("AME_VERSION", "2.2");
 
 /**
  * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
@@ -75,6 +75,11 @@ define('AMEISWP25', version_compare($GLOBALS['wp_version'], '2.4.999', '>'));
  * Define the global var AMEISWP27, returning bool if WP 2.7 or higher is running
  */
 define('AMEISWP27', version_compare($GLOBALS['wp_version'], '2.6.999', '>'));
+
+/**
+ * Define the global var AMEISWP31, returning bool if WP 3.1 or higher is running
+ */
+define('AMEISWP31', version_compare($GLOBALS['wp_version'], '3.0.999', '>'));
 
 /**
  * Define the global var ISINSTBTM, returning bool
@@ -126,8 +131,8 @@ class AdminManagementXtended {
 			add_action('admin_notices', array(&$this, 'wpBTMIncompCheck'));
 		}
 		
-		if ( !AMEISWP27 ) {
-			add_action('admin_notices', array(&$this, 'wpVersion27Failed'));
+		if ( !AMEISWP31 ) {
+			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return;
 		}
 		add_action('init', array(&$this, 'ame_load_textdomain'));
@@ -210,27 +215,13 @@ class AdminManagementXtended {
 	/**
  	* Checks for the version of WordPress,
  	* and adds a message to inform the user
- 	* if required WP version is less than 2.5
+ 	* if WP version is >= 3.1 which isnt supported
  	*
- 	* @since 1.4.0
-	* @deprecated Deprecated since version 2.0
-	* @see wpVersion27Failed()
+ 	* @since 2.1.9
  	* @author scripts@schloebe.de
  	*/
 	function wpVersionFailed() {
-		echo "<div id='wpversionfailedmessage' class='error fade'><p>" . __('Admin Management Xtended requires at least WordPress 2.5!', 'admin-management-xtended') . "</p></div>";
-	}
-	
-	/**
- 	* Checks for the version of WordPress,
- 	* and adds a message to inform the user
- 	* if WP version is >= 2.7 which isnt supported
- 	*
- 	* @since 2.0
- 	* @author scripts@schloebe.de
- 	*/
-	function wpVersion27Failed() {
-		echo "<div id='wpversion27failedmessage' class='error fade'><p>" . sprintf(__("<strong>Admin Management Xtended</strong> plugin version 2.0 requires at least WordPress 2.7! If you're still using a WP version prior to 2.7, please <a href='%s'>use Admin Management Xtended version 1.9.1</a>! Consider updating to the latest WP version for your own safety!", 'admin-management-xtended'), 'http://downloads.wordpress.org/plugin/admin-management-xtended.1.9.1.zip') . "</p></div>";
+		echo "<div id='wpversion27failedmessage' class='error fade'><p>" . sprintf(__("<strong>Admin Management Xtended</strong> 2.2 and above require at least WordPress 3.1! If you're still using a WP version prior to 3.1, please <a href='%s'>use Admin Management Xtended version 2.1.5</a>! Consider updating to the latest WP version for your own safety!", 'admin-management-xtended'), 'http://downloads.wordpress.org/plugin/admin-management-xtended.2.1.5.zip') . "</p></div>";
 	}
 	
 	/**

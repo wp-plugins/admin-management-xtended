@@ -2,8 +2,8 @@
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
-Requires at least: 2.7
-Tested up to: 3.1
+Requires at least: 3.1
+Tested up to: 3.1.2
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -96,8 +96,14 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.2 =
+* FIXED: Version 2.2 now requires WP 3.1
+* FIXED: Quick Edit icons are back on the pages listing panel
+* FIXED: Page Slug can now be edited again
+* FIXED: Buttons to switch between the Drag'n'Drop modes show up again
+
 = 2.1.9 =
-* Added romanian localization (Thanks to Anunturi Jibo!)
+* NEW: Added romanian localization (Thanks to Anunturi Jibo!)
 
 = 2.1.8 =
 * FIXED: German localization wasn't loading
