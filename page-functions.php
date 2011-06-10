@@ -113,8 +113,9 @@ function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 
 /**
  * Adds content to the new 'Page Order' column on the page management view
- *
+ * Dikla added $q_post_order->post_type to save order js function line 129.
  * @since 1.0
+ * @author Dikla Shwartz <dikla@opentech.co.il>
  * @author scripts@schloebe.de
  *
  * @param string $ame_column_name
@@ -125,7 +126,7 @@ function ame_custom_column_page_order( $ame_column_name, $ame_id ) {
     if( $ame_column_name == 'ame_page_order' ) {
     	$q_post_order = get_post( $ame_id );
     	echo '<div style="width:75px;" class="ame_options">';
-    	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_pageorder' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'post\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'loader.gif" border="0" alt="" /></span>';
+    	echo '<input type="text" value="' . $q_post_order->menu_order . '" size="3" maxlength="3" style="font-size:1em;" id="ame_' . $q_post_order->post_type . 'order' . $ame_id . '" onchange="ame_ajax_order_save(' . $ame_id . ', \'' . $q_post_order->post_type . '\');" /> <span id="ame_order_loader' . $ame_id . '" style="display:none;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'loader.gif" border="0" alt="" /></span>';
     	echo '</div>';
     }
 }
