@@ -215,8 +215,8 @@ function ame_ajax_save_tags() {
 	if ( !empty( $tags ) ) {
 		$out = array();
 		foreach ( $tags as $c ) {
-			$out[] = '<a href="edit.php?tag=' . $c->slug . '"> ' . wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display')) . '</a>';
-			$out2[] = wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display'));
+			$out[] = '<a href="edit.php?tag=' . $c->slug . '"> ' . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display')) . '</a>';
+			$out2[] = esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display'));
 		}
 		$ame_post_tags .= join( ', ', $out );
 		$ame_post_tags_plain .= join( ', ', $out2 );
@@ -254,7 +254,7 @@ function ame_ajax_save_categories() {
 	if ( !empty( $categories ) ) {
 		$out = array();
 		foreach ( $categories as $c ) {
-			$out[] = '<a href="edit.php?category_name=' . $c->slug . '"> ' . wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . '</a>';
+			$out[] = '<a href="edit.php?category_name=' . $c->slug . '"> ' . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . '</a>';
 		}
 		$ame_post_cats = join( ', ', $out );
 	} else {
@@ -342,25 +342,25 @@ function ame_author_edit() {
 	if( $posttype == 'post' ) { $typenumber = '1'; } elseif( $posttype == 'page' ) { $typenumber = '2'; }
 	if( $posttype == 'post' ) { $cols = '8'; } elseif( $posttype == 'page' ) { $cols = '7'; }
 	if( $typenumber == '1' && !current_user_can('edit_post', $postid) ) {
-		die( "alert('" . js_escape( __('You are not allowed to change the post author as this user.') ) . "');" );
+		die( "alert('" . esc_js( __('You are not allowed to change the post author as this user.') ) . "');" );
 		return;
 	} elseif( $typenumber == '2' && !current_user_can('edit_page', $postid) ) {
-		die( "alert('" . js_escape( __('You are not allowed to change the page author as this user.') ) . "');" );
+		die( "alert('" . esc_js( __('You are not allowed to change the page author as this user.') ) . "');" );
 		return;
 	}
 	$post = get_post( $postid );
 	
-	$authors = get_editable_user_ids( $current_user->id ); // TODO: ROLE SYSTEM
+	$authors = get_users( array( 'user_id' => $user_id ) ); // TODO: ROLE SYSTEM
  	if ( $post->post_author && !in_array($post->post_author, $authors) )
 		$authors[] = $post->post_author;
 	if ( $authors && count( $authors ) > 1 ) {
 		$output = wp_dropdown_users( array('echo' => 0, 'include' => $authors, 'name' => 'author-' . $postid, 'selected' => $post->post_author) );
 	} else {
 		if( $typenumber == '1' ) {
-			die( "alert('" . js_escape( __('You are not allowed to change the post author as this user.') ) . "');" );
+			die( "alert('" . esc_js( __('You are not allowed to change the post author as this user.') ) . "');" );
 			return;
 		} elseif( $typenumber == '2' ) {
-			die( "alert('" . js_escape( __('You are not allowed to change the page author as this user.') ) . "');" );
+			die( "alert('" . esc_js( __('You are not allowed to change the page author as this user.') ) . "');" );
 			return;
 		}
 	}
@@ -474,7 +474,7 @@ function ame_set_date() {
 		die( "jQuery('#" . $posttype . "-" . $catid . " abbr').html('" . date(__('Y/m/d'), strtotime( $newpostdate ) ) . "'); jQuery('#" . $posttype . "-" . $catid . "').removeClass('status-publish').addClass('status-future'); jQuery('#" . $posttype . "-" . $catid . " td, #" . $posttype . "-" . $catid . " th').animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#F9F9F9' }, 300);" );
 	} elseif ( strtotime( current_time(mysql) ) > strtotime( $newpostdate ) ) {
 		if( $posttype == 'post' && !current_user_can( 'publish_posts' ) ) {
-			die( "alert('" . js_escape( __('You are not allowed to edit this post.') ) . "');" );
+			die( "alert('" . esc_js( __('You are not allowed to edit this post.') ) . "');" );
 			return;
 		}
 		//$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_status = 'publish' WHERE ID = %d", $catid ) );
@@ -499,7 +499,7 @@ function ame_toggle_visibility() {
 	
 	if ( $status == 'publish' ) {
 		if( $posttype == 'post' && !current_user_can( 'publish_posts' ) ) {
-			die( "alert('" . js_escape( __('Sorry, you do not have the right to publish this post.') ) . "');" );
+			die( "alert('" . esc_js( __('Sorry, you do not have the right to publish this post.') ) . "');" );
 			return;
 		}
 		if( $posttype == 'post' && $post_status == 'pending' ) {

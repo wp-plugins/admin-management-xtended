@@ -7,7 +7,7 @@
  */
  
 /*
-Copyright 2008 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2011 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -61,8 +61,8 @@ function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 		if ( !empty( $tags ) ) {
 			$out = array();
 			foreach ( $tags as $c ) {
-				$out[] = '<a href="edit.php?tag=' . $c->slug . '"> ' . wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display')) . '</a>';
-				$out2[] = wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display'));
+				$out[] = '<a href="edit.php?tag=' . $c->slug . '"> ' . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display')) . '</a>';
+				$out2[] = esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'post_tag', 'display'));
 			}
 			$ame_post_tags .= join( ', ', $out );
 			$ame_post_tags_plain .= join( ', ', $out2 );
@@ -121,7 +121,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		if ( !empty( $categories ) ) {
 			$out = array();
 			foreach ( $categories as $c ) {
-				$out[] = "<a href='edit.php?category_name=$c->slug'> " . wp_specialchars(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . "</a>";
+				$out[] = "<a href='edit.php?category_name=$c->slug'> " . esc_html(sanitize_term_field('name', $c->name, $c->term_id, 'category', 'display')) . "</a>";
 			}
 			$ame_post_cats .= join( ', ', $out );
 		} else {
@@ -134,11 +134,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 	<strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, true);"><?php _e('Check All'); ?></a></strong> | <strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, false);"><?php _e('Uncheck All'); ?></a></strong>
 	<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:165px;overflow:auto;">
 		<?php
-		if ( version_compare( $wp_version, '2.5.1', '>=' ) ) {
-			wp_category_checklist( $ame_id );
-		} elseif ( version_compare( $wp_version, '2.5', '=' ) ) {
-			dropdown_categories(get_settings('default_category'));
-		}
+		wp_category_checklist( $ame_id, 0, get_settings('default_category') );
 		?>
 	</ul>
 	<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-primary" onclick="ame_ajax_save_categories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
