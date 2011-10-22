@@ -2,7 +2,7 @@
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
-Requires at least: 3.1
+Requires at least: 3.2
 Tested up to: 3.3
 Stable tag: trunk
 
@@ -47,25 +47,25 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 
 * English
 * German (de_DE) (Thanks to me ;-))
-* Spanish (es_ES) (Thanks for contributing spanish language goes to [Karin Sequen](http://www.es-xchange.com))
-* French (fr_FR) (Thanks for contributing french language goes to [Gilles Wittezaële](http://gilles.wittezaele.fr/blog/))
-* Hebrew (he_IL) (Thanks for contributing hebrew language goes to [Meir Pinto](http://www.pintophotography.com/wp/))
-* Japanese (ja) (Thanks for contributing japanese language goes to [kzh](http://homepage1.nifty.com/))
-* Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to [Amir Ashtiani](http://ouo.ir))
-* Turkish (tr_TR) (Thanks for contributing turkish language goes to [wolkanca](http://blog.wolkanca.com))
-* Danish (da_DK) (Thanks for contributing danish language goes to [Mads Christian Jensen](http://mads.eu/))
+* Spanish (es_ES) (Thanks for contributing spanish language goes to Karin Sequen / http://www.es-xchange.com)
+* French (fr_FR) (Thanks for contributing french language goes to Gilles Wittezaële / http://gilles.wittezaele.fr/blog/)
+* Hebrew (he_IL) (Thanks for contributing hebrew language goes to Meir Pinto / http://www.pintophotography.com/wp/)
+* Japanese (ja) (Thanks for contributing japanese language goes to kzh / http://homepage1.nifty.com/)
+* Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to Amir Ashtiani / http://ouo.ir)
+* Turkish (tr_TR) (Thanks for contributing turkish language goes to wolkanca / http://blog.wolkanca.com)
+* Danish (da_DK) (Thanks for contributing danish language goes to Mads Christian Jensen / http://mads.eu/)
 * Czech (cs_CZ) (Thanks for contributing czech language goes to Josef Klimosz)
-* Dutch (nl_NL) (Thanks for contributing dutch language goes to [Steven Goos](http://gooos.nl))
-* Polish (pl_PL) (Thanks for contributing polish language goes to [Cezary Tomczyk](http://www.ikeris.com))
-* Russian (ru_RU) (Thanks for contributing polish language goes to [Lecactus](http://lecactus.ru/))
-* Italian (it_IT) (Thanks for contributing italian language goes to [Gianni Diurno](http://gidibao.net))
+* Dutch (nl_NL) (Thanks for contributing dutch language goes to Steven Goos / http://gooos.nl)
+* Polish (pl_PL) (Thanks for contributing polish language goes to Cezary Tomczyk / http://www.ikeris.com)
+* Russian (ru_RU) (Thanks for contributing polish language goes to Lecactus / http://lecactus.ru/)
+* Italian (it_IT) (Thanks for contributing italian language goes to Gianni Diurno / http://gidibao.net)
 * Traditional Chinese (zh_TW) (Thanks for contributing traditional chinese language goes to Disway Dong)
 * Brazilian Portuguese (pt_BR) (Thanks for contributing brazilian portuguese language goes to Prem Prakash)
-* Belorussian (by_BY) (Thanks for contributing belorussian language goes to [Marcis Gasuns](http://www.fatcow.com))
-* Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to [H&aring;vard Grimelid](http://grx.no))
-* Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to [H&aring;vard Grimelid](http://grx.no/))
-* Ukranian (uk_UA) (Thanks for contributing ukranian language goes to [ghost](http://antsar.info/))
-* Romanian (ro_RO) (Thanks for contributing romanian language goes to [Anunturi Jibo](http://www.jibo.ro))
+* Belorussian (by_BY) (Thanks for contributing belorussian language goes to Marcis Gasuns / http://www.fatcow.com)
+* Norwegian Nynorsk (nn_NO) (Thanks for contributing norwegian nynorsk language goes to H&aring;vard Grimelid / http://grx.no)
+* Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to H&aring;vard Grimelid / http://grx.no/)
+* Ukranian (uk_UA) (Thanks for contributing ukranian language goes to ghost / http://antsar.info/)
+* Romanian (ro_RO) (Thanks for contributing romanian language goes to Anunturi Jibo / http://www.jibo.ro)
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
@@ -95,6 +95,11 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.2.3 =
+* FIXED: Version 2.2.3 now requires WP 3.2
+* FIXED: Date Calendar now working again
+* FIXED: Some jQuery 1.6.x related fixes
 
 = 2.2.2 =
 * FIXED: Compatibility and security changes (props T. J. Brumfield!)
@@ -139,7 +144,7 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 * NEW: Support for symlinks (Thanks to Georg S. Adamsen!)
 
 = 2.0.1 =
-* FIXED: buttons for switching the way of sorting pages didn't show up if there wasn't pagination
+* FIXED: buttons for switching the way /  sorting pages didn't show up if there wasn't pagination
 * FIXED: page drag'n'drop now stores the new page order
 
 = 2.0 =

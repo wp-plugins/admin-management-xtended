@@ -71,13 +71,13 @@
 					var weekday = i%7;
 					var day = Date.dayNames[weekday];
 					headRow.append(
-						jQuery(dc('th')).attr({'scope':'col', 'abbr':day, 'title':day, 'class':(weekday == 0 || weekday == 6 ? 'weekend' : 'weekday')}).html(s.showHeader == $.dpConst.SHOW_HEADER_SHORT ? day.substr(0, 1) : day)
+						jQuery(dc('th')).prop({'scope':'col', 'abbr':day, 'title':day, 'class':(weekday == 0 || weekday == 6 ? 'weekend' : 'weekday')}).html(s.showHeader == $.dpConst.SHOW_HEADER_SHORT ? day.substr(0, 1) : day)
 					);
 				}
 			};
 			
 			var calendarTable = $(dc('table'))
-									.attr(
+									.prop(
 										{
 											'cellspacing':2,
 											'className':'jCalendar'
@@ -126,7 +126,7 @@
 					var thisMonth = currentDate.getMonth() == month;
 					var d = $(dc('td'))
 								.text(currentDate.getDate() + '')
-								.attr('className', (thisMonth ? 'current-month ' : 'other-month ') +
+								.prop('className', (thisMonth ? 'current-month ' : 'other-month ') +
 													(currentDate.isWeekend() ? 'weekend ' : 'weekday ') +
 													(thisMonth && currentDate.getTime() == today.getTime() ? 'today ' : '')
 								)
@@ -620,10 +620,10 @@
 				if (this.button) {
 					$but = $(this.button);
 					$but[s ? 'addClass' : 'removeClass']('dp-disabled');
-					$but.attr('title', s ? '' : $.dpText.TEXT_CHOOSE_DATE);
+					$but.prop('title', s ? '' : $.dpText.TEXT_CHOOSE_DATE);
 				}
 				if ($e.is(':text')) {
-					$e.attr('disabled', s ? 'disabled' : '');
+					$e.prop('disabled', s ? 'disabled' : '');
 				}
 			},
 			setDisplayedMonth : function(m, y)
@@ -744,7 +744,7 @@
 				$createIn
 					.append(
 						$('<div></div>')
-							.attr(attrs)
+							.prop(attrs)
 							.css(cssRules)
 							.append(
 								$('<h2></h2>'),
@@ -787,7 +787,7 @@
 											)
 									),
 								$('<div></div>')
-									.attr('className', 'dp-calendar')
+									.prop('className', 'dp-calendar')
 							)
 							.bgIframe()
 						);

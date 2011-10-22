@@ -161,7 +161,7 @@ function ame_ajax_toggle_imageset( setid ) {
 }
 
 function ame_ajax_toggle_showinvisposts( status ) {
-	jQuery("#ame_toggle_showinvisposts").attr("value", ameAjaxL10n.pleaseWait);
+	jQuery("#ame_toggle_showinvisposts").prop("value", ameAjaxL10n.pleaseWait);
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
 	ame_sack.execute = 1;
@@ -185,7 +185,7 @@ function ame_ajax_toggle_orderoptions( status ) {
 }
 
 function ame_ajax_order_save( cat_id, posttype ) {
-	var neworderid = jQuery("input#ame_" + posttype + "order" + cat_id).attr('value');
+	var neworderid = jQuery("input#ame_" + posttype + "order" + cat_id).prop('value');
 	jQuery("span#ame_order_loader" + cat_id).show();
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
@@ -200,7 +200,7 @@ function ame_ajax_order_save( cat_id, posttype ) {
 }
 
 function ame_slug_edit( cat_id, posttype ) {
-	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
+	var newslug = jQuery("input#ame_slug" + cat_id).prop('value');
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
 	ame_sack.execute = 1;
@@ -250,7 +250,7 @@ function ame_title_edit( cat_id, title_text, posttype ) {
 }
 
 function ame_ajax_title_save( cat_id, posttype ) {
-	var newtitle = jQuery("input#ame_title" + cat_id).attr('value');
+	var newtitle = jQuery("input#ame_title" + cat_id).prop('value');
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
 	ame_sack.execute = 1;
@@ -264,7 +264,7 @@ function ame_ajax_title_save( cat_id, posttype ) {
 }
 
 function ame_ajax_slug_save( cat_id, typenumber ) {
-	var newslug = jQuery("input#ame_slug" + cat_id).attr('value');
+	var newslug = jQuery("input#ame_slug" + cat_id).prop('value');
 	if ( newslug == '' || newslug == ' ' || newslug == '  ' ) {
 		alert( ameAjaxL10n.slugEmpty );
 		return;
@@ -282,7 +282,7 @@ function ame_ajax_slug_save( cat_id, typenumber ) {
 }
 
 function ame_ajax_author_save( cat_id, typenumber ) {
-	var newauthor = jQuery("select#author-" + cat_id).attr('value');
+	var newauthor = jQuery("select#author-" + cat_id).prop('value');
 	var ame_sack = new sack(
 	ameAjaxL10n.requestUrl);
 	ame_sack.execute = 1;
@@ -336,5 +336,5 @@ function ame_ajax_set_excludestatus( page_id, status_id ) {
 }
 
 function ame_check_all( id, status ) {
-	jQuery('div#categorychoose' + id).find('ul li input::checkbox').attr('checked', status);
+	jQuery('div#categorychoose' + id).find('ul li input::checkbox').prop('checked', status);
 }
