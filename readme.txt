@@ -96,6 +96,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.2.4 =
+* FIXED: Inline post/page author dropdown lists authors correctly now (Thanks for letting me know, Karthik Vijayakumar!)
+
 = 2.2.3 =
 * FIXED: Version 2.2.3 now requires WP 3.2
 * FIXED: Date Calendar now working again

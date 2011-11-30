@@ -354,7 +354,13 @@ function ame_author_edit() {
  	if ( $post->post_author && !in_array($post->post_author, $authors) )
 		$authors[] = $post->post_author;
 	if ( $authors && count( $authors ) > 1 ) {
-		$output = wp_dropdown_users( array('echo' => 0, 'include' => $authors, 'name' => 'author-' . $postid, 'selected' => $post->post_author) );
+		$output = wp_dropdown_users( array(
+			'echo' 				=> 0,
+			'who' 				=> 'authors',
+			'name' 				=> 'author-' . $postid,
+			'selected' 			=> empty($post->ID) ? $user_ID : $post->post_author,
+			'include_selected' 	=> true
+		) );
 	} else {
 		if( $typenumber == '1' ) {
 			die( "alert('" . esc_js( __('You are not allowed to change the post author as this user.') ) . "');" );
