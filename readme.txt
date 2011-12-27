@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
 Requires at least: 3.2
-Tested up to: 3.3
+Tested up to: 3.4-alpha-19620
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -95,6 +95,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.2.5 =
+* FIXED: Maintenance
+* FIXED: Calendar popup in WP 3.3
 
 = 2.2.4 =
 * FIXED: Inline post/page author dropdown lists authors correctly now (Thanks for letting me know, Karthik Vijayakumar!)

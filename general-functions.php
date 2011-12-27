@@ -7,7 +7,7 @@
  */
 
 /*
-Copyright 2008-2011 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2012 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -639,21 +639,19 @@ function ame_setupSuggest( ame_suggestid ) {
 //<![CDATA[
 Date.firstDayOfWeek = 1;
 Date.format = 'yyyy-mm-dd';\n";
-if ( get_locale() == 'de_DE' ) {
-	echo "jQuery.dpText = {
-	TEXT_PREV_YEAR		:	'Voriges Jahr',
-	TEXT_PREV_MONTH		:	'Voriger Monat',
-	TEXT_NEXT_YEAR		:	'N&auml;chstes Jahr',
-	TEXT_NEXT_MONTH		:	'N&auml;chster Monat',
-	TEXT_CLOSE			:	'Schlie&szlig;en',
-	TEXT_CHOOSE_DATE	:	'Datum w&auml;hlen'
-}\n";
-}
+echo "jQuery.dpText = {
+\tTEXT_PREV_YEAR		:	'" . __('Previous Year', 'admin-management-xtended') . "',
+\tTEXT_PREV_MONTH		:	'" . __('Previous Month', 'admin-management-xtended') . "',
+\tTEXT_NEXT_YEAR		:	'" . __('Next Year', 'admin-management-xtended') . "',
+\tTEXT_NEXT_MONTH		:	'" . __('Next Month', 'admin-management-xtended') . "',
+\tTEXT_CLOSE		:	'" . __('Close', 'admin-management-xtended') . "',
+\tTEXT_CHOOSE_DATE	:	'" . __('Pick Date', 'admin-management-xtended') . "'
+};\n";
 	echo "jQuery(function() {
 	jQuery('.date-pick')
 		.datePicker({startDate:'2000-01-01', createButton:false, displayClose:true})
 		.dpSetPosition(jQuery.dpConst.POS_TOP, jQuery.dpConst.POS_RIGHT)
-		.bind(
+		.live(
 			'click',
 			function() {
 				jQuery(this).dpDisplay();
@@ -661,7 +659,7 @@ if ( get_locale() == 'de_DE' ) {
 				return false;
 			}
 		)
-		.bind(
+		.live(
 			'dateSelected',
 			function(e, selectedDate) {
 				var cat_id = this.id;
@@ -814,21 +812,9 @@ function ame_changeImgSet() {
 	return ' <a href="javascript:void(0);" onclick="ame_ajax_toggle_imageset(' . $imgset . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'changeimgset.gif" border="0" alt="' . __('Change image set', 'admin-management-xtended') . '" title="' . __('Change image set', 'admin-management-xtended') . '" /></a>';
 }
 
-
-/**
- * Writes a version metatag to the FE page for support info
- *
- * @since 1.3.0
- * @author scripts@schloebe.de
- */
-function ame_feheader_insert() {
-	echo "<meta name='Admin Management Xtended WordPress plugin' content='" . AME_VERSION . "' />\n";
-}
-
 $current_page = basename($_SERVER['PHP_SELF'], ".php");
 if( function_exists('add_action') ) {
 	$wp_version = (!isset($wp_version)) ? get_bloginfo('version') : $wp_version;
-	add_action('wp_head', 'ame_feheader_insert', 1);
 	if( ($current_page == 'edit' || $current_page == 'edit-pages') && !isset( $_GET['page'] ) ) {
 		$cur_locale = get_locale();
 		add_action('admin_head', 'ame_css_admin_header' );
