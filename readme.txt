@@ -14,7 +14,7 @@ As a whole, the new WordPress Admin panel is organized fairly well, however when
 
 It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-known functions like toggling post/page visibility, changing publication date and title **without having to open the edit screens or reload the page**, **plus changing page order with drag'n'drop**, inline category management and inline tag management, plus much more.
 
-[Developer on Google+](https://plus.google.com/100776016153395792354 "Developer on Google+") | [Developer on Twitter](http://twitter.com/wpseek "Developer on Twitter")
+[Developer on Google+](https://plus.google.com/118074611982254715031 "Developer on Google+") | [Developer on Twitter](http://twitter.com/wpseek "Developer on Twitter")
 
 [vimeo http://vimeo.com/9598749]
 
