@@ -745,7 +745,7 @@ function ame_js_admin_header() {
 <script type="text/javascript">
 //<![CDATA[
 ameAjaxL10n = {
-	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginPath: "<?php echo AME_PLUGINFULLDIR; ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>", Revisions: "<?php echo $revisionL10n; ?>", Time: "<?php _e("Insert time"); ?>"
+	blogUrl: "<?php bloginfo( 'wpurl' ); ?>", pluginUrl: "<?php echo AME_PLUGINFULLURL; ?>", requestUrl: "<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php", imgUrl: "<?php echo AME_PLUGINFULLURL; ?>img/<?php echo AME_IMGSET ?>", Edit: "<?php _e("Edit"); ?>", Post: "<?php _e("Post"); ?>", Save: "<?php _e("Save"); ?>", Cancel: "<?php _e("Cancel"); ?>", postType: "<?php echo $posttype; ?>", pleaseWait: "<?php _e("Please wait..."); ?>", slugEmpty: "<?php _e("Slug may not be empty!"); ?>", Revisions: "<?php echo $revisionL10n; ?>", Time: "<?php _e("Insert time"); ?>"
 }
 //]]>
 </script>
