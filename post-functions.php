@@ -7,7 +7,7 @@
  */
  
 /*
-Copyright 2008-2011 Oliver Schlöbe (email : scripts@schloebe.de)
+Copyright 2008-2012 Oliver Schlöbe (email : scripts@schloebe.de)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -129,10 +129,10 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		}
 		if( current_user_can( 'edit_post', $ame_id ) ) {
 ?>
-<div id="categorychoosewrap<?php echo $ame_id; ?>" style="width:300px;height:215px;overflow:auto;display:none;">
+<div id="categorychoosewrap<?php echo $ame_id; ?>" style="width:300px;height:415px;overflow:auto;display:none;">
 <div id="categorychoose<?php echo $ame_id; ?>" class="categorydiv">
 	<strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, true);"><?php _e('Check All'); ?></a></strong> | <strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, false);"><?php _e('Uncheck All'); ?></a></strong>
-	<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:165px;overflow:auto;">
+	<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:365px;overflow:auto;">
 		<?php
 		wp_category_checklist( $ame_id, 0, get_settings('default_category') );
 		?>
@@ -144,7 +144,7 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 		}
 		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;';
 		if( current_user_can( 'edit_post', $ame_id ) ) {
-		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=215&amp;width=300&amp;inlineId=categorychoosewrap' . $ame_id . '&amp;modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=415&amp;width=300&amp;inlineId=categorychoosewrap' . $ame_id . '&amp;modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
 		}
     }
 }

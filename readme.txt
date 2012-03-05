@@ -98,6 +98,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.2.7 =
+* FIXED: Larger Category list thickbox for those having a lot of categories
+
 = 2.2.6 =
 * FIXED: JS error on local Windows installs
 
