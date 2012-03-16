@@ -68,6 +68,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Norwegian Bokm&aring;l (nb_NO) (Thanks for contributing norwegian bokm&aring;l language goes to H&aring;vard Grimelid / http://grx.no/)
 * Ukranian (uk_UA) (Thanks for contributing ukranian language goes to ghost / http://antsar.info/)
 * Romanian (ro_RO) (Thanks for contributing romanian language goes to Anunturi Jibo / http://www.jibo.ro)
+* Slovak (sk_SK) (Thanks for contributing slovak language goes to Viliam Brozman / http://www.brozman.sk/blog)
 
 **Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
 
@@ -97,6 +98,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.2.8 =
+* NEW: Added slovak localization (Thanks to Viliam Brozman!)
 
 = 2.2.7 =
 * FIXED: Larger Category list thickbox for those having a lot of categories
