@@ -16,6 +16,8 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 
 [Developer on Google+](https://plus.google.com/118074611982254715031 "Developer on Google+") | [Developer on Twitter](http://twitter.com/wpseek "Developer on Twitter")
 
+**Looking for more WordPress plugins? Visit [www.schloebe.de/portfolio/](http://www.schloebe.de/portfolio/)**
+
 [vimeo http://vimeo.com/9598749]
 
 **Features:**
@@ -70,8 +72,6 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Romanian (ro_RO) (Thanks for contributing romanian language goes to Anunturi Jibo / http://www.jibo.ro)
 * Slovak (sk_SK) (Thanks for contributing slovak language goes to Viliam Brozman / http://www.brozman.sk/blog)
 
-**Want update feeds, code documentation and more? Visit [extend.schloebe.de](http://extend.schloebe.de)**
-
 == Frequently Asked Questions ==
 
 = Why cant I set the time with the inline calendar? =
@@ -98,6 +98,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.2.9 =
+* FIXED: Added slovak localization (Thanks to Viliam Brozman!)
 
 = 2.2.8 =
 * NEW: Added slovak localization (Thanks to Viliam Brozman!)
