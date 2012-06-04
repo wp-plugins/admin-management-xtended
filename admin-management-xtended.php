@@ -67,16 +67,6 @@ function ame_is_plugin_active( $plugin_filename ) {
 define("AME_VERSION", "2.2.9");
 
 /**
- * Define the global var AMEISWP25, returning bool if at least WP 2.5 is running
- */
-define('AMEISWP25', version_compare($GLOBALS['wp_version'], '2.4.999', '>'));
-
-/**
- * Define the global var AMEISWP27, returning bool if WP 2.7 or higher is running
- */
-define('AMEISWP27', version_compare($GLOBALS['wp_version'], '2.6.999', '>'));
-
-/**
  * Define the global var AMEISWP32, returning bool if WP 3.2 or higher is running
  */
 define('AMEISWP32', version_compare($GLOBALS['wp_version'], '3.1.999', '>'));
@@ -135,6 +125,7 @@ class AdminManagementXtended {
 			add_action('admin_notices', array(&$this, 'wpVersionFailed'));
 			return;
 		}
+		
 		add_action('init', array(&$this, 'ame_load_textdomain'));
 		
 		/** 
@@ -186,12 +177,11 @@ class AdminManagementXtended {
 	 * @since 1.8.6
 	 * @author scripts@schloebe.de
 	 */
-	function fireActions( $type, $catid, $post ) {
+	function fireActions( $type, $postid, $post ) {
 		switch( $type ) {
 			case "post":
-				do_action('edit_post', $catid, $post);
-				//do_action('save_post', $catid, $post); // Causing problems... well.
-				do_action('wp_insert_post', $catid, $post);
+				do_action('edit_post', $postid, $post);
+				do_action('wp_insert_post', $postid, $post);
 				return $post;
 		}
 	}
@@ -205,10 +195,10 @@ class AdminManagementXtended {
 	function ame_load_textdomain() {
 		if ( function_exists('load_plugin_textdomain') ) {
 			if ( !defined('WP_PLUGIN_DIR') ) {
-       		 	load_plugin_textdomain('admin-management-xtended', str_replace( ABSPATH, '', dirname(__FILE__) ) . '/languages');
-        	} else {
-        		load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
-        	}
+				load_plugin_textdomain('admin-management-xtended', str_replace( ABSPATH, '', dirname(__FILE__) ) . '/languages');
+			} else {
+				load_plugin_textdomain('admin-management-xtended', false, dirname(plugin_basename(__FILE__)) . '/languages');
+			}
 		}
 	}
 	
