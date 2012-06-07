@@ -99,6 +99,11 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.3.1 =
+* FIXED: Removed unnecessary GET params when searching posts (for older browsers who cannot handle long URLs)
+* FIXED: Page revision links didn't show properly
+* FIXED: Some icons were missing :)
+
 = 2.3.0 =
 * FIXED: Several dozens of little fixes, improvements and compatibility issues
 * NEW: Quick Edit for Taxonomies (Categories, Tags, Custom Taxonomies, ...)

@@ -206,7 +206,7 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 		
 		// Post revisions
 		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
-			echo '<input type="hidden" name="amehasrev' . $ame_id . '" class="amehasrev" value="1" /><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
+			echo '<div class="amehasrev" id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
 			wp_list_post_revisions( $ame_id );
 			echo '</div>';
 		}

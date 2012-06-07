@@ -701,7 +701,7 @@ function ame_js_admin_header() {
 	$posttype = 'post'; $revisionL10n = __("Post Revisions");
 	
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
-	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $posttype = 'post'; } elseif( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'edit-pages' ) { $posttype = 'page'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
+	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $posttype = 'page'; } elseif( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
 	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $revisionL10n = __("Page Revisions"); } elseif( $current_page == 'edit' ) { $revisionL10n = __("Post Revisions"); } elseif( $current_page == 'edit-pages' ) { $revisionL10n = __("Page Revisions"); }
 ?>
 <?php if( !isset( $_GET['page'] ) ) { ?>

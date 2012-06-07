@@ -72,34 +72,34 @@ function ame_column_page_order( $defaults ) {
 function ame_custom_column_page_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
     if( $ame_column_name == 'ame_page_actions' ) {
-		
-		$post_status = get_post_status( $ame_id );
+		$post_status = get_post_status( $ame_id ); $q_post = get_post($ame_id);
     	echo '<div style="width:105px;" class="ame_options">';
-    	if ( $post_status == 'publish' ) {
-    		// Visibility icon
-    		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'draft\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'visible.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div> ';
-    	} else {
-    		// Visibility icon
-    		echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'publish\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'hidden.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
-    	}
+		
+    	// Visibility icon
+    	$visstatus = ( $post_status == 'publish' ) ? 'draft' : 'publish';
+    	echo '<div id="visicon' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" onclick="ame_ajax_set_visibility(' . $ame_id . ', \'' . $visstatus . '\', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . $visstatus . '.png" border="0" alt="' . __('Toggle visibility', 'admin-management-xtended') . '" title="' . __('Toggle visibility', 'admin-management-xtended') . '" /></a></div>';
+		
     	// Date icon
     	echo '<div id="date' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" class="date-pick" id="datepicker' . $ame_id . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'date.png" border="0" alt="' . __('Change Publication Date', 'admin-management-xtended') . '" title="' . __('Change Publication Date', 'admin-management-xtended') . '" /></a></div> ';
+		
 		// Slug edit icon
     	echo '<div id="slug' . $ame_id . '" style="padding:1px;float:left;"><a href="javascript:void(0);" id="slugedit' . $ame_id . '" onclick="ame_slug_edit(' . $ame_id . ', \'post\');"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'slug_edit.png" border="0" alt="' . __('Edit Page Slug', 'admin-management-xtended') . '" title="' . __('Edit Page Slug', 'admin-management-xtended') . '" /></a></div>';
+		
     	// Comment open/closed status icon
-    	$q_commentstatus = get_post($ame_id);
-    	$comment_status = $q_commentstatus->comment_status;
+    	$comment_status = $q_post->comment_status;
     	if( $comment_status == 'open' ) { $c_status = 0; $c_img = '_open'; } else { $c_status = 1; $c_img = '_closed'; }
     	echo '<div id="commentstatus' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_commentstatus(' . $ame_id . ', ' . $c_status . ', \'post\');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'comments' . $c_img . '.png" border="0" alt="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" title="' . __('Toggle comment status open/closed', 'admin-management-xtended') . '" /></a></div> ';
+		
 		// Plugin: Exclude Pages
 		if( is_plugin_active( 'exclude-pages/exclude_pages.php' ) ) {
 			$excluded_pages = ep_get_excluded_ids();
     		if( in_array( $ame_id, $excluded_pages ) ) { $e_status = 0; $e_img = ''; } else { $e_status = 1; $e_img = '_off'; }
 			echo '<div id="excludepagewrap' . $ame_id . '" style="padding:1px;float:left;"><a tip="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" href="javascript:void(0);" onclick="ame_ajax_set_excludestatus(' . $ame_id . ', ' . $e_status . ');return false;"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'excludepages' . $e_img . '.gif" border="0" alt="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" title="' . __('Plugin: Exclude Pages - Exclude page from navigation', 'admin-management-xtended') . '" /></a></div>';
 		}
+		
 		// Post revisions
 		if( function_exists('wp_list_post_revisions') && wp_get_post_revisions( $ame_id ) ) {
-			echo '<input type="hidden" name="amehasrev' . $ame_id . '" class="amehasrev" value="1" /><div id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
+			echo '<div class="amehasrev" id="amerevisionwrap' . $ame_id . '" style="width:300px;height:165px;overflow:auto;display:none;">';
 			wp_list_post_revisions( $ame_id );
 			echo '</div>';
 		}
