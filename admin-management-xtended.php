@@ -1,7 +1,7 @@
 <?php 
 /*
 Plugin Name: Admin Management Xtended
-Version: 2.3.1
+Version: 2.3.2
 Plugin URI: http://www.schloebe.de/wordpress/admin-management-xtended-plugin/
 Description: <strong>WordPress 3.2+ only.</strong> Extends admin functionalities by introducing: toggling post/page visibility inline, changing page order with drag'n'drop, inline category management, inline tag management, changing publication date inline, changing post slug inline, toggling comment status open/closed, hide draft posts, change media order, change media description inline, toggling link visibility, changing link categories
 Author: Oliver Schl&ouml;be
@@ -31,20 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  * @package WordPress_Plugins
  * @subpackage AdminManagementXtended
  */
-
-/**
- * Pre-2.6 compatibility
- */
-if ( !defined( 'WP_CONTENT_URL' ) )
-	define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
-if ( !defined( 'WP_CONTENT_DIR' ) )
-	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
-if ( !defined( 'WP_PLUGIN_URL' ) )
-	define( 'WP_PLUGIN_URL', WP_CONTENT_URL. '/plugins' );
-if ( !defined( 'WP_PLUGIN_DIR' ) )
-	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
-
-
+ 
 
 /**
  * Checks if a given plugin is active
@@ -64,7 +51,7 @@ function ame_is_plugin_active( $plugin_filename ) {
 /**
  * Define the plugin version
  */
-define("AME_VERSION", "2.3.1");
+define("AME_VERSION", "2.3.2");
 
 /**
  * Define the global var AMEISWP32, returning bool if WP 3.2 or higher is running
@@ -85,7 +72,7 @@ define("AME_PLUGINPATH", "/" . plugin_basename( basename( dirname(__FILE__) ) ) 
 /**
  * Define the plugin full url
  */
-define("AME_PLUGINFULLURL", WP_PLUGIN_URL . AME_PLUGINPATH );
+define("AME_PLUGINFULLURL", trailingslashit(plugins_url( null, __FILE__ )) );
 
 /**
  * Define the plugin full directory

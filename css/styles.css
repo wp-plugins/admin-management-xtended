@@ -43,4 +43,5 @@ th#ame_page_order {
 
 .widefat td.ame_sort {
 	cursor: move;
+	background: url(../img/set1/draghandle.gif) center no-repeat;
 }

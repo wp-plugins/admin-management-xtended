@@ -1,9 +1,9 @@
 === Admin Management Xtended ===
 Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
-Tags: admin, ajax, management, cms, Post, pages, category, inline, media, revision, link, bookmark
+Tags: admin, ajax, management, cms, post, pages, category, inline, media, revision, link, bookmark, drag-and-drop, drag drop
 Requires at least: 3.2
-Tested up to: 3.4
+Tested up to: 3.5
 Stable tag: trunk
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
@@ -98,6 +98,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.3.2 =
+* FIXED: Issues with SSL fixed
+* FIXED: Drag handle icon was missing
 
 = 2.3.1 =
 * FIXED: Removed unnecessary GET params when searching posts (for older browsers who cannot handle long URLs)
