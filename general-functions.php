@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 /* ************************************************ */
-/* Localization										*/
+/* Localization												 */
 /* ************************************************ */
 
 /**
@@ -132,7 +132,6 @@ function ame_get_pageorder() {
 	}
 	
 	die( "jQuery(\"#ame_ordersave_loader\").html('');" );
-	//die( "jQuery(\".tablenav\").animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300).animate( { backgroundColor: '#E5E5E5' }, 300).animate( { backgroundColor: '#EAF3FA' }, 300);" );
 }
 
 /**
@@ -171,6 +170,34 @@ function ame_ajax_save_tags() {
 	die( "jQuery('span#ame_tags" . $postid . "').fadeOut('fast', function() {
 		jQuery('span#ame_tags" . $postid . "').html('" . addslashes_gpc( $ame_post_tags ) . "').fadeIn('fast');
 	});" );
+}
+
+/**
+ * SACK response function for getting post categories and compiling them into a category checklist
+ *
+ * @since 2.3.5
+ * @author scripts@schloebe.de
+ * @uses wp_category_checklist()
+ */
+function ame_ajax_get_categories() {
+	global $wpdb, $post;
+	$ame_id = intval( $_POST['postid'] );
+	;
+	echo '<div id="categorychoose' . $ame_id . '" class="categorydiv">';
+	echo '<div class="button-group">';
+	echo '<a href="javascript:void(0);" class="button small" onclick="ame_check_all(' . $ame_id . ', true);">' . __('Check All') . '</a><a href="javascript:void(0);" class="button small" onclick="ame_check_all(' . $ame_id . ', false);">' . __('Uncheck All') . '</a>';
+	echo '</div><br />';
+	echo '<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:365px;overflow:auto;">';
+	wp_category_checklist( $ame_id, 0, get_option('default_category') );
+	echo '</ul>';
+	echo '<div style="text-align:center;">';
+	echo get_submit_button( __('Save'), 'button button-primary primary large', 'save', false, 'onclick="ame_ajax_save_categories(' . $ame_id . ');return false;"' );
+	echo "&nbsp;";
+	echo get_submit_button( __('Cancel'), 'button button-secondary secondary', 'cancel', false, 'onclick="tb_remove();"' );
+	echo '</div>';
+	echo '</div>';
+	
+	die("");
 }
 
 /**
@@ -264,7 +291,7 @@ function ame_slug_edit() {
 	$curpostslug = $wpdb->get_var( $wpdb->prepare( "SELECT post_name FROM $wpdb->posts WHERE ID = %d", $catid ) );
 	$cols = intval( $_POST['col_no'] );
 	
-	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'> <input type='text' value='" . $curpostslug . "' size='50' style='font-size:1em;' id='ame_slug" . $catid . "' /> <input value='" . __('Save') . "' class='button-primary' type='button' style='font-size:1em;' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel(" . $catid . ");' /></td></tr>";
+	$addHTML = "<tr id='alter" . $posttype . "-" . $catid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'> <input type='text' value='" . $curpostslug . "' size='50' id='ame_slug" . $catid . "' /> <div class='button-group'><input value='" . __('Save') . "' class='button button-primary primary small' type='button' onclick='ame_ajax_slug_save(" . $catid . ", " . $postnumber . ");' /><input value='" . __('Cancel') . "' class='button button-secondary secondary small' type='button' onclick='ame_edit_cancel(" . $catid . ");' /></div></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $catid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $catid . "').hide();" );
 }
 
@@ -311,7 +338,7 @@ function ame_author_edit() {
 	}
 	$output = str_replace("\n", "", $output);
 	
-	$addHTML = "<tr id='alter" . $posttype . "-" . $postid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'>" . $output . "  <input value='" . __('Save') . "' class='button-primary' type='button' style='font-size:1em;' onclick='ame_ajax_author_save(" . $postid . ", " . $typenumber . ");' /> <input value='" . __('Cancel') . "' class='button' type='button' style='font-size:1em;' onclick='ame_edit_cancel($postid)' /></td></tr>";
+	$addHTML = "<tr id='alter" . $posttype . "-" . $postid . "' class='author-other status-publish' valign='middle'><td colspan='" . $cols . "' align='center'>" . $output . " <div class='button-group'><input value='" . __('Save') . "' class='button button-primary primary' type='button' onclick='ame_ajax_author_save(" . $postid . ", " . $typenumber . ");' /> <input value='" . __('Cancel') . "' class='button button-secondary secondary' type='button' onclick='ame_edit_cancel($postid)' /></div></td></tr>";
 	die( "jQuery('#" . $posttype . "-" . $postid . "').after( \"" . $addHTML . "\" ); jQuery('#" . $posttype . "-" . $postid . "').hide();" );
 }
 
@@ -522,6 +549,7 @@ if( function_exists('add_action') ) {
 	add_action('wp_ajax_ame_toggle_showinvisposts', 'ame_toggle_showinvisposts' );
 	add_action('wp_ajax_ame_get_pageorder', 'ame_get_pageorder' );
 	add_action('wp_ajax_ame_ajax_save_categories', 'ame_ajax_save_categories' );
+	add_action('wp_ajax_ame_ajax_get_categories', 'ame_ajax_get_categories' );
 	add_action('wp_ajax_ame_ajax_set_commentstatus', 'ame_ajax_set_commentstatus' );
 	add_action('wp_ajax_ame_ajax_save_tags', 'ame_ajax_save_tags' );
 	add_action('wp_ajax_ame_ajax_toggle_imageset', 'ame_ajax_toggle_imageset' );
@@ -701,7 +729,7 @@ function ame_js_admin_header() {
 	$posttype = 'post'; $revisionL10n = __("Post Revisions");
 	
 	$current_page = basename($_SERVER['PHP_SELF'], ".php");
-	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $posttype = 'page'; } elseif( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
+	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $posttype = 'post'; } elseif( $current_page == 'edit' ) { $posttype = 'post'; } elseif( $current_page == 'link-manager' ) { $posttype = 'link'; }
 	if( $current_page == 'edit' && isset($_GET['post_type']) && $_GET['post_type'] == 'page' ) { $revisionL10n = __("Page Revisions"); } elseif( $current_page == 'edit' ) { $revisionL10n = __("Post Revisions"); } elseif( $current_page == 'edit-pages' ) { $revisionL10n = __("Page Revisions"); }
 ?>
 <?php if( !isset( $_GET['page'] ) ) { ?>
@@ -736,6 +764,18 @@ function ame_css_admin_header() {
 table.widefat td.ame_handleDrag {
 	background: url(' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'draghandle.gif) center no-repeat;
 }
+';
+if( version_compare($GLOBALS['wp_version'], '3.5', '<') ) {
+echo '
+.button-group {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	font-size: 0;
+	vertical-align: middle;
+}';
+}
+echo '
 </style>' . "\n";
 if ( $current_page == 'edit' && !isset( $_GET['page'] ) ) {
 	echo '<script type="text/javascript">

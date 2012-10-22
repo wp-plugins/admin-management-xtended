@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 function ame_column_tag_actions( $defaults ) {
 	unset($defaults['tags']);
 	$defaults['ame_tag_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Tags') . '</abbr>';
-    return $defaults;
+	return $defaults;
 }
 
 /**
@@ -55,8 +55,8 @@ function ame_column_tag_actions( $defaults ) {
  */
 function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
-    if( $ame_column_name == 'ame_tag_actions' ) {
-    	$tags = get_the_tags( $ame_id );
+	if( $ame_column_name == 'ame_tag_actions' ) {
+		$tags = get_the_tags( $ame_id );
 		$ame_post_tags = $ame_post_tags_plain = '';
 		if ( !empty( $tags ) ) {
 			$out = array();
@@ -74,7 +74,7 @@ function ame_custom_column_tag_actions( $ame_column_name, $ame_id ) {
 		if( current_user_can( 'edit_post', $ame_id ) ) {
 			echo '<a id="tageditlink' . $ame_id . '" href="javascript:void(0);" onclick="ame_ajax_form_tags(' . $ame_id . ', \'' . $ame_post_tags_plain . '\');return false;" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a></span>';
 		}
-    }
+	}
 }
 
 add_action('manage_posts_custom_column', 'ame_custom_column_tag_actions', 2, 2);
@@ -98,7 +98,7 @@ function ame_column_category_actions( $defaults ) {
 	if( isset($defaults['tags']) && $defaults['tags'] ) {
 		$defaults['ame_cat_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Categories') . '</abbr>';
 	}
-    return $defaults;
+	return $defaults;
 }
 
 /**
@@ -113,9 +113,9 @@ function ame_column_category_actions( $defaults ) {
 function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
 	
-    if( $ame_column_name == 'ame_cat_actions' ) {
-    	$categories = get_the_category( $ame_id );
-    	$ame_post_cats = "";
+	if( $ame_column_name == 'ame_cat_actions' ) {
+		$categories = get_the_category( $ame_id );
+		$ame_post_cats = "";
 		if ( !empty( $categories ) ) {
 			$out = array();
 			foreach ( $categories as $c ) {
@@ -126,25 +126,16 @@ function ame_custom_column_category_actions( $ame_column_name, $ame_id ) {
 			$ame_post_cats .= __('Uncategorized');
 		}
 		if( current_user_can( 'edit_post', $ame_id ) ) {
-?>
-<div id="categorychoosewrap<?php echo $ame_id; ?>" style="width:300px;height:415px;overflow:auto;display:none;">
-<div id="categorychoose<?php echo $ame_id; ?>" class="categorydiv">
-	<strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, true);"><?php _e('Check All'); ?></a></strong> | <strong><a href="javascript:void(0);" onclick="ame_check_all(<?php echo $ame_id; ?>, false);"><?php _e('Uncheck All'); ?></a></strong>
-	<ul id="categorychecklist" class="list:category categorychecklist form-no-clear" style="height:365px;overflow:auto;">
-		<?php
-		wp_category_checklist( $ame_id, 0, get_option('default_category') );
 		?>
-	</ul>
-	<div style="text-align:center;"><input type="button" value="<?php _e('Save') ?>" class="button-primary" onclick="ame_ajax_save_categories(<?php echo $ame_id; ?>);return false;" />&nbsp;<input type="button" value="<?php _e('Cancel') ?>" class="button" onclick="tb_remove();" /></div>
-</div>
-</div>
+		<div class="categorychoosewrap" id="categorychoosewrap<?php echo $ame_id; ?>" style="width:300px;height:415px;overflow:auto;display:none;"></div>
 		<?php
 		}
 		echo '<span id="ame_category' . $ame_id . '">' . $ame_post_cats . '</span>&nbsp;';
 		if( current_user_can( 'edit_post', $ame_id ) ) {
-		echo '<a class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=415&amp;width=300&amp;inlineId=categorychoosewrap' . $ame_id . '&amp;modal=true" title="' . __('Edit') . '"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+			echo '<a href="#" title="' . __('Edit') . '" onclick="return ame_ajax_get_categories(' . $ame_id . ');"><img src="' . AME_PLUGINFULLURL . 'img/' . AME_IMGSET . 'edit_small.gif" border="0" alt="' . __('Edit') . '" title="' . __('Edit') . '" /></a>';
+			echo '<a title="' . __('Categories') . '" class="thickbox" id="thickboxlink' . $ame_id . '" href="#TB_inline?height=425&amp;width=300&amp;inlineId=categorychoosewrap' . $ame_id . '"></a>';
 		}
-    }
+	}
 }
 
 add_action('manage_posts_custom_column', 'ame_custom_column_category_actions', 1, 2);
@@ -167,7 +158,7 @@ add_filter('manage_posts_columns', 'ame_column_category_actions', 1, 1);
  */
 function ame_column_post_actions( $defaults ) {
 	$defaults['ame_post_actions'] = '<abbr style="cursor:help;" title="' . __('Enhanced by Admin Management Xtended Plugin', 'admin-management-xtended') . ' ' . get_option("ame_version") . '">' . __('Actions', 'admin-management-xtended') . '</abbr>' . ame_changeImgSet();
-    return $defaults;
+	return $defaults;
 }
 
 /**
@@ -181,7 +172,7 @@ function ame_column_post_actions( $defaults ) {
  */
 function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 	global $wpdb, $locale;
-    if( $ame_column_name == 'ame_post_actions' && current_user_can( 'edit_post', $ame_id ) ) {
+	if( $ame_column_name == 'ame_post_actions' && current_user_can( 'edit_post', $ame_id ) ) {
     	$post_status = get_post_status($ame_id); $q_post = get_post($ame_id);
     	echo '<div style="width:90px;" class="ame_options">';
 		
@@ -211,8 +202,8 @@ function ame_custom_column_post_actions( $ame_column_name, $ame_id ) {
 			echo '</div>';
 		}
 		
-    	echo '</div>';
-    }
+		echo '</div>';
+	}
 }
 
 add_action('manage_posts_custom_column', 'ame_custom_column_post_actions', 500, 2);

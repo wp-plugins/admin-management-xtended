@@ -99,6 +99,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.3.5 =
+* FIXED: Removed unnecessary GET params when filtering posts by category (for older browsers who cannot handle long URLs)
+* FIXED: Improved WordPress 3.5 code & UI compatibility
+
 = 2.3.2 =
 * FIXED: Issues with SSL fixed
 * FIXED: Drag handle icon was missing

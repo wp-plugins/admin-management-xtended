@@ -78,9 +78,26 @@ function catSpanFadeOut( postid, ame_cats ) {
 			ame_sack.onError = function() { alert('Ajax error on saving categories'); };
 			ame_sack.onSuccess = function() { re_init(); };
 			ame_sack.runAJAX();
+			jQuery(".categorychoosewrap").html('');
 		});
 		jQuery("span#ame_category" + postid + "").html( loading );
 	//});
+}
+
+function ame_ajax_get_categories( postid ) {
+	var ame_sack = new sack( ajaxurl );
+	ame_sack.execute = 0;
+	ame_sack.method = 'POST';
+	ame_sack.setVar( "action", "ame_ajax_get_categories" );
+	ame_sack.setVar( "postid", postid );
+	ame_sack.onError = function() { alert('Ajax error on getting categories') };
+	ame_sack.onCompletion = function() {
+		jQuery('#categorychoosewrap' + postid).html( ame_sack.response );
+		jQuery('#thickboxlink' + postid).delay(500).click();
+	};
+	ame_sack.runAJAX();
+	
+	return false;
 }
 
 function ame_ajax_save_categories( postid ) {
@@ -238,7 +255,7 @@ function ame_ajax_set_postdate( post_id, pickedDate, posttype ) {
 
 function ame_title_edit( cat_id, title_text, posttype ) {
 	var anz_cols = jQuery('.widefat:first thead th:visible').length;
-	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle" style="display:none;"><td colspan="' + anz_cols + '" align="center"><input type="text" value="' + unescape(title_text) + '" size="50" style="font-size:1em;" id="ame_title' + cat_id + '" /> <input value="' + ameAjaxL10n.Save + '" class="button-primary" type="button" style="font-size:1em;" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /> <input value="' + ameAjaxL10n.Cancel + '" class="button" type="button" style="font-size:1em;" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></td></tr>';
+	var addHTML = '<tr id="alter' + posttype + '-' + cat_id + '" class="author-other status-publish" valign="middle" style="display:none;"><td colspan="' + anz_cols + '" align="center"><input type="text" value="' + unescape(title_text) + '" size="50" id="ame_title' + cat_id + '" /> <div class="button-group"><input value="' + ameAjaxL10n.Save + '" class="button button-primary primary" type="button" onclick="ame_ajax_title_save(\'' + cat_id + '\', \'' + posttype + '\');" /><input value="' + ameAjaxL10n.Cancel + '" class="button button-secondary secondary" type="button" onclick="ame_edit_cancel(\'' + cat_id + '\');" /></div></td></tr>';
 	//jQuery("#" + posttype + "-" + cat_id).after( addHTML );
 	jQuery("#" + posttype + "-" + cat_id).fadeOut( function() {
 		jQuery("#" + posttype + "-" + cat_id).after( addHTML );
@@ -329,5 +346,5 @@ function ame_ajax_set_excludestatus( page_id, status_id ) {
 }
 
 function ame_check_all( id, status ) {
-	jQuery('div#categorychoose' + id).find('ul li input::checkbox').prop('checked', status);
+	jQuery('div#categorychoose' + id).find('ul li input:checkbox').prop('checked', status);
 }
