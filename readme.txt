@@ -5,6 +5,8 @@ Tags: admin, ajax, management, cms, post, pages, category, inline, media, revisi
 Requires at least: 3.2
 Tested up to: 3.5
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Adds AJAX-driven options to some admin management pages with CMS-known functions without having to open the edit screens.
 
@@ -98,6 +100,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.3.6 =
+* FIXED: Readme.txt updated to be more compliant with the readme.txt standard
+* FIXED: Moved screenshots off the package to the assets/ folder
 
 = 2.3.5 =
 * FIXED: Removed unnecessary GET params when filtering posts by category (for older browsers who cannot handle long URLs)
