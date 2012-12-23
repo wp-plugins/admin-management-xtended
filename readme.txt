@@ -101,6 +101,10 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.3.7 =
+* FIXED: Drag'n'Drop was broken in WP 3.5
+* Merry Xmas and a Happy New Year 2013 everyone!
+
 = 2.3.6 =
 * FIXED: Readme.txt updated to be more compliant with the readme.txt standard
 * FIXED: Moved screenshots off the package to the assets/ folder

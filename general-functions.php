@@ -593,7 +593,7 @@ jQuery(document).ready(function() {
 	});
 	jQuery(\".widefat\").attr(\"id\", \"pageordertable\");
 	jQuery(\"#pageordertable > thead > tr\").attr(\"id\", \"page-0\");
-	jQuery(\"tr:has('a:contains('—')')\").addClass('nodrop').addClass('nodrag');
+	jQuery(\"tr\").has(\"a:contains('—')\").addClass('nodrop').addClass('nodrag');
     jQuery(\"#pageordertable\").tableDnD({
     	dragHandle: \"ame_sort\",
     	scrollAmount: \"30\",
