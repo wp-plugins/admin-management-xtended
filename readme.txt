@@ -102,6 +102,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 
 == Changelog ==
 
+= 2.3.9.2 =
+* FIXED: Localization update
+
 = 2.3.9.1 =
 * NEW: Added slovenian localization (Thanks to Mitja Mihelič!)
 * FIXED: Improved localization
