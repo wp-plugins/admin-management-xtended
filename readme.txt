@@ -57,7 +57,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * German (de_DE) (Thanks to me ;-))
 * Spanish (es_ES) (Thanks for contributing spanish language goes to Karin Sequen / http://www.es-xchange.com)
 * French (fr_FR) (Thanks for contributing french language goes to Gilles Wittezaële / http://gilles.wittezaele.fr/blog/)
-* Hebrew (he_IL) (Thanks for contributing hebrew language goes to Meir Pinto / http://www.pintophotography.com/wp/)
+* Hebrew (he_IL) (Thanks for contributing hebrew language goes to Atar4U / https://profiles.wordpress.org/ahrale/)
 * Japanese (ja) (Thanks for contributing japanese language goes to kzh / http://homepage1.nifty.com/)
 * Persian(farsi) (fa_IR) (Thanks for contributing persian language goes to Amir Ashtiani / http://ouo.ir)
 * Turkish (tr_TR) (Thanks for contributing turkish language goes to wolkanca / http://blog.wolkanca.com)
@@ -103,6 +103,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.3.9.3 =
+* FIXED: Localization update (he_IL)
 
 = 2.3.9.2 =
 * FIXED: Localization update
