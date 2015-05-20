@@ -3,7 +3,7 @@ Contributors: Alphawolf
 Donate link: http://www.schloebe.de/donate/
 Tags: admin, ajax, management, cms, post, pages, category, inline, media, revision, link, bookmark, drag-and-drop, drag drop
 Requires at least: 3.2
-Tested up to: 4.3
+Tested up to: 4.2.9999
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -76,6 +76,7 @@ It adds some icons to the posts/pages management panel with **AJAX-driven** CMS-
 * Romanian (ro_RO) (Thanks for contributing romanian language goes to Anunturi Jibo / http://www.jibo.ro)
 * Slovak (sk_SK) (Thanks for contributing slovak language goes to Viliam Brozman / http://www.brozman.sk/blog)
 * Slovenian (sl_SI) (Thanks for contributing slovenian language goes to Mitja Mihelič)
+* Serbo-Croatian (sr_RS) (Thanks for contributing serbo-croatian language goes to Andrijana Nikolic / http://webhostinggeeks.com/)
 
 == Frequently Asked Questions ==
 
@@ -103,6 +104,9 @@ Please visit [the official website](http://www.schloebe.de/wordpress/admin-manag
 4. Installation finished.
 
 == Changelog ==
+
+= 2.3.9.4 =
+* NEW: Localization update (sr_RS)
 
 = 2.3.9.3 =
 * FIXED: Localization update (he_IL)
